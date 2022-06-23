@@ -1,4 +1,4 @@
-class EventsController < ApplicationController
+class Admins::EventsController < ApplicationController
   before_action :set_event, only: %i[ show edit update destroy ]
 
   # GET /events or /events.json
