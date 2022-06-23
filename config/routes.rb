@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :events
+  devise_for :admins
+  devise_for :users
   root "dashboard#index"
   get 'dashboard/index'
   devise_for :admins, controllers: {
