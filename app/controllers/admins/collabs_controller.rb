@@ -1,4 +1,4 @@
-class CollabsController < ApplicationController
+class Admins::CollabsController < ApplicationController
   before_action :set_collab, only: %i[ show edit update destroy ]
 
   # GET /collabs or /collabs.json
@@ -25,7 +25,7 @@ class CollabsController < ApplicationController
 
     respond_to do |format|
       if @collab.save
-        format.html { redirect_to collab_url(@collab), notice: "Collab was successfully created." }
+        format.html { redirect_to admin_collab_url(@collab), notice: "Collab was successfully created." }
         format.json { render :show, status: :created, location: @collab }
       else
         format.html { render :new, status: :unprocessable_entity }

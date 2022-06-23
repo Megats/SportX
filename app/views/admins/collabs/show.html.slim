@@ -5,6 +5,6 @@ p style="color: green" = notice
 div
   => link_to "Edit this collab", edit_collab_path(@collab)
   '|
-  =< link_to "Back to collabs", collabs_path
+  =< link_to "Back to collabs", admin_collabs_path
 
   = button_to "Destroy this collab", @collab, method: :delete
