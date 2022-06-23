@@ -1,0 +1,2 @@
+class Collab < ApplicationRecord
+end

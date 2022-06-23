@@ -1,0 +1,11 @@
+p style="color: green" = notice
+
+h1 Collabs
+
+#collabs
+  - @collabs.each do |collab|
+    == render collab
+    p
+      = link_to "Show this collab", collab
+
+= link_to "New collab", new_collab_path
