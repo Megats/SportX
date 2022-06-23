@@ -16,7 +16,7 @@ gem "pg"
 gem 'devise'
 
 #indent
-gem 'slim-rails', '~> 3.1', '>= 3.1.1'
+gem 'slim-rails'
 
 #simple form
 gem 'simple_form'

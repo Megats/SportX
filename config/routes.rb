@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root "dashboard#index"
+  get 'dashboard/index'
   devise_for :admins, controllers: {
   sessions: 'admins/sessions',
   registrations: 'admins/registrations',
