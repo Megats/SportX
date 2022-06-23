@@ -13,7 +13,7 @@ gem "sprockets-rails"
 gem "pg"
 
 #devise
-gem 'devise', '~> 4.8', '>= 4.8.1'
+gem 'devise'
 
 #indent
 gem 'slim-rails', '~> 3.1', '>= 3.1.1'
