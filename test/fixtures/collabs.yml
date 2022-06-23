@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  org_name: MyString
+  overview: MyString
+  donation_fee: 1
+
+two:
+  org_name: MyString
+  overview: MyString
+  donation_fee: 1
