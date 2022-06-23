@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  
+  resources :results
+
   draw :admin
   draw :user
 

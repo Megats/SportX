@@ -1,4 +1,4 @@
-= simple_form_for @collab do |form|
+= simple_form_for [:admin,@collab] do |form|
   - if @collab.errors.any?
     div style="color: red"
       h2 = "#{pluralize(@collab.errors.count, "error")} prohibited this collab from being saved:"

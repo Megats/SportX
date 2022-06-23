@@ -1,0 +1,10 @@
+h1 Editing result
+
+== render "form", result: @result
+
+br
+
+div
+  => link_to "Show this result", @result
+  '|
+  =< link_to "Back to results", results_path
