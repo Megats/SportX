@@ -1,9 +1,9 @@
-= simple_form_for(@result) do |f|
+= simple_form_for([:admin,@result]) do |f|
   = f.error_notification
   = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
 
   .form-inputs
-    = f.input :result_descriptioon
+    = f.input :result_description
     = f.input :event_id
     = f.input :user_id
 
