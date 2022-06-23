@@ -21,3 +21,4 @@ namespace :users, as: :user do
   resources :users
   resources :participants
 end
+end
