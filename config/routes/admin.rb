@@ -16,8 +16,9 @@ end
 
 namespace :admins, as: :admin do
   resources :dashboards
-  resources :collaborations
+  resources :collabs
   resources :payments
+  resources :events
   resources :users
   resources :participants
 end
