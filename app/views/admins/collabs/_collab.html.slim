@@ -1,16 +1,26 @@
 div id="#{dom_id collab}"
-  p
-    strong Collab name:
-    =< collab.collab_name
-  p
-    strong Collab organiser:
-    =< collab.collab_organiser
-  p
-    strong Collab contact:
-    =< collab.collab_contact
-  p
-    strong Collab email:
-    =< collab.collab_email
-  p
-    strong Collab website:
-    =< collab.collab_website
+  div.card.card-compact.w-96.bg-base-100.shadow-xl.bg-primary     
+    figure.carousel.rounded-box
+      |examble
+    container.card-body.bg-gradient-to-r.from-indigo-500.via-purple-500.to-pink-500
+      h2.card-title
+        =< collab.collab_name
+      p
+        strong Collab organiser:
+        =< collab.collab_organiser
+      p
+        strong Collab contact:
+        =< collab.collab_contact
+      p
+        strong Collab email:
+        =< collab.collab_email
+
+      p
+        strong Collab website:
+        =< collab.collab_website
+
+      - if params[:action] == 'index'
+        div.card-actions.justify-end
+          = link_to "Show this product", admin_collab_path(collab), class: "btn btn-primary"
+
+      - else
