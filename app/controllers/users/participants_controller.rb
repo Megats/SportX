@@ -61,7 +61,7 @@ class Users::ParticipantsController < ApplicationController
   private
   
     def get_event
-      @event = Event.find(params[:product_id])
+      @event = Event.find(params[:event_id])
     end
     # Use callbacks to share common setup or constraints between actions.
     def set_participant
