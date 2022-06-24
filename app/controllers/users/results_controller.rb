@@ -6,6 +6,7 @@ class Users::ResultsController < ApplicationController
   # GET /results or /results.json
   def index
     @results = Result.all
+    @result = @results.events
     @events = Event.all
   end
 
