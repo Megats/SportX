@@ -1,0 +1,42 @@
+nav.bg-gray-800
+  .max-w-7xl.mx-auto.px-2.sm:px-6.lg:px-8
+    .relative.flex.items-center.justify-between.h-16
+      .absolute.inset-y-0.left-0.flex.items-center.sm:hidden
+        .collapse
+          .collapse-title.text-xl.font-medium
+            label.btn.btn-circle.swap.swap-rotate
+              input.hidden[type="checkbox"]
+              svg.swap-off.fill-current[xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewbox="0 0 512 512"]
+                path[d="M64,384H448V341.33H64Zm0-106.67H448V234.67H64ZM64,128v42.67H448V128Z"]
+              svg.swap-on.fill-current[xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewbox="0 0 512 512"]
+                polygon[points="400 145.49 366.51 112 256 222.51 145.49 112 112 145.49 222.51 256 112 366.51 145.49 400 256 289.49 366.51 400 400 366.51 289.49 256 400 145.49"]
+          .collapse-content.bg-white
+            p
+              | tabindex="0" attribute is necessary to make the div focusable
+      .flex-1.flex.items-center.justify-center.sm:items-stretch.sm:justify-start
+        .flex-shrink-0.flex.items-center
+          img.block.lg:hidden.h-8.w-auto[src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg" alt="Workflow"]
+          img.hidden.lg:block.h-8.w-auto[src="https://mdbcdn.b-cdn.net/img/logo/mdb-transaprent-noshadows.webp" alt="Workflow"]
+        .hidden.sm:block.sm:ml-6
+          .flex.space-x-4
+            - if admin_signed_in?
+              = link_to "Home", admin_dashboards_path, class: "text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+              = link_to "Collabs", admin_collabs_path, class: "text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+              = link_to "Results", admin_results_path, class: "text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+              .flex.justify-end
+                = button_to("Log Out", destroy_admin_session_path, method: :delete, class: "text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium self-end")
+  #mobile-menu.sm:hidden
+    .dropdown.px-2.pt-2.pb-3.space-y-1
+      ul.dropdown-content.menu.p-2.shadow.bg-base-100.rounded-box.w-52[tabindex="0"]
+        - if admin_signed_in?
+          a
+            = link_to "Collabs", admin_collabs_path, class: "text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+          a
+            = link_to "Home", admin_dashboards_path, class: "text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+          a
+            = link_to "Results", admin_dashboards_path, class: "text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+          a
+            = button_to("Log Out", destroy_admin_session_path, method: :delete, class: "text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium self-end")
+        - else
+          = link_to "Sign up", new_user_registration_path, class: "text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+          = link_to "Sign in", new_user_session_path, class: "text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium item-center"

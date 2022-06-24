@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  donation_email: MyString
+  donation_nationality: MyString
+  donation_COR: MyString
+  donation_NRIC: MyString
+  donation_dob: 2022-06-24
+  donation_amount: 1
+
+two:
+  user: two
+  donation_email: MyString
+  donation_nationality: MyString
+  donation_COR: MyString
+  donation_NRIC: MyString
+  donation_dob: 2022-06-24
+  donation_amount: 1

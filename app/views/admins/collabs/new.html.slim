@@ -1,8 +1,12 @@
-h1 New collab
+.mx-auto.md:w-2/3.w-full
+  h1.font-bold.text-4xl New collab
 
-== render "form", collab: @collab
+  div.flex.justify-end
+    br
+    = link_to "Back to collabs", admin_collabs_path
 
-br
+  == render "form", collab: @collab
 
-div
-  = link_to "Back to collabs", admin_collabs_path
+  br
+
+  

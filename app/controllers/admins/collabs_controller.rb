@@ -25,7 +25,7 @@ class Admins::CollabsController < ApplicationController
 
     respond_to do |format|
       if @collab.save
-        format.html { redirect_to collab_url(@collab), notice: "Collab was successfully created." }
+        format.html { redirect_to admin_collab_url(@collab), notice: "Collab was successfully created." }
         format.json { render :show, status: :created, location: @collab }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +38,7 @@ class Admins::CollabsController < ApplicationController
   def update
     respond_to do |format|
       if @collab.update(collab_params)
-        format.html { redirect_to collab_url(@collab), notice: "Collab was successfully updated." }
+        format.html { redirect_to admin_collab_url(@collab), notice: "Collab was successfully updated." }
         format.json { render :show, status: :ok, location: @collab }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -52,7 +52,7 @@ class Admins::CollabsController < ApplicationController
     @collab.destroy
 
     respond_to do |format|
-      format.html { redirect_to collabs_url, notice: "Collab was successfully destroyed." }
+      format.html { redirect_to admin_collabs_url, notice: "Collab was successfully destroyed." }
       format.json { head :no_content }
     end
   end

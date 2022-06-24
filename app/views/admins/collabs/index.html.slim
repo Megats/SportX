@@ -1,11 +1,19 @@
 p style="color: green" = notice
 
-h1 Collabs
 
+div.prose.bg-content
+  br
+  h1 Collabs
+  br
+  
+div.flex.justify-end
+  = link_to "New collab", new_admin_collab_path , class:"btn btn-dark"
+br
+ 
 #collabs
+div.grid.grid-cols-4.gap-4
+
   - @collabs.each do |collab|
     == render collab
-    p
-      = link_to "Show this collab", admin_collab_path(collab)
+br     
 
-= link_to "New collab", new_admin_collab_path
