@@ -10,3 +10,5 @@
     = link_to 'Back to events', admin_events_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium"
     .flex.justify-end
       = link_to 'Register', new_user_event_participant_path(@event.id), class: "ml-2 rounded-lg py-3 px-5 bg-blue-100 inline-block font-medium"
+
+      = @event.event_status

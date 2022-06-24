@@ -10,3 +10,5 @@
         = button_to 'Destroy this event', admin_event_path(@event), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium"
       = link_to 'Back to events', admin_events_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium"
       = link_to 'Register', admin_events_path, class: "ml-2 rounded-lg py-3 px-5 bg-blue-100 inline-block font-medium"
+
+      = @event.event_status
