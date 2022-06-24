@@ -1,22 +1,18 @@
-= simple_form_for [:admin,@collab] do |form|
-  - if @collab.errors.any?
-    div style="color: red"
-      h2 = "#{pluralize(@collab.errors.count, "error")} prohibited this collab from being saved:"
-      ul
-        - @collab.errors.each do |error|
-          li = error.full_message
+= simple_form_for [:admin, @collab] do |f|
+  = f.error_notification
+  = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
 
-  div
-    = form.label :org_name, style: "display: block"
-    = form.text_field :org_name
+  .my-5.form-inputs
+    .block.shadow.rounded-md.border.border-gray-200.outline-none.px-3.py-2.mt-2.w-full
+      = f.input :collab_name
+    .block.shadow.rounded-md.border.border-gray-200.outline-none.px-3.py-2.mt-2.w-full
+      = f.input :collab_organiser
+    .block.shadow.rounded-md.border.border-gray-200.outline-none.px-3.py-2.mt-2.w-full
+      = f.input :collab_contact
+    .block.shadow.rounded-md.border.border-gray-200.outline-none.px-3.py-2.mt-2.w-full
+      = f.input :collab_email
+    .block.shadow.rounded-md.border.border-gray-200.outline-none.px-3.py-2.mt-2.w-full
+      = f.input :collab_website
 
-  div
-    = form.label :overview, style: "display: block"
-    = form.text_field :overview
-
-  div
-    = form.label :donation_fee, style: "display: block"
-    = form.number_field :donation_fee
-
-  div
-    = form.submit
+  .form-actions
+    = f.button :submit

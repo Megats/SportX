@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  collab_name: MyString
+  collab_organiser: MyString
+  collab_contact: MyString
+  collab_email: MyString
+  collab_website: MyString
+
+two:
+  collab_name: MyString
+  collab_organiser: MyString
+  collab_contact: MyString
+  collab_email: MyString
+  collab_website: MyString
