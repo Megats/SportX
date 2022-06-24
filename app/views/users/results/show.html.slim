@@ -1,0 +1,10 @@
+p style="color: green" = notice
+
+== render @result
+
+div
+  => link_to "Edit this result", edit_admin_result_path(@result)
+  '|
+  =< link_to "Back to results", admin_results_path
+
+  = button_to "Destroy this result", admin_result_path(@result), method: :delete
