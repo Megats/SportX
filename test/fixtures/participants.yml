@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  event: one
+  participant_email: MyString
+  participant_nationality: MyString
+  participant_COR: MyString
+  paticipant_NRIC: MyString
+  participants_dob: 2022-06-24
+  participant_category: MyString
+
+two:
+  user: two
+  event: two
+  participant_email: MyString
+  participant_nationality: MyString
+  participant_COR: MyString
+  paticipant_NRIC: MyString
+  participants_dob: 2022-06-24
+  participant_category: MyString

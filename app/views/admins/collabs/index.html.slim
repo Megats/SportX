@@ -14,6 +14,9 @@ br
 div.grid.grid-cols-4.gap-4
 
   - @collabs.each do |collab|
-    == render collab
+    button
+      = link_to admin_collab_path(collab) do
+        = render collab
+      
 br     
 

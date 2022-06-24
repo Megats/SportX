@@ -22,6 +22,8 @@ class Admins::ResultsController < ApplicationController
 
   # GET /results/1/edit
   def edit
+    @results = Result.all
+    @events = Event.all
   end
 
   # POST /results or /results.json

@@ -2,6 +2,7 @@ p style="color: green" = notice
 
 h5.text-3xl.m-6.text-center
   | View all past events result
+br
 .gap-24.py-3.grid.grid-cols-4
   - @results.each do |result|
     = link_to admin_result_path(result) do

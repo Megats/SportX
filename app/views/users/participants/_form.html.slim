@@ -1,0 +1,16 @@
+= simple_form_for [:admin, @event, @participant)] do |f|
+  = f.error_notification
+  = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
+
+  .form-inputs
+    = f.association :user
+    = f.association :event
+    = f.input :participant_email
+    = f.input :participant_nationality
+    = f.input :participant_COR
+    = f.input :paticipant_NRIC
+    = f.input :participants_dob
+    = f.input :participant_category
+
+  .form-actions
+    = f.button :submit

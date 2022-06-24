@@ -1,10 +1,18 @@
 p style="color: green" = notice
+br
 
-== render @result
+.card.w-96.bg-base-100.shadow-xl.mx-auto
+  figure
+    img alt="Shoes" src="https://api.lorem.space/image/game?w=400&h=225"
+  .card-body
+    h2.card-title #{@result.result_description}
+    .badge.badge-secondary #{@result.result_description}
+    p #{@result.created_at}
 
-div
-  => link_to "Edit this result", edit_admin_result_path(@result)
-  '|
-  =< link_to "Back to results", admin_results_path
-
-  = button_to "Destroy this result", admin_result_path(@result), method: :delete
+table#users-datatable data-source=("<%= admin_results_path(format: :json) %>")
+  thead
+    tr
+      th ID
+      th Email
+      th Created at
+  tbody
