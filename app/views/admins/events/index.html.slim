@@ -10,4 +10,6 @@ div.w-full
   #events 
   div.grid.overflow-hidden.grid-cols-4.gap-4
     - @events.each do |event|
-      == render event
+      button
+       = link_to admin_event_path(event) do 
+        = render event
