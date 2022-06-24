@@ -1,0 +1,11 @@
+p style="color: green" = notice
+
+h1 Participants
+
+#participants
+  - @participants.each do |participant|
+    == render participant
+    p
+      = link_to "Show this participant", event_participant
+
+= link_to "New participant", new_event_participant_path
