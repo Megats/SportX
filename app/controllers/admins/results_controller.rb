@@ -76,6 +76,6 @@ class Admins::ResultsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def result_params
-      params.require(:result).permit(:result_description, :event_id, :user_id)
+      params.require(:result).permit(:result_description, :event_id)
     end
 end

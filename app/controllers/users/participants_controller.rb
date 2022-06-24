@@ -26,7 +26,7 @@ class Users::ParticipantsController < ApplicationController
 
     respond_to do |format|
       if @participant.save
-        format.html { redirect_to event_participant_url(@participant), notice: "Participant was successfully created." }
+        format.html { redirect_to user_event_participants_url(@participant), notice: "Participant was successfully created." }
         format.json { render :show, status: :created, location: @participant }
       else
         format.html { render :new, status: :unprocessable_entity }
