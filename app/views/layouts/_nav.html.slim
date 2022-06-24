@@ -1,27 +1,42 @@
-<div class="navbar bg-base-100">
-  <div class="flex-1">
-    <a class="btn btn-ghost normal-case text-xl">daisyUI</a>
-  </div>
-  <div class="flex-none gap-2">
-    <div class="form-control">
-      <input type="text" placeholder="Search" class="input input-bordered" />
-    </div>
-    <div class="dropdown dropdown-end">
-      <label tabindex="0" class="btn btn-ghost btn-circle avatar">
-        <div class="w-10 rounded-full">
-          <img src="https://api.lorem.space/image/face?hash=33791" />
-        </div>
-      </label>
-      <ul tabindex="0" class="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
-        <li>
-          <a class="justify-between">
-            Profile
-            <span class="badge">New</span>
-          </a>
-        </li>
-        <li><a>Settings</a></li>
-        <li><a>Logout</a></li>
-      </ul>
-    </div>
-  </div>
-</div>
+.navbar.bg-base-100
+  .navbar-start
+    .dropdown
+      label.btn.btn-ghost.lg:hidden tabindex="0"
+        svg.h-5.w-5 fill="none" stroke="currentColor" viewbox=("0 0 24 24") xmlns="http://www.w3.org/2000/svg"
+          path d=("M4 6h16M4 12h8m-8 6h16") stroke-linecap="round" stroke-linejoin="round" stroke-width="2" /
+      ul.menu.menu-compact.dropdown-content.mt-3.p-2.shadow.bg-base-100.rounded-box.w-52 tabindex="0"
+        li
+          a Item 1
+        li tabindex="0"
+          a.justify-between
+            | Parent
+            svg.fill-current height="24" viewbox=("0 0 24 24") width="24" xmlns="http://www.w3.org/2000/svg"
+              path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /
+          ul.p-2
+            li
+              a Submenu 1
+            li
+              a Submenu 2
+            li
+              a Item 3
+    a.btn.btn-ghost.normal-case.text-xl daisyUI
+  .navbar-center.hidden.lg:flex
+    ul.menu.menu-horizontal.p-0
+      li
+        a Item 1
+      li tabindex="0"
+        a
+          | Parent
+          svg.fill-current height="20" viewbox=("0 0 24 24") width="20" xmlns="http://www.w3.org/2000/svg"
+            path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" /
+        ul.p-2
+          li
+            a Submenu 1
+          li
+            a Submenu 2
+      li
+        a Item 3
+
+  - if admin_signed_in?
+    .navbar-end
+      a.btn Logout

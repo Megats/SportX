@@ -2,8 +2,9 @@
 = dom_id event
 | "> 
 .card.card-compact.w-62.bg-base-100.shadow-xl
-  figure
-    img[src="https://api.lorem.space/image/shoes?w=400&h=225" alt="Shoes"]
+  figure.md:w-auto
+   - if event.eventpicture.attached?
+    = image_tag event.eventpicture
   .card-body
     h2.card-title
       = event.event_name

@@ -1,0 +1,21 @@
+p style="color: green" = notice
+
+h1 Results
+.grid.grid-cols-2
+  - @results.each do |result|
+    = link_to admin_result_path(result) do
+      .card.w-96.bg-base-100.shadow-xl
+        figure
+          img alt="Shoes" src="https://api.lorem.space/image/shoes?w=400&h=225"
+        .card-body
+          h2.card-title #{result.result_description}
+          .badge.badge-secondary #{result.result_description}
+          p #{result.result_description}
+
+/ #results
+/   - @results.each do |result|
+/     == render result
+/     p
+/       = link_to "Show this result", admin_result_path(result)
+- if @events.exists?
+  = link_to "New result", new_admin_result_path

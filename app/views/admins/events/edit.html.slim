@@ -2,5 +2,5 @@
   h1.font-bold.text-4xl
     | Editing event
   = render "form", event: @event
-  = link_to "Show this event", @event, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium"
+  = link_to "Show this event", admin_event_path(@event), class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium"
   = link_to "Back to events", admin_events_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium"

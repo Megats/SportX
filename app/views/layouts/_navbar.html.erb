@@ -33,9 +33,10 @@
         <div class="hidden sm:block sm:ml-6">
           <div class="flex space-x-4">
               <% if admin_signed_in? %>
-
               <%= link_to "Home", admin_dashboards_path, class: "text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" %>
               <%= link_to "Collabs", admin_collabs_path, class: "text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" %>
+              <%= link_to "Results", admin_results_path, class: "text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" %>
+              <a><%= button_to("Log Out", destroy_admin_session_path, method: :delete, class: "text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium self-end")  %></a>
               <% end %>
           </div>
         </div>
@@ -50,13 +51,13 @@
         <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
 
 
-            <% if user_signed_in? %>
+            <% if admin_signed_in? %>
 
-              <a><%= link_to "Home", root_path, class: "text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" %></a>
+              <a><%= link_to "Collabs", admin_collabs_path, class: "text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" %></a>
+              <a><%= link_to "Home", admin_dashboards_path, class: "text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" %></a>
+              <a><%= link_to "Results", admin_dashboards_path, class: "text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" %></a>
 
-              <a><%= link_to "Collabs", admin_collabs, class: "text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" %></a>
-
-              <a><%= button_to("Log Out", destroy_user_session_path, method: :delete, class: "text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium self-end")  %></a>
+              <a><%= button_to("Log Out", destroy_admin_session_path, method: :delete, class: "text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium self-end")  %></a>
 
             <% else %>
               <%= link_to "Sign up", new_user_registration_path, class: "text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" %>
