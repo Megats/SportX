@@ -1,0 +1,17 @@
+= simple_form_for [:user, @event, @participant], data:{turbo:false}  do |f|
+  = f.error_notification
+  = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
+
+  .form-inputs
+    
+    = f.input :participant_email
+    = f.input :participant_nationality
+    = f.input :participant_COR
+    = f.input :paticipant_NRIC
+    = f.input :participants_dob
+    = f.input :participant_category
+    = f.input :user_id
+    = f.input :event_id
+
+  .form-actions
+    = f.button :submit

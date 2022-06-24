@@ -82,6 +82,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_24_071843) do
     t.string "event_venue"
     t.date "event_date"
     t.time "event_time"
+    t.string "event_status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

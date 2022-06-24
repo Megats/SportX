@@ -5,6 +5,7 @@ class CreateEvents < ActiveRecord::Migration[7.0]
       t.string :event_venue
       t.date :event_date
       t.time :event_time
+      t.string :event_status
 
       t.timestamps
     end
