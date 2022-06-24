@@ -19,8 +19,4 @@ div id="#{dom_id collab}"
         strong Collab website:
         =< collab.collab_website
 
-      - if params[:action] == 'index'
-        div.card-actions.justify-end
-          = link_to "Show this product", admin_collab_path(collab), class: "btn btn-primary"
-
-      - else
+   
