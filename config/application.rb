@@ -10,6 +10,8 @@ module SportX
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
+    
+    config.active_storage.variant_processor
 
     config.generators do |g|
       g.template_engine :slim
