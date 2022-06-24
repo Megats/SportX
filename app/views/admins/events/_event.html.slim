@@ -1,8 +1,8 @@
 div id="#{dom_id event}"
-  div.card.card-compact.w-auto.bg-base-100.shadow-xl
-    figure.carousel.rounded-box
+  div.card.card-compact.w-50.bg-base-50.shadow-xl
+    figure.object-fill.rounded-md
     - if event.eventpicture.attached?
-      = image_tag event.eventpicture
+      = image_tag event.resize_eventpic
     .card-body
       h2.card-title
         = event.event_name
