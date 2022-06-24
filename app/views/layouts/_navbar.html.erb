@@ -36,6 +36,7 @@
               <%= link_to "Home", admin_dashboards_path, class: "text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" %>
               <%= link_to "Collabs", admin_collabs_path, class: "text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" %>
               <%= link_to "Results", admin_results_path, class: "text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" %>
+              <a><%= button_to("Log Out", destroy_admin_session_path, method: :delete, class: "text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium self-end")  %></a>
               <% end %>
           </div>
         </div>

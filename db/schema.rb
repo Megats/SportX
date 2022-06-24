@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_23_091522) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_24_015542) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -55,20 +55,22 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_23_091522) do
   end
 
   create_table "events", force: :cascade do |t|
-    t.string "nameevent"
-    t.string "venueevent"
-    t.string "dateevent"
-    t.string "timeevent"
+    t.string "event_name"
+    t.string "event_venue"
+    t.date "event_date"
+    t.time "event_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "results", force: :cascade do |t|
     t.string "result_description"
-    t.integer "event_id"
-    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "event_id", null: false
+    t.bigint "user_id", null: false
+    t.index ["event_id"], name: "index_results_on_event_id"
+    t.index ["user_id"], name: "index_results_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -85,4 +87,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_23_091522) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "results", "events"
+  add_foreign_key "results", "users"
 end
