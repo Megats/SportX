@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_24_033236) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_24_071843) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -86,6 +86,21 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_24_033236) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "participants", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "event_id", null: false
+    t.string "participant_email"
+    t.string "participant_nationality"
+    t.string "participant_COR"
+    t.string "paticipant_NRIC"
+    t.date "participants_dob"
+    t.string "participant_category"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_participants_on_event_id"
+    t.index ["user_id"], name: "index_participants_on_user_id"
+  end
+
   create_table "results", force: :cascade do |t|
     t.string "result_description"
     t.datetime "created_at", null: false
@@ -111,6 +126,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_24_033236) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "donations", "users"
+  add_foreign_key "participants", "events"
+  add_foreign_key "participants", "users"
   add_foreign_key "results", "events"
   add_foreign_key "results", "users"
 end
