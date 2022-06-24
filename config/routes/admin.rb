@@ -19,7 +19,8 @@ namespace :admins, as: :admin do
   resources :collabs
   resources :results
   resources :payments
-  resources :events
   resources :users
-  resources :participants
+  resources :events do
+    resources :participants
+  end
 end
