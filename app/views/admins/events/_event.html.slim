@@ -1,19 +1,19 @@
 div id="#{dom_id event}"
-  div.card.card-compact.w-50.bg-base-50.shadow-xl
-    figure.object-fill.rounded-md
-    - if event.eventpicture.attached?
-      = image_tag event.eventpicture.variant(resize_to_limit: [400, 400])
-    .card-body
-      h2.card-title
-        = event.event_name
-      p
-        = event.event_venue
-      p
-        = event.event_date
-      p
-        = event.event_time
-    br
-  - if action_name != "show"
-    = link_to "Show this event", admin_event_path(event), class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium"
-    = link_to 'Edit this event', edit_admin_event_path(event), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium"
-    hr.mt-6
+    div.card.card-compact.w-50.bg-base-50.shadow-xl
+      figure.object-fill.rounded-md
+      - if event.eventpicture.attached?
+        = image_tag event.eventpicture.variant(resize_to_limit: [400, 400])
+      .card-body
+        h2.card-title
+          = event.event_name
+        p
+          = event.event_venue
+        p
+          = event.event_date
+        p
+          = event.event_time
+      br
+    - if action_name != "show"
+      = link_to "Show this event", admin_event_path(event), class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium"
+      = link_to 'Edit this event', edit_admin_event_path(event), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium"
+      hr.mt-6
