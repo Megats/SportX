@@ -3,7 +3,6 @@
   = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
 
   .my-5.form-inputs
-<<<<<<< HEAD
     .my-8
       = f.input :collab_name, label: 'Collab name', placeholder: 'Collaboration name', :input_html => {:style=> 'width: 650px', class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full"} 
     .my-8
@@ -14,18 +13,6 @@
       = f.input :collab_email, label: 'Organiser email', placeholder: 'Email', :input_html => {:style=> 'width: 650px', class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full"} 
     .my-
       = f.input :collab_website, label: 'Organiser website', placeholder: 'www.example.com', :input_html => {:style=> 'width: 650px', class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full"} 
-=======
-    .block.shadow.rounded-md.border.border-gray-200.outline-none.px-3.py-2.mt-2.w-full
-      = f.input :collab_name
-    .block.shadow.rounded-md.border.border-gray-200.outline-none.px-3.py-2.mt-2.w-full
-      = f.input :collab_organiser
-    .block.shadow.rounded-md.border.border-gray-200.outline-none.px-3.py-2.mt-2.w-full
-      = f.input :collab_contact
-    .block.shadow.rounded-md.border.border-gray-200.outline-none.px-3.py-2.mt-2.w-full
-      = f.input :collab_email
-    .block.shadow.rounded-md.border.border-gray-200.outline-none.px-3.py-2.mt-2.w-full
-      = f.input :collab_website
->>>>>>> 74345078bd744acbe65ade6854567ed4cf3e7493
 
   .my-10.form-actions
     = f.button :submit
