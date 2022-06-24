@@ -16,8 +16,10 @@ end
 
 namespace :users, as: :user do
   resources :dashboards
-  resources :collaborations
+  resources :collabs
+  resources :results
   resources :payments
+  resources :events
   resources :users
   resources :participants
 end
