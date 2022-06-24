@@ -2,7 +2,7 @@ p style="color: green" = notice
 
 
 div.prose.bg-content
-  
+  br
   h1 Collabs
   br
   
@@ -10,11 +10,10 @@ div.flex.justify-end
   = link_to "New collab", new_admin_collab_path , class:"btn btn-dark"
 br
  
-
 #collabs
-div.grid.grid-cols-4.gap-8
+div.grid.grid-cols-4.gap-4
 
   - @collabs.each do |collab|
-      == render collab
-  br      
+    == render collab
+br     
 
