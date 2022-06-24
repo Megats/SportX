@@ -1,7 +1,8 @@
 p style="color: green" = notice
 
-h1 Results
-.grid.grid-cols-2
+h5.text-3xl.m-6.text-center
+  | View all past events result
+.gap-24.py-3.grid.grid-cols-4
   - @results.each do |result|
     = link_to admin_result_path(result) do
       .card.w-96.bg-base-100.shadow-xl
@@ -12,10 +13,5 @@ h1 Results
           .badge.badge-secondary #{result.result_description}
           p #{result.created_at}
 
-/ #results
-/   - @results.each do |result|
-/     == render result
-/     p
-/       = link_to "Show this result", admin_result_path(result)
 - if @events.exists?
   = link_to "New result", new_admin_result_path

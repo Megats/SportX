@@ -5,5 +5,5 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
-Event.create(event_name: "Biking", event_venue: 'Selangor', event_date: '2022-06-24')
-Result.create(result_description: "Berlari 2022", event_id: 1, user_id: 1)
+Event.create(event_name: "Berlompat", event_venue: 'Perlis', event_date: '2022-06-24')
+# Result.create(result_description: "Berlari 2022", event_id: 1, user_id: 1)
