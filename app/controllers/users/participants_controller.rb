@@ -4,12 +4,10 @@ class Users::ParticipantsController < ApplicationController
 
   # GET /participants or /participants.json
   def index
-    @participants = @event.participants
+    @participants = @event.participants.all
   end
 
   # GET /participants/1 or /participants/1.json
-  def show
-  end
 
   # GET /participants/new
   def new
@@ -26,7 +24,7 @@ class Users::ParticipantsController < ApplicationController
 
     respond_to do |format|
       if @participant.save
-        format.html { redirect_to event_participant_url(@participant), notice: "Participant was successfully created." }
+        format.html { redirect_to user_event_participant_url(@participant), notice: "Participant was successfully created." }
         format.json { render :show, status: :created, location: @participant }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -39,7 +37,7 @@ class Users::ParticipantsController < ApplicationController
   def update
     respond_to do |format|
       if @participant.update(participant_params)
-        format.html { redirect_to event_participant_url(@participant), notice: "Participant was successfully updated." }
+        format.html { redirect_to user_event_participant_url(@participant), notice: "Participant was successfully updated." }
         format.json { render :show, status: :ok, location: @participant }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -59,7 +57,9 @@ class Users::ParticipantsController < ApplicationController
   end
 
   private
-  
+    def get_user
+      @user = User.find(params[:user_id])
+    end
     def get_event
       @event = Event.find(params[:event_id])
     end
