@@ -12,11 +12,5 @@ div id="#{dom_id event}"
         = event.event_date
       p
         = event.event_time
-
-      .flex.justify-end 
-        = link_to 'Register', new_user_event_participant_path(event.id)
       br
-      - if action_name != "show"
-        = link_to "Show this event", user_event_path(event), class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium"
-        = link_to 'Edit this event', edit_admin_event_path(event), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium"
-        hr.mt-6
+
