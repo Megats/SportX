@@ -4,7 +4,5 @@ class Event < ApplicationRecord
 
     has_one_attached :eventpicture
 
-    def resize_eventpic
-        eventpicture.variant(resize_to_limit: [300, 300]).processed
-    end
+
 end

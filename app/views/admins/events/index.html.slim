@@ -1,8 +1,8 @@
-.w-full
+div.w-full
   - if notice.present?
     p#notice.py-2.px-3.bg-green-50.mb-5.text-green-500.font-medium.rounded-lg.inline-block
       = notice
-  .flex.justify-between.items-center
+  div.flex.justify-between.items-center
     h1.font-bold.text-4xl
       | Events
     = link_to 'New event', new_admin_event_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium"
