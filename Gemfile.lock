@@ -260,6 +260,7 @@ DEPENDENCIES
   image_processing (~> 1.2)
   importmap-rails
   jbuilder
+  mini_magick (~> 4.11)
   pg
   puma (~> 5.0)
   rails (~> 7.0.3)

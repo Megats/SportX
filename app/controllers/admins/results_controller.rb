@@ -6,6 +6,7 @@ class Admins::ResultsController < ApplicationController
   # GET /results or /results.json
   def index
     @results = Result.all
+    # @result = @results.event
     @events = Event.all
   end
 
