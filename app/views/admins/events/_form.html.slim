@@ -1,4 +1,4 @@
-= form_with(model: event, class: "contents") do |form|
+= simple_form_for [:admin, @event] do |form|
   - if event.errors.any?
     #error_explanation.bg-red-50.text-red-500.px-3.py-2.font-medium.rounded-lg.mt-3
 
@@ -17,10 +17,10 @@
     = form.text_field :event_venue, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full"
   .my-5
     = form.label :event_date
-    = form.text_field :dateevent, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full"
+    = form.date_field :event_date, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full"
   .my-5
     = form.label :event_time
-    = form.text_field :event_time, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full"
+    = form.time_field :event_time, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full"
   .my-5
     = form.label :eventpicture
     = form.file_field :eventpicture, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full"
