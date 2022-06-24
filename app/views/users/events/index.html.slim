@@ -6,4 +6,7 @@
     h1.font-bold.text-4xl
       | Events
   #events.grid.overflow-hidden.grid-cols-4.grid-rows-2.gap-5
-    = render @events
+    - @events.each do |event|
+      button
+       = link_to user_event_path(event) do 
+        = render event
