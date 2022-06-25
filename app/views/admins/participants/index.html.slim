@@ -6,6 +6,6 @@ h1 Participants
   - @participants.each do |participant|
     == render participant
     p
-      = link_to "Show this participant", admin_event_participant(participant)
+      = link_to "Show this participant", admin_event_participant_path(@event, participant.id)
 
 = link_to "New participant", new_admin_event_participant_path

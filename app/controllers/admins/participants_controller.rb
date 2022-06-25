@@ -26,7 +26,7 @@ class Admins::ParticipantsController < ApplicationController
 
     respond_to do |format|
       if @participant.save
-        format.html { redirect_to admin_event_participant_url(@participant), notice: "Participant was successfully created." }
+        format.html { redirect_to admin_event_participant_url(@event, @participant), notice: "Participant was successfully created." }
         format.json { render :show, status: :created, location: @participant }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -53,7 +53,7 @@ class Admins::ParticipantsController < ApplicationController
     @participant.destroy
 
     respond_to do |format|
-      format.html { redirect_to admin_participants_url, notice: "Participant was successfully destroyed." }
+      format.html { redirect_to admin_event_participants_url, notice: "Participant was successfully destroyed." }
       format.json { head :no_content }
     end
   end
@@ -65,7 +65,7 @@ class Admins::ParticipantsController < ApplicationController
     end
     # Use callbacks to share common setup or constraints between actions.
     def set_participant
-      @participant = @product.participants.find(params[:id])
+      @participant = Participant.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.

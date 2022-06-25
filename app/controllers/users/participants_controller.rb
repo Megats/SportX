@@ -24,7 +24,7 @@ class Users::ParticipantsController < ApplicationController
 
     respond_to do |format|
       if @participant.save
-        format.html { redirect_to user_event_participant_url(@participant), notice: "Participant was successfully created." }
+        format.html { redirect_to user_event_participant_url(@event,@participant), notice: "Participant was successfully created." }
         format.json { render :show, status: :created, location: @participant }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -65,7 +65,7 @@ class Users::ParticipantsController < ApplicationController
     end
     # Use callbacks to share common setup or constraints between actions.
     def set_participant
-      @participant = @product.participants.find(params[:id])
+      @participant = Participant.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
