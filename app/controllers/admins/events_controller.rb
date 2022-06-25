@@ -1,4 +1,5 @@
 class Admins::EventsController < ApplicationController
+  before_action :get_participant
   before_action :set_event, only: %i[ show edit update destroy ]
 
   # GET /events or /events.json
@@ -58,6 +59,10 @@ class Admins::EventsController < ApplicationController
   end
 
   private
+
+    def get_participant
+      @participant = Participant.find_by(params[:participant_id])
+    end
     # Use callbacks to share common setup or constraints between actions.
     def set_event
       @event = Event.find(params[:id])
