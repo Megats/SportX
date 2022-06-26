@@ -1,10 +1,59 @@
 p style="color: green" = notice
+br
 
-== render @result
+.card.w-96.bg-base-100.shadow-xl.mx-auto
+  figure
+    img alt="Shoes" src="https://api.lorem.space/image/game?w=400&h=225"
+  .card-body
+    h2.card-title #{@result.result_description}
+    .badge.badge-secondary #{@result.result_description}
+    p #{@result.created_at}
+br
+h5.text-3xl.m-6
+  | Results
+br
+/ table#users-datatable data-source=("<%= admin_results_path(format: :json) %>")
+/   thead
+/     tr
+/       th ID
+/       th Email
+/       th Created at
+/   tbody
 
-div
-  => link_to "Edit this result", edit_admin_result_path(@result)
-  '|
-  =< link_to "Back to results", admin_results_path
+<div class="overflow-x-auto">
+<table class="table w-full">
+  <!-- head -->
+  <thead>
+    <tr>
+      <th>User Id</th>
+      <th>Name</th>
+      <th>Event</th>
+      <th>Result</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- row 1 -->
+    <tr>
+      <th>1</th>
+      <td>Cy Ganderton</td>
+      <td>5km</td>
+      <td>Finished</td>
+    </tr>
+    <!-- row 2 -->
+    <tr class="hover">
+      <th>2</th>
+      <td>Hart Hagerty</td>
+      <td>5km</td>
+      <td>Finished</td>
+    </tr>
+    <!-- row 3 -->
+    <tr>
+      <th>3</th>
+      <td>Brice Swyre</td>
+      <td>5km</td>
+      <td>Finished</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
-  = button_to "Destroy this result", admin_result_path(@result), method: :delete

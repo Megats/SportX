@@ -21,6 +21,11 @@ gem 'slim-rails'
 #simple form
 gem 'simple_form'
 
+#ajax-datatable
+gem 'ajax-datatables-rails'
+gem 'jquery-datatables'
+
+
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", "~> 5.0"
 
@@ -52,7 +57,7 @@ gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 gem "bootsnap", require: false
 
 # Use Sass to process CSS
-# gem "sassc-rails"
+# gem 'sass-rails'
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
   gem "image_processing", "~> 1.2"

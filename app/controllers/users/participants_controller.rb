@@ -1,4 +1,5 @@
 class Users::ParticipantsController < ApplicationController
+  before_action :authenticate_user!
   before_action :get_event
   before_action :set_participant, only: %i[ show edit update destroy ]
 

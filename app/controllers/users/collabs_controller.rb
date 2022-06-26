@@ -1,4 +1,5 @@
 class Users::CollabsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_collab, only: %i[ show edit update destroy ]
 
   # GET /collabs or /collabs.json

@@ -12,6 +12,10 @@ class Admins::ResultsController < ApplicationController
 
   # GET /results/1 or /results/1.json
   def show
+    respond_to do |format|
+      format.html
+      format.json { render json: ParticipantsDatatable.new(params) }
+    end
   end
 
   # GET /results/new

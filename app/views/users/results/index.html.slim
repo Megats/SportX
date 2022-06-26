@@ -1,13 +1,15 @@
 p style="color: green" = notice
 
-h1 Results
-.grid.grid-cols-2
-  - @results.each do |result|
-    = link_to user_result_path(result) do
+h5.text-3xl.m-6.text-center
+  | View all past events result
+br
+.gap-24.py-3.grid.grid-cols-4
+  - @events.each do |event|
+    = link_to user_result_path(event) do
       .card.w-96.bg-base-100.shadow-xl
         figure
           img alt="Shoes" src="https://api.lorem.space/image/game?w=400&h=225"
         .card-body
-          h2.card-title #{result.result_description}
-          .badge.badge-secondary #{result.result_description}
-          p #{result.result_description}
+          h2.card-title #{event.event_name}
+          .badge.badge-secondary #{event.event_date}
+          p #{event.event_time}

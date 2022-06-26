@@ -15,6 +15,7 @@ devise_scope :user do
 end
 
 namespace :users, as: :user do
+  root :to => "dashboards#index"
   resources :dashboards
   resources :collabs
   resources :results
@@ -23,5 +24,5 @@ namespace :users, as: :user do
   resources :events do
     resources :participants
   end
-  
+
 end

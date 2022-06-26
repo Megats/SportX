@@ -4,15 +4,16 @@ h5.text-3xl.m-6.text-center
   | View all past events result
 br
 .gap-24.py-3.grid.grid-cols-4
-  - @results.each do |result|
-    = link_to admin_result_path(result) do
+  - @events.each do |event|
+    = link_to admin_result_path(event) do
       .card.w-96.bg-base-100.shadow-xl
         figure
           img alt="Shoes" src="https://api.lorem.space/image/game?w=400&h=225"
         .card-body
-          h2.card-title #{result.result_description}
-          .badge.badge-secondary #{result.result_description}
-          p #{result.created_at}
+          h2.card-title #{event.event_name}
+          .badge.badge-secondary #{event.event_date}
+          p #{event.event_time}
 
 - if @events.exists?
-  = link_to "New result", new_admin_result_path
+div.flex.justify-between.items-center
+  = link_to 'New result', new_admin_result_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium"
