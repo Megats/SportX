@@ -95,3 +95,4 @@ gem "mini_magick", "~> 4.11"
 gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
 
 gem 'jquery-datatables-rails', github: 'rweng/jquery-datatables-rails'
+gem "repost", "~> 0.3.8"

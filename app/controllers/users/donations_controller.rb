@@ -26,7 +26,7 @@ class Users::DonationsController < ApplicationController
 
     respond_to do |format|
       if @donation.save
-        format.html { redirect_to user_collab_donation_url(@donation), notice: "Donation was successfully created." }
+        format.html { redirect_to user_collab_donation_url(@collab, @donation), notice: "Donation was successfully created." }
         format.json { render :show, status: :created, location: @donation }
       else
         format.html { render :new, status: :unprocessable_entity }
