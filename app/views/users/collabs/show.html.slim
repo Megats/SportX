@@ -1,10 +1,13 @@
-p style="color: green" = notice
+.mx-auto.md:w-2/3.w-full.flex
+  .mx-auto
 
-== render @collab
+    p style="color: green" = notice
 
-div
-  => link_to "Edit this collab", edit_collab_path(@collab)
-  '|
-  =< link_to "Back to collabs", admin_collabs_path
+    == render @collab
 
-  = button_to "Destroy this collab", @collab, method: :delete
+    div
+      => link_to "Edit this collab", edit_user_collab_path(@collab)
+      '|
+      =< link_to "Back to collabs", user_collabs_path
+
+      = button_to "Destroy this collab", @collabs, method: :delete

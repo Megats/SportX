@@ -1,9 +1,10 @@
-class DonationsController < ApplicationController
+class Users::DonationsController < ApplicationController
   before_action :set_donation, only: %i[ show edit update destroy ]
+  before_action :get_collab
 
   # GET /donations or /donations.json
   def index
-    @donations = Donation.all
+    @donations = @collab.donations.all
   end
 
   # GET /donations/1 or /donations/1.json
@@ -12,7 +13,7 @@ class DonationsController < ApplicationController
 
   # GET /donations/new
   def new
-    @donation = Donation.new
+    @donation = @collab.donations.new
   end
 
   # GET /donations/1/edit
@@ -25,7 +26,7 @@ class DonationsController < ApplicationController
 
     respond_to do |format|
       if @donation.save
-        format.html { redirect_to donation_url(@donation), notice: "Donation was successfully created." }
+        format.html { redirect_to user_collab_donation_url(@donation), notice: "Donation was successfully created." }
         format.json { render :show, status: :created, location: @donation }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +39,7 @@ class DonationsController < ApplicationController
   def update
     respond_to do |format|
       if @donation.update(donation_params)
-        format.html { redirect_to donation_url(@donation), notice: "Donation was successfully updated." }
+        format.html { redirect_to user_collab_donation_url(@donation), notice: "Donation was successfully updated." }
         format.json { render :show, status: :ok, location: @donation }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -52,12 +53,20 @@ class DonationsController < ApplicationController
     @donation.destroy
 
     respond_to do |format|
-      format.html { redirect_to donations_url, notice: "Donation was successfully destroyed." }
+      format.html { redirect_to user_collab_donations_url, notice: "Donation was successfully destroyed." }
       format.json { head :no_content }
     end
   end
 
   private
+    def get_collab
+      @collab = Collab.find(params[:collab_id])
+    end
+
+    def get_user
+      @user = User.find(params[:user_id])
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_donation
       @donation = Donation.find(params[:id])
@@ -65,6 +74,6 @@ class DonationsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def donation_params
-      params.require(:donation).permit(:user_id, :donation_email, :donation_nationality, :donation_COR, :donation_NRIC, :donation_dob, :donation_amount)
+      params.require(:donation).permit(:user_id, :collab_id, :donation_email, :donation_nationality, :donation_COR, :donation_NRIC, :donation_dob, :donation_amount)
     end
 end

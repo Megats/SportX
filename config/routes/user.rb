@@ -17,12 +17,15 @@ end
 namespace :users, as: :user do
   root :to => "dashboards#index"
   resources :dashboards
-  resources :collabs
+  resources :collabs do
+    resources :donations
+  end
   resources :results
   resources :payments
   resources :users
   resources :events do
     resources :participants
+    
   end
 
 end
