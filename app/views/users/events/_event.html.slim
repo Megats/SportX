@@ -4,13 +4,16 @@ div id="#{dom_id event}"
     - if event.eventpicture.attached?
       = image_tag event.eventpicture,style:"height: 200px; width: 300px; display: block"
     .card-body
-        h2.card-title
-          = event.event_name
-        p
-          = event.event_venue
-        p
-          = event.event_date
-        p
-          = event.event_time
+      h2.card-title
+        = event.event_name
+      p
+        = event.event_venue
+      p
+        = event.event_date
+      p
+        = event.event_time
+      p 
+        |RM
+        = event.event_price
 
         .badge.badge-secondary #{event.event_status}
