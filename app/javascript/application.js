@@ -5,4 +5,5 @@ $("#participantsTable").DataTable()
     pagingType: 'full_numbers'
 
 //= require jquery
-//= require dataTables/jquery.dataTables
+//= require dataTables/jquery.dataTablesimport "trix"
+import "@rails/actiontext"
