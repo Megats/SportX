@@ -10,11 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema[7.0].define(version: 2022_06_27_065011) do
-=======
 ActiveRecord::Schema[7.0].define(version: 2022_06_27_071125) do
->>>>>>> a3e3d5749f9215b80615722c8bcc38a31d408d84
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -72,7 +68,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_27_071125) do
     t.bigint "user_id", null: false
     t.bigint "collab_id", null: false
     t.string "donation_email"
-    t.string "donation_number"
     t.string "donation_nationality"
     t.string "donation_COR"
     t.string "donation_NRIC"
