@@ -2,25 +2,10 @@ p style="color: green" = notice
 
 h1 Participants
 
-table id="participantsTable"
-  thead
-    tr
-      th User Id
-      th Event
-      th Email
-      th Nationality
-      th NRIC
-      th Category
-      th Show
-  tbody
-    - @participants.each do |participant|
-      tr
-        th #{participant.user_id}
-        td #{participant.event_id}
-        td #{participant.participant_email}
-        td #{participant.participant_nationality}
-        td #{participant.paticipant_NRIC}
-        td #{participant.participant_category}
-        td #{link_to "Show this participant", admin_event_participant_path(@event, participant.id)}
+#participants
+  - @participants.each do |participant|
+    == render participant
+    p
+      = link_to "Show this participant", admin_event_participant_path(@event, participant.id)
 
 = link_to "New participant", new_admin_event_participant_path

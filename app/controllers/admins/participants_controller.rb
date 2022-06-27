@@ -59,7 +59,7 @@ class Admins::ParticipantsController < ApplicationController
   end
 
   private
-
+  
     def get_event
       @event = Event.find(params[:event_id])
     end

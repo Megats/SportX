@@ -12,9 +12,6 @@ class Admins::ResultsController < ApplicationController
 
   # GET /results/1 or /results/1.json
   def show
-    @event = Event.find(params[:id])
-    @participants = Participant.all
-
     respond_to do |format|
       format.html
       format.json { render json: ParticipantsDatatable.new(params) }
@@ -78,7 +75,7 @@ class Admins::ResultsController < ApplicationController
     end
     # Use callbacks to share common setup or constraints between actions.
     def set_result
-      @result = Result.find_by(params[:event_id])
+      @result = Result.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
