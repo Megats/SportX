@@ -29,9 +29,9 @@ class Users::ParticipantsController < ApplicationController
       params_api = {
         uid: "e7c5d7eb-3707-4a0b-9f79-5f015941adf7",
         checksum: @participant.generate_checksum,
-        buyer_email: @participant.buyer_email,
-        buyer_name: @participant.buyer_name,
-        buyer_phone: @participant.buyer_phone,
+        buyer_email: @participant.participant_email,
+        buyer_name: @participant.participant_name,
+        buyer_phone: @participant.participant_phone,
         order_number: @participant.id,
         product_description: @event.event_name,
         transaction_amount: @event.event_price,
