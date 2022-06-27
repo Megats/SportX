@@ -1,16 +1,39 @@
 = simple_form_for [:user, @event, @participant], data:{turbo:false}  do |f|
-  = f.error_notification
-  = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
+  - if @event.errors.any?
+    #error_explanation.bg-red-50.text-red-500.px-3.py-2.font-medium.rounded-lg.mt-3
 
-  .form-inputs
-    = f.input :user_id, :input_html => { :value => current_user.id }
-    = f.association :event
-    = f.input :participant_email
-    = f.input :participant_nationality
-    = f.input :participant_COR
-    = f.input :paticipant_NRIC
-    = f.input :participants_dob
-    = f.input :participant_category
+    h2
+      = pluralize(@event.errors.count, "error")
+      |  prohibited this event from being saved:
+    ul
+      - @event.errors.each do |error|
+        li
+          = error.full_message
+  .my-5
+    = f.label :user_id
+    = f.text_field :user_id, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2"
+  .my-5
+    = f.label :event
+    = f.association :event, collection: Event.ids, label:false , class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2"
+  .my-5
+    = f.label :participant_email
+    = f.text_field :participant_email, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2"
+  .my-5
+    = f.label :participant_nationality
+    = f.text_field :participant_nationality, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2"
+  .my-5
+    = f.label :participant_COR
+    = f.text_field :participant_COR, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2"
+  .my-5
+    = f.label :paticipant_NRIC
+    = f.text_field :paticipant_NRIC, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2"
+  .my-5
+    = f.label :participants_dob
+    = f.text_field :participants_dob, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2"
+  .my-5
+    = f.label :participant_category
+    = f.text_field :participant_category, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2"
 
-  .form-actions
-    = f.button :submit
+  .inline
+    = f.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer"
+

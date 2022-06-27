@@ -13,6 +13,8 @@ div id="#{dom_id event}"
         p
           = event.event_time
         p
-          |RM 
+          |RsM 
           = event.event_price          
       br
+
+        .badge.badge-secondary #{event.event_status}
