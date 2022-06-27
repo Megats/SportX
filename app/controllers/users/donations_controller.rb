@@ -38,11 +38,10 @@ class Users::DonationsController < ApplicationController
         redirect_url: "",
         token: "A64sFshdhzPmV5es_123",
         redirect_post: "true"
-        
        }
 
       redirect_post('https://sandbox.securepay.my/api/v1/payments',            # URL, looks understandable
-        params: params_api)                
+        params: params_api)
     end
 
     # respond_to do |format|

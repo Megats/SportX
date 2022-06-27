@@ -23,11 +23,9 @@ class Users::ParticipantsController < ApplicationController
   def create
     @participant = Participant.new(participant_params)
 
-    if @payment.save
-      Rails.logger.debug("loading checksum #{@participant.generate_checksum}")
-      
+    if @participant.save
       params_api = {
-        uid: "e7c5d7eb-3707-4a0b-9f79-5f015941adf7",
+        uid: "7638b54d-0adc-46b1-a1dc-7d469528a5a3",
         checksum: @participant.generate_checksum,
         buyer_email: @participant.participant_email,
         buyer_name: @participant.participant_name,
@@ -37,13 +35,12 @@ class Users::ParticipantsController < ApplicationController
         transaction_amount: @event.event_price,
         callback_url: "",
         redirect_url: "",
-        token: "osjbg2SM9p1q4v-PyYqb",
+        token: "A64sFshdhzPmV5es_123",
         redirect_post: "true"
-        
        }
 
       redirect_post('https://sandbox.securepay.my/api/v1/payments',            # URL, looks understandable
-        params: params_api)                
+        params: params_api)
       end
   end
 
@@ -84,6 +81,6 @@ class Users::ParticipantsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def participant_params
-      params.require(:participant).permit(:user_id, :event_id, :participant_email, :participant_nationality, :participant_COR, :paticipant_NRIC, :participants_dob, :participant_category)
+      params.require(:participant).permit(:user_id, :event_id,:participant_name, :participant_phone, :participant_email, :participant_nationality, :participant_COR, :paticipant_NRIC, :participants_dob, :participant_category)
     end
 end

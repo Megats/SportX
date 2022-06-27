@@ -13,3 +13,4 @@
 #     )
 # end
 # Result.create(result_description: "Berlari 2022", event_id: 1, user_id: 1)
+Participant.create(user_id: 21, event_id:)

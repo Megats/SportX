@@ -3,12 +3,9 @@ class Participant < ApplicationRecord
   belongs_to :event
 
   def generate_checksum
- 
-    
-    data = "#{participant_email}|#{paticipant_NRIC}|#{participant_nationality}|#{""}|#{id}|#{event.event_name}|#{""}|#{event.event_price}|#{"e7c5d7eb-3707-4a0b-9f79-5f015941adf7"}"
+    data = "#{participant_email}|#{participant_name}|#{participant_phone}|#{""}|#{id}|#{event.event_name}|#{""}|#{event.event_price}|#{"7638b54d-0adc-46b1-a1dc-7d469528a5a3"}"
     puts(data)
-    checksum_token = "6d6a89340596f76a0b2ab67bdac31e27d36a30861be194b37d564a6f07c86633"
+    checksum_token = "76e0e1b3d159e2f7ffc2547b25e6e82e7f7ed1ed093d44c46cc508729b80e2bf"
     OpenSSL::HMAC.hexdigest(OpenSSL::Digest.new('sha256'), checksum_token, data)
-
   end
 end
