@@ -5,7 +5,11 @@ div.prose.bg-content
   br
   h1 Collabs
   br
-
+  
+div.flex.justify-end
+  = link_to "New collab", new_admin_collab_path , class:"btn btn-dark"
+br
+ 
 #collabs
 div.grid.grid-cols-4.gap-4
 
@@ -13,5 +17,5 @@ div.grid.grid-cols-4.gap-4
     button
       = link_to user_collab_path(collab) do
         = render collab
-
-br
+      
+br     

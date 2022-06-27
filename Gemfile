@@ -91,5 +91,3 @@ gem "tailwindcss-rails", "~> 2.0"
 gem "html2slim", "~> 0.2.0"
 
 gem "mini_magick", "~> 4.11"
-
-gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
