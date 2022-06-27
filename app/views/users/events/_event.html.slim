@@ -1,8 +1,8 @@
 div id="#{dom_id event}"
-  .card.card-compact.w-62.bg-base-100.shadow-xl
-    figure.md:w-auto
+  div.card.card-compact.w-50.bg-base-50.shadow-xl
+    figure.object-fill.rounded-md
     - if event.eventpicture.attached?
-      = image_tag event.eventpicture
+      = image_tag event.eventpicture.variant(resize_to_fit: [700, 700])
     .card-body
       h2.card-title
         = event.event_name
@@ -13,4 +13,3 @@ div id="#{dom_id event}"
       p
         = event.event_time
       br
-
