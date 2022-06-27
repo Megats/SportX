@@ -23,15 +23,28 @@ class Users::ParticipantsController < ApplicationController
   def create
     @participant = Participant.new(participant_params)
 
-    respond_to do |format|
-      if @participant.save
-        format.html { redirect_to user_event_participant_url(@event,@participant), notice: "Participant was successfully created." }
-        format.json { render :show, status: :created, location: @participant }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @participant.errors, status: :unprocessable_entity }
+    if @payment.save
+      Rails.logger.debug("loading checksum #{@participant.generate_checksum}")
+      
+      params_api = {
+        uid: "e7c5d7eb-3707-4a0b-9f79-5f015941adf7",
+        checksum: @participant.generate_checksum,
+        buyer_email: @participant.buyer_email,
+        buyer_name: @participant.buyer_name,
+        buyer_phone: @participant.buyer_phone,
+        order_number: @participant.id,
+        product_description: @event.event_name,
+        transaction_amount: @event.event_price,
+        callback_url: "",
+        redirect_url: "",
+        token: "osjbg2SM9p1q4v-PyYqb",
+        redirect_post: "true"
+        
+       }
+
+      redirect_post('https://sandbox.securepay.my/api/v1/payments',            # URL, looks understandable
+        params: params_api)                
       end
-    end
   end
 
   # PATCH/PUT /participants/1 or /participants/1.json
