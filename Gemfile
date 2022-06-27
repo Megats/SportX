@@ -23,7 +23,7 @@ gem 'simple_form'
 
 #ajax-datatable
 gem 'ajax-datatables-rails'
-gem 'jquery-datatables'
+gem 'jquery-datatables-rails', github: 'rweng/jquery-datatables-rails'
 
 
 # Use the Puma web server [https://github.com/puma/puma]
@@ -91,3 +91,5 @@ gem "tailwindcss-rails", "~> 2.0"
 gem "html2slim", "~> 0.2.0"
 
 gem "mini_magick", "~> 4.11"
+
+gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'

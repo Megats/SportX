@@ -66,6 +66,6 @@ class Users::CollabsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def collab_params
-      params.require(:collab).permit(:collab_name, :collab_organiser, :collab_contact, :collab_email, :collab_website)
+      params.require(:collab).permit(:collab_image, :collab_name, :collab_organiser, :collab_contact, :collab_email, :collab_website)
     end
 end

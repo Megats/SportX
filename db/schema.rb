@@ -66,7 +66,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_27_032344) do
 
   create_table "donations", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.bigint "collab_id", null: false
     t.string "donation_email"
     t.string "donation_nationality"
     t.string "donation_COR"
@@ -75,7 +74,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_27_032344) do
     t.integer "donation_amount"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["collab_id"], name: "index_donations_on_collab_id"
     t.index ["user_id"], name: "index_donations_on_user_id"
   end
 
@@ -101,6 +99,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_27_032344) do
     t.string "participant_category"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "participant_status", default: "Registered"
     t.index ["event_id"], name: "index_participants_on_event_id"
     t.index ["user_id"], name: "index_participants_on_user_id"
   end
@@ -110,9 +109,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_27_032344) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "event_id", null: false
-    t.bigint "user_id", null: false
     t.index ["event_id"], name: "index_results_on_event_id"
-    t.index ["user_id"], name: "index_results_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -129,10 +126,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_27_032344) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "donations", "collabs"
   add_foreign_key "donations", "users"
   add_foreign_key "participants", "events"
   add_foreign_key "participants", "users"
   add_foreign_key "results", "events"
-  add_foreign_key "results", "users"
 end
