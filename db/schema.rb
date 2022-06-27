@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_27_071125) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_27_094338) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -76,6 +76,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_27_071125) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "donation_name"
+    t.string "donation_number"
     t.index ["collab_id"], name: "index_donations_on_collab_id"
     t.index ["user_id"], name: "index_donations_on_user_id"
   end
@@ -89,6 +90,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_27_071125) do
     t.datetime "updated_at", null: false
     t.string "event_status"
     t.integer "event_price"
+    t.text "event_overview"
   end
 
   create_table "participants", force: :cascade do |t|
@@ -102,6 +104,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_27_071125) do
     t.string "participant_category"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "participant_name"
+    t.string "participant_phone"
+    t.string "participant_status", default: "Registered"
     t.index ["event_id"], name: "index_participants_on_event_id"
     t.index ["user_id"], name: "index_participants_on_user_id"
   end
