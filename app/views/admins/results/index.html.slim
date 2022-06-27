@@ -9,7 +9,7 @@ br
       .card.w-96.bg-base-100.shadow-xl
         figure
           - if event.eventpicture.attached?
-            = image_tag event.eventpicture.variant(resize_to_limit: [400, 400])
+            = image_tag event.eventpicture,style:"height: 200px; width: 300px; display: block"
           - else
             img alt="Shoes" src="https://api.lorem.space/image/game?w=400&h=225"
         .card-body
