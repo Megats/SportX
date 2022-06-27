@@ -9,3 +9,20 @@ h1 Participants
       = link_to "Show this participant", user_event_participant_path(@event, participant.id)
 
 = link_to "New participant", new_user_event_participant_path
+
+.overflow-x-auto
+  table.table.w-full
+    /! head
+    thead
+      tr
+        th User Id
+        th Name
+        th Event
+        th Category
+    tbody
+      - @participants.each do |participant|
+        tr
+          th #{participant.user_id}
+          td #{participant.name}
+          td #{participant.event_id}
+          td #{participant.category}

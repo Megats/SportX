@@ -3,7 +3,7 @@
   = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
 
   .form-inputs
-    = f.association :user
+    = f.input :user_id, input_html: {:value => current_user.id }
     = f.association :event
     = f.input :participant_email
     = f.input :participant_nationality

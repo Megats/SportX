@@ -23,7 +23,7 @@ gem 'simple_form'
 
 #ajax-datatable
 gem 'ajax-datatables-rails'
-gem 'jquery-datatables'
+gem 'jquery-datatables-rails', github: 'rweng/jquery-datatables-rails'
 
 
 # Use the Puma web server [https://github.com/puma/puma]
