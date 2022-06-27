@@ -91,11 +91,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_27_071125) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "event_status"
-<<<<<<< HEAD
     t.integer "event_price"
-=======
-    t.decimal "event_price"
->>>>>>> a3e3d5749f9215b80615722c8bcc38a31d408d84
   end
 
   create_table "participants", force: :cascade do |t|
