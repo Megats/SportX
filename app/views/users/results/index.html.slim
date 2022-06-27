@@ -8,8 +8,10 @@ br
     = link_to user_result_path(event) do
       .card.w-96.bg-base-100.shadow-xl
         figure
-          img alt="Shoes" src="https://api.lorem.space/image/game?w=400&h=225"
-        .card-body
+          - if event.eventpicture.attached?
+            = image_tag event.eventpicture.variant(resize_to_limit: [400, 400])
+          - else
+            img alt="Shoes" src="https://api.lorem.space/image/game?w=400&h=225        .card-body
           h2.card-title #{event.event_name}
           .badge.badge-secondary #{event.event_date}
           p #{event.event_time}
