@@ -66,7 +66,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_27_071125) do
 
   create_table "donations", force: :cascade do |t|
     t.bigint "user_id", null: false
+    t.bigint "collab_id", null: false
     t.string "donation_email"
+    t.string "donation_number"
     t.string "donation_nationality"
     t.string "donation_COR"
     t.string "donation_NRIC"
@@ -75,6 +77,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_27_071125) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "donation_name"
+    t.index ["collab_id"], name: "index_donations_on_collab_id"
     t.index ["user_id"], name: "index_donations_on_user_id"
   end
 
@@ -86,7 +89,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_27_071125) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "event_status"
-    t.decimal "event_price"
+    t.integer "event_price"
   end
 
   create_table "participants", force: :cascade do |t|
@@ -100,7 +103,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_27_071125) do
     t.string "participant_category"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "participant_status", default: "Registered"
     t.index ["event_id"], name: "index_participants_on_event_id"
     t.index ["user_id"], name: "index_participants_on_user_id"
   end
@@ -127,6 +129,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_27_071125) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "donations", "collabs"
   add_foreign_key "donations", "users"
   add_foreign_key "participants", "events"
   add_foreign_key "participants", "users"
