@@ -11,8 +11,10 @@
       = f.input :collab_contact, label: 'Contact Person', placeholder: 'Organiser contact', :input_html => {:style=> 'width: 650px', class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full"} 
     .my-8
       = f.input :collab_email, label: 'Organiser email', placeholder: 'Email', :input_html => {:style=> 'width: 650px', class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full"} 
-    .my-
-      = f.input :collab_website, label: 'Organiser website', placeholder: 'www.example.com', :input_html => {:style=> 'width: 650px', class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full"} 
+    .my-8
+      = f.input :collab_website, label: 'Organiser website', placeholder: 'www.example.com', :input_html => {:style=> 'width: 650px', class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", required: true}
+    .my-10
+      = f.file_field :collab_image, :required => true
 
   .my-10.form-actions
     = f.button :submit
