@@ -27,6 +27,11 @@
                   <br><br>
 
                     <%= render "users/shared/links" %>
+                    <% if !admin_signed_in? && !user_signed_in? %>
+                        <%= link_to "Sign in as admin", new_admin_session_path, class:"nav-link" %>
+                      <br>
+                        <%= link_to "Sign in as user", new_user_session_path, class:"nav-link" %>
+                    <% end %>
                     </div>
                   <div class="flex items-center justify-between pb-6">
                     <% end %>
