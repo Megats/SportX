@@ -6,6 +6,6 @@ class Event < ApplicationRecord
 
 
     has_one_attached :eventpicture
-
+    has_rich_text :event_overview
 
 end
