@@ -15,6 +15,8 @@
       = f.input :collab_website, label: 'Organiser website', placeholder: 'www.example.com', :input_html => {:style=> 'width: 650px', class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", required: true}
     .my-10
       = f.file_field :collab_image, :required => true
+    .my-10
+      = f.rich_text_area :Overview
 
   .my-10.form-actions
     = f.button :submit

@@ -19,6 +19,14 @@ div
   
     = image_tag @collab.collab_image, class: "object-none h-48 w-full"
     
-
-
-  = button_to "Destroy this collab", @collabs, method: :delete
+  br
+  br
+  div.relative.mx-auto
+    .absolute.mx-auto
+      .h1.text-blue
+      |Overview : 
+    br
+    br
+    == @collab.Overview
+  div.flex.justify-end
+    = button_to "Destroy this collab", @collabs, method: :delete, class: "btn btn-error"
