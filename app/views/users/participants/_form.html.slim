@@ -11,35 +11,35 @@
           = error.full_message
   .my-5
     = f.label :user_id
-    = f.text_field :user_id, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2", value:current_user.id, input_html: {required: true }
+    = f.text_field :user_id, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", value:current_user.id, input_html: {required: true }
   .my-5
-    = f.label :event
-    = f.association :event, collection: Event.ids, label:false , class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2", input_html: {required: true }
+    = f.label :Event
+    = f.association :event, collection: Event.ids, label:false , class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", input_html: {required: true }
   .my-5
     = f.label :participant_email
-    = f.text_field :participant_email, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2", input_html: {required: true }
+    = f.text_field :participant_email, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", input_html: {required: true }
   .my-5
   = f.label :participant_name
-  = f.text_field :participant_name, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2", input_html: {required: true }
+  = f.text_field :participant_name, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", input_html: {required: true }
   .my-5
     = f.label :participant_phone
-    = f.text_field :participant_phone, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2", input_html: {required: true }
+    = f.text_field :participant_phone, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", input_html: {required: true }
   .my-5
     = f.label :participant_nationality
-    = f.text_field :participant_nationality, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2", input_html: {required: true }
+    = f.text_field :participant_nationality, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", input_html: {required: true }
   .my-5
     = f.label :participant_COR
-    = f.text_field :participant_COR, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2", input_html: {required: true }
+    = f.text_field :participant_COR, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", input_html: {required: true }
   .my-5
     = f.label :paticipant_NRIC
-    = f.text_field :paticipant_NRIC, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2", input_html: {required: true }
+    = f.text_field :paticipant_NRIC, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", input_html: {required: true }
   .my-5
     = f.label :participants_dob
-    = f.date_field :participants_dob, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2", input_html: {required: true }
+    = f.date_field :participants_dob, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", input_html: {required: true }
   .my-5
     = f.label :participant_category
-    = f.text_field :participant_category, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2", input_html: {required: true }
+    = f.text_field :participant_category, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", input_html: {required: true }
 
-  .inline
+  .inline.flex.justify-end
     = f.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer"
 
