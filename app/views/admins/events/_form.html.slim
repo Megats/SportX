@@ -24,6 +24,9 @@
     = form.select :event_status, options_for_select([['OPEN', 'OPEN'], ['CLOSE', 'CLOSE']]), { include_blank: true }, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full"
     = form.label :eventpicture
     = form.file_field :eventpicture, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full"
+  .my-5 
+    = form.label :event_overview
+    = form.rich_text_area :event_overview, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full"
 
     #events
       = form.simple_fields_for :categories do |category|

@@ -1,4 +1,4 @@
-.relative.mx-auto.justify-center.md:w-2/3.w-full
+div.relative.mx-auto.justify-center.md:w-2/3.w-full
     .mx-auto
       - if notice.present?
         p#notice.py-2.px-3.bg-green-50.mb-5.text-green-500.font-medium.rounded-lg.inline-block
@@ -10,3 +10,9 @@
         = button_to 'Destroy this event', admin_event_path(@event), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium"
       = link_to 'Back to events', admin_events_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium"
       = link_to 'Show Participants', admin_event_participants_path(@event), class: "ml-2 rounded-lg py-3 px-5 bg-blue-100 inline-block font-medium"
+      br
+      br 
+      br     
+      div.relative.mx-auto
+        .absolute.mx-auto
+        = @event.event_overview  
