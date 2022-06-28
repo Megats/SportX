@@ -39,7 +39,7 @@ class Admins::ParticipantsController < ApplicationController
   def update
     respond_to do |format|
       if @participant.update(participant_params)
-        format.html { redirect_to admin_event_participant_url(@participant), notice: "Participant was successfully updated." }
+        format.html { redirect_to admin_event_participant_url(@event,@participant), notice: "Participant was successfully updated." }
         format.json { render :show, status: :ok, location: @participant }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -71,6 +71,6 @@ class Admins::ParticipantsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def participant_params
-      params.require(:participant).permit(:user_id, :event_id, :participant_email, :participant_nationality, :participant_COR, :paticipant_NRIC, :participants_dob, :category_id)
+      params.require(:participant).permit(:user_id, :event_id, :participant_email, :participant_nationality, :participant_COR, :paticipant_NRIC, :participants_dob, :category_id, :participant_status)
     end
 end
