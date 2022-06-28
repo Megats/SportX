@@ -14,5 +14,7 @@
  *= require dataTables/jquery.dataTables
  *= require datatables
  *= require_self
+ *= require actiontext
  */
  @import './actiontext.css';
+
