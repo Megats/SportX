@@ -12,25 +12,21 @@
   .my-5
     = form.label :event_name
     = form.text_field :event_name, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full"
+  .my-5
     = form.label :event_venue
     = form.text_field :event_venue, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full"
+  .my-5
     = form.label :event_date
     = form.date_field :event_date, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full"
+  .my-5
     = form.label :event_time
     = form.time_field :event_time, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full"
-    = form.label :event_price
-    = form.number_field :event_price, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full"
+  .my-5
     = form.label :event_status
     = form.select :event_status, options_for_select([['OPEN', 'OPEN'], ['CLOSE', 'CLOSE']]), { include_blank: true }, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full"
+  .my-5
     = form.label :eventpicture
     = form.file_field :eventpicture, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full"
-
-    #events
-      = form.simple_fields_for :categories do |category|
-        = category.error_notification
-        = render 'admins/categories/task_fields', form: category
-      .links
-        = link_to_add_association 'add task', form, :categories, partial: 'task_fields', form_name: 'form'
 
   .inline
     = form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer"

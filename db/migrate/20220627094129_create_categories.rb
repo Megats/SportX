@@ -4,7 +4,6 @@ class CreateCategories < ActiveRecord::Migration[7.0]
       t.string :category_name
       t.string :category_gender
       t.decimal :category_fees
-      t.string :event_id
 
       t.timestamps
     end

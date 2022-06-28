@@ -1,11 +1,17 @@
-= simple_form_for(@category) do |f|
+= simple_form_for([:admin,@event,@category], data:{turbo:false} ) do |f|
   = f.error_notification
   = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
 
   .form-inputs
-    = f.input :category_name
-    = f.input :category_gender
-    = f.input :category_fees
+  .my-5
+    = f.label :category_name
+    = f.text_field :category_name, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full"
+    = f.input :category_gender, :collection=> %w[Male Female], required: true
+    = f.input :category_age, :collection=> %w[Kid Teen Adult], required: true
+    br
+    = f.label :category_fees, required: true
+    = f.text_field :category_fees, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full"
+    = f.association :event, required: true
 
   .form-actions
     = f.button :submit

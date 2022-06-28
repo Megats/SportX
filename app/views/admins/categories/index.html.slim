@@ -1,12 +1,22 @@
 h1 Listing Categories
 
-table#dttb-categories.responsive.nowrap.table.table-hover data-sort="true" data-source="#{url_for(format: :json)}"
-  thead
-    tr
-      th data-data="category_name" Category name
-      th data-data="category_gender" Category gender
-      th data-data="category_fees" Category fees
-      th data-data="url" data-orderable="false" data-class-name="all" data-searchable="false" class="skip-export" width="100px"
+.overflow-x-auto
+  table.table.w-full
+    thead
+      tr
+        th Category Name
+        th Category Gender
+        th Category Age
+        th Category fees
+        th EventID
+    tbody
+      - @categories.each do |category|
+        tr
+          td #{category.category_name}
+          td #{category.category_gender}
+          td #{category.category_age}
+          td RM#{category.category_fees}
+          td #{category.event_id}
 
-
-= link_to 'New Category', new_category_path
+- if @events.exists?
+  = link_to 'New Category', new_admin_event_category_path

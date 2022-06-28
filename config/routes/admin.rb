@@ -22,5 +22,6 @@ namespace :admins, as: :admin do
   resources :users
   resources :events do
     resources :participants
+    resources :categories
   end
 end

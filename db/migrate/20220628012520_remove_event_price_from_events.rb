@@ -1,0 +1,5 @@
+class RemoveEventPriceFromEvents < ActiveRecord::Migration[7.0]
+  def change
+    remove_column :events, :event_price, :integer
+  end
+end
