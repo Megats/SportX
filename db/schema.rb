@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_28_024416) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_28_033920) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -121,12 +121,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_28_024416) do
     t.string "participant_COR"
     t.string "paticipant_NRIC"
     t.date "participants_dob"
-    t.string "participant_category"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "participant_name"
     t.string "participant_phone"
     t.string "participant_status", default: "Registered"
+    t.bigint "category_id", null: false
+    t.index ["category_id"], name: "index_participants_on_category_id"
     t.index ["event_id"], name: "index_participants_on_event_id"
     t.index ["user_id"], name: "index_participants_on_user_id"
   end
@@ -156,6 +157,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_28_024416) do
   add_foreign_key "categories", "events"
   add_foreign_key "donations", "collabs"
   add_foreign_key "donations", "users"
+  add_foreign_key "participants", "categories"
   add_foreign_key "participants", "events"
   add_foreign_key "participants", "users"
   add_foreign_key "results", "events"
