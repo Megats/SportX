@@ -66,11 +66,11 @@ class Admins::ParticipantsController < ApplicationController
 
     # Use callbacks to share common setup or constraints between actions.
     def set_participant
-      @participant = Participant.find(params[:id])
+      @participant = @event.participants.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def participant_params
-      params.require(:participant).permit(:user_id, :event_id, :participant_email, :participant_nationality, :participant_COR, :paticipant_NRIC, :participants_dob, :participant_category)
+      params.require(:participant).permit(:user_id, :event_id, :participant_email, :participant_nationality, :participant_COR, :paticipant_NRIC, :participants_dob, :category_id)
     end
 end

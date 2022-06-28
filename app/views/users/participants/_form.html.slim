@@ -10,8 +10,7 @@
         li
           = error.full_message
   .my-5
-    = f.label :user_id
-    = f.text_field :user_id, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", value:current_user.id, input_html: {required: true }
+    = f.input :user_id, as: :hidden, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", value:current_user.id, input_html: {required: true }
   .my-5
     = f.label :Event
     = f.association :event, collection: Event.ids, label:false , class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", input_html: {required: true }
@@ -37,9 +36,7 @@
     = f.label :participants_dob
     = f.date_field :participants_dob, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", input_html: {required: true }
   .my-5
-    = f.label :participant_category
-    = f.text_field :participant_category, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", input_html: {required: true }
-
+    = f.input :category_id, collection: @event.categories.pluck(:category_name,:id), label:"Category Name" , class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", input_html: {required: true }
   .inline.flex.justify-end
     = f.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer"
 

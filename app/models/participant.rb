@@ -1,6 +1,7 @@
 class Participant < ApplicationRecord
   belongs_to :user
   belongs_to :event
+  belongs_to :category
 
   def generate_checksum
     data = "#{participant_email}|#{participant_name}|#{participant_phone}|#{""}|#{id}|#{event.event_name}|#{""}|#{event.event_price}|#{"7638b54d-0adc-46b1-a1dc-7d469528a5a3"}"
