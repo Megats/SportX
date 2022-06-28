@@ -96,3 +96,4 @@ gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'mast
 
 gem 'jquery-datatables-rails', github: 'rweng/jquery-datatables-rails'
 gem "repost", "~> 0.3.8"
+gem "cocoon"

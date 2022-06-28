@@ -6,8 +6,8 @@ class Admins::ResultsController < ApplicationController
   # GET /results or /results.json
   def index
     @results = Result.all
-    # @result = @results.event
-    @events = Event.where(event_status: "CLOSE")
+    @events = Event.all
+
   end
 
   # GET /results/1 or /results/1.json

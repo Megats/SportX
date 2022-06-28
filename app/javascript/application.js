@@ -5,4 +5,6 @@ $("#participantsTable").DataTable()
     pagingType: 'full_numbers'
 
 //= require jquery
+//= require("@nathanvda/cocoon")
 //= require dataTables/jquery.dataTables
+//= require cocoon
