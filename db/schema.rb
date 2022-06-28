@@ -68,12 +68,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_28_033920) do
     t.string "category_name"
     t.string "category_gender"
     t.decimal "category_fees"
-    t.string "event_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "events_id", null: false
+    t.bigint "event_id", null: false
     t.string "category_age"
-    t.index ["events_id"], name: "index_categories_on_events_id"
+    t.index ["event_id"], name: "index_categories_on_event_id"
   end
 
   create_table "collabs", force: :cascade do |t|
@@ -155,7 +154,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_28_033920) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "categories", "events", column: "events_id"
+  add_foreign_key "categories", "events"
   add_foreign_key "donations", "collabs"
   add_foreign_key "donations", "users"
   add_foreign_key "participants", "categories"

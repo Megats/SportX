@@ -21,9 +21,11 @@ class Users::ParticipantsController < ApplicationController
 
   # POST /participants or /participants.json
   def create
-    @participant = Participant.new(participant_params)
+    @participant = @event.participants.new(participant_params)
 
     if @participant.save
+
+
       params_api = {
         uid: "7638b54d-0adc-46b1-a1dc-7d469528a5a3",
         checksum: @participant.generate_checksum,
@@ -32,7 +34,7 @@ class Users::ParticipantsController < ApplicationController
         buyer_phone: @participant.participant_phone,
         order_number: @participant.id,
         product_description: @event.event_name,
-        transaction_amount: @event.event_price,
+        transaction_amount: @participant.category.category_fees,
         callback_url: "",
         redirect_url: "",
         token: "A64sFshdhzPmV5es_123",
@@ -41,7 +43,7 @@ class Users::ParticipantsController < ApplicationController
 
       redirect_post('https://sandbox.securepay.my/api/v1/payments',            # URL, looks understandable
         params: params_api)
-      end
+    end
   end
 
   # PATCH/PUT /participants/1 or /participants/1.json
@@ -68,19 +70,20 @@ class Users::ParticipantsController < ApplicationController
   end
 
   private
-    def get_user
-      @user = User.find(params[:user_id])
-    end
+    
     def get_event
       @event = Event.find(params[:event_id])
     end
+
+  
+
     # Use callbacks to share common setup or constraints between actions.
     def set_participant
-      @participant = Participant.find(params[:id])
+      @participant = @event.participants.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def participant_params
-      params.require(:participant).permit(:user_id, :event_id,:participant_name, :participant_phone, :participant_email, :participant_nationality, :participant_COR, :paticipant_NRIC, :participants_dob, :participant_category)
+      params.require(:participant).permit(:user_id, :participant_name, :participant_phone, :event_id, :participant_email, :participant_nationality, :participant_COR, :paticipant_NRIC, :participants_dob, :category_id)
     end
 end
