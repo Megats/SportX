@@ -101,6 +101,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_27_100121) do
     t.datetime "updated_at", null: false
     t.string "event_status"
     t.integer "event_price"
+    t.text "event_overview"
   end
 
   create_table "participants", force: :cascade do |t|

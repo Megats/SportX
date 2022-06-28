@@ -8,3 +8,5 @@ $("#participantsTable").DataTable()
 //= require("@nathanvda/cocoon")
 //= require dataTables/jquery.dataTables
 //= require cocoon
+//= require dataTables/jquery.dataTablesimport "trix"
+import "@rails/actiontext"
