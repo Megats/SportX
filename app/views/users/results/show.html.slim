@@ -15,18 +15,18 @@ br
 h5.text-3xl.m-6
   | Results
 br
+
+
 .overflow-x-auto
   table.table.w-full id="participantsTable"
     thead
       tr
         th User Id
         th Name
-        th Event
-        th Category
+        th Status
     tbody
       - @participants.each do |participant|
         tr
           th #{participant.user_id}
-          td #{participant.participant_email}
-          td #{participant.event_id}
-          td #{participant.participant_category}
+          td #{participant.participant_name}
+          td #{participant.participant_status}

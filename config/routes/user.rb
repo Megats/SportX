@@ -25,7 +25,7 @@ namespace :users, as: :user do
   resources :users
   resources :events do
     resources :participants
-    
+    resources :results
   end
 
 end

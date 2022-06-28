@@ -21,7 +21,7 @@ class ParticipantsDatatable < AjaxDatatablesRails::ActiveRecord
   end
 
   def get_raw_records
-      participants = Participant.all
+      participants = Participant.where(event_id: params[:event_id])
   end
 
 end
