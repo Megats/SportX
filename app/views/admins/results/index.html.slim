@@ -16,7 +16,3 @@ br
           h2.card-title #{event.event_name}
           .badge.badge-secondary #{event.event_date}
           p #{event.event_time}
-
-- if @events.exists?
-div.flex.justify-between.items-center
-  = link_to 'New result', new_admin_result_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium"

@@ -1,0 +1,12 @@
+h1 Listing Categories
+
+table#dttb-categories.responsive.nowrap.table.table-hover data-sort="true" data-source="#{url_for(format: :json)}"
+  thead
+    tr
+      th data-data="category_name" Category name
+      th data-data="category_gender" Category gender
+      th data-data="category_fees" Category fees
+      th data-data="url" data-orderable="false" data-class-name="all" data-searchable="false" class="skip-export" width="100px"
+
+
+= link_to 'New Category', new_category_path

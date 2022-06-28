@@ -1,0 +1,15 @@
+.nested-fields
+  .my-5
+    = form.label :category_name
+    = form.input :category_name, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full"
+  .my-5
+    = form.label :category_gender
+    = form.input :category_gender, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full"
+  .my-5
+    = form.label :category_fees
+    = form.input :category_fees, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full"
+  .my-5
+    = form.label :Event
+    = form.input :event, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full"
+
+  = link_to_remove_association "remove task", form

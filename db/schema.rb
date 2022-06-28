@@ -10,11 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema[7.0].define(version: 2022_06_27_065011) do
-=======
-ActiveRecord::Schema[7.0].define(version: 2022_06_27_071125) do
->>>>>>> a3e3d5749f9215b80615722c8bcc38a31d408d84
+ActiveRecord::Schema[7.0].define(version: 2022_06_27_100121) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -58,6 +54,17 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_27_071125) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
+  create_table "categories", force: :cascade do |t|
+    t.string "category_name"
+    t.string "category_gender"
+    t.decimal "category_fees"
+    t.string "event_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "events_id", null: false
+    t.index ["events_id"], name: "index_categories_on_events_id"
+  end
+
   create_table "collabs", force: :cascade do |t|
     t.string "collab_name"
     t.string "collab_organiser"
@@ -72,7 +79,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_27_071125) do
     t.bigint "user_id", null: false
     t.bigint "collab_id", null: false
     t.string "donation_email"
-    t.string "donation_number"
     t.string "donation_nationality"
     t.string "donation_COR"
     t.string "donation_NRIC"
@@ -81,6 +87,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_27_071125) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "donation_name"
+    t.string "donation_number"
     t.index ["collab_id"], name: "index_donations_on_collab_id"
     t.index ["user_id"], name: "index_donations_on_user_id"
   end
@@ -107,6 +114,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_27_071125) do
     t.string "participant_category"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "participant_name"
+    t.string "participant_phone"
+    t.string "participant_status", default: "Registered"
     t.index ["event_id"], name: "index_participants_on_event_id"
     t.index ["user_id"], name: "index_participants_on_user_id"
   end
@@ -133,6 +143,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_27_071125) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "categories", "events", column: "events_id"
   add_foreign_key "donations", "collabs"
   add_foreign_key "donations", "users"
   add_foreign_key "participants", "events"
