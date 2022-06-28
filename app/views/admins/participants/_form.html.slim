@@ -36,6 +36,9 @@
     = f.label :participants_dob
     = f.date_field :participants_dob, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", input_html: {required: true }
   .my-5
+    = f.label :participant_status
+    = f.select :participant_status, options_for_select(['Registered', 'Finished']), class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", input_html: {required: true }
+  .my-5
     = f.association :category, collection: @event.categories.pluck(:category_name,:id),  input_html: {label: "Category", class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", required: true }
   .my-5
     = f.select :shirt_size, options_for_select(['XS', 'M', 'L']),  input_html: {label: "Category", class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", required: true }
