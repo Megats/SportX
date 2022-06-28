@@ -9,7 +9,7 @@ div.prose.bg-content
 #participants
 container.flex.justify-center
   table.table.table-compact.w-full
-        thead 
+        thead
           tr
             th
               strong User
@@ -21,26 +21,28 @@ container.flex.justify-center
               strong Nationality
             th
               strong Country of Residence
-            th 
+            th
               strong NRIC
             th
               strong Date of Birth
             th
               strong Category
-            th 
+            th
               strong Shirt Size
-            th 
+            th
+              strong Status
+            th
               strong Action
         - @participants.each do |participant|
-        
+
             tbody
-              tr 
-                
+              tr
+
                 == render participant
 
-              
+
 
                 td
                   = link_to "Show this participant", admin_event_participant_path(@event, participant.id)
 
-            
+
