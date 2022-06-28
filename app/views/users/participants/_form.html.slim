@@ -36,7 +36,8 @@
     = f.label :participants_dob
     = f.date_field :participants_dob, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", input_html: {required: true }
   .my-5
-    = f.input :category_id, collection: @event.categories.pluck(:category_name,:id), label:"Category Name" , class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", input_html: {required: true }
+
+    = f.association :category, collection: @event.categories.pluck(:category_name,:id),  input_html: {label: "Category", class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", required: true }
   .inline.flex.justify-end
     = f.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer"
 
