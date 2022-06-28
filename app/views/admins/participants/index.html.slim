@@ -3,9 +3,37 @@ p style="color: green" = notice
 h1 Participants
 
 #participants
-  - @participants.each do |participant|
-    == render participant
-    p
-      = link_to "Show this participant", admin_event_participant_path(@event, participant.id)
+ table.table.table-compact.w-full
+      thead 
+        tr
+          th
+            strong User:
+          th
+            strong Event:
+          th
+            strong Participant email:
+          th
+            strong Participant nationality:
+          th
+            strong Participant cor:
+          th 
+            strong Paticipant nric:
+          th
+            strong Participants dob
+          th
+            strong Participant category
+          th 
+            strong Action
+      - @participants.each do |participant|
+      
+          tbody
+            tr 
+              
+              == render participant
 
-= link_to "New participant", new_admin_event_participant_path
+            
+
+              td
+                = link_to "Show this participant", admin_event_participant_path(@event, participant.id)
+
+          
