@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  draw :admin
   draw :user
+  draw :admin
 
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

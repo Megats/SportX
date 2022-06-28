@@ -11,7 +11,7 @@ class Users::ResultsController < ApplicationController
 
   # GET /results/1 or /results/1.json
   def show
-    @participants = Participant.all
+    @participants = Participant.where(event_id: params[:event_id])
 
     @event = Event.find(params[:id])
   end
@@ -71,7 +71,7 @@ class Users::ResultsController < ApplicationController
     end
     # Use callbacks to share common setup or constraints between actions.
     def set_result
-      @result = Result.find_by(params[:event_id])
+      @event = Event.find(params[:event_id])
     end
 
     # Only allow a list of trusted parameters through.
