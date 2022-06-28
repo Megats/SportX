@@ -1,39 +1,44 @@
 p style="color: green" = notice
 
-h1 Participants
+
+div.prose.bg-content
+  br
+  h1  Participants
+  br
 
 #participants
- table.table.table-compact.w-full
-      thead 
-        tr
-          th
-            strong User:
-          th
-            strong Event:
-          th
-            strong Participant email:
-          th
-            strong Participant nationality:
-          th
-            strong Participant cor:
-          th 
-            strong Paticipant nric:
-          th
-            strong Participants dob
-          th
-            strong Participant category
-          th 
-            strong Action
-      - @participants.each do |participant|
-      
-          tbody
-            tr 
+container.flex.justify-center
+  table.table.table-compact.w-full
+        thead 
+          tr
+            th
+              strong User
+            th
+              strong Event
+            th
+              strong Email
+            th
+              strong Nationality
+            th
+              strong Country of Residence
+            th 
+              strong NRIC
+            th
+              strong Date of Birth
+            th
+              strong Category
+            th 
+              strong Action
+        - @participants.each do |participant|
+        
+            tbody
+              tr 
+                
+                == render participant
+
               
-              == render participant
+
+                td
+                  = link_to "Show this participant", admin_event_participant_path(@event, participant.id)
 
             
-
-              td
-                = link_to "Show this participant", admin_event_participant_path(@event, participant.id)
-
-          

@@ -1,13 +1,24 @@
-.mx-auto.md:w-2/3.w-full.flex
-  .mx-auto
+p style="color: green" = notice
+div.prose
+  br
+  h1 #{@collab.collab_name}
+  br
 
-    p style="color: green" = notice
+div
+  div
+    br
+    .grid.grid-cols-2
+      
+      div.flex.justify-start
+        =< link_to "Back to collabs", admin_collabs_path, class:"btn btn-dark"
 
-    == render @collab
+      div.flex.justify-end
+        => link_to "Edit this collab", edit_admin_collab_path(@collab), class:"btn btn-dark"
+    br
+  div.flex.justify-center
+  
+    = image_tag @collab.collab_image, class: "object-none h-48 w-full"
+    
 
-    div
-      => link_to "Edit this collab", edit_admin_collab_path(@collab)
-      '|
-      =< link_to "Back to collabs", admin_collabs_path
 
-      = button_to "Destroy this collab", @collabs, method: :delete
+  = button_to "Destroy this collab", @collabs, method: :delete
