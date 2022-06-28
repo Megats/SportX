@@ -13,7 +13,10 @@ div.relative.mx-auto.justify-center.md:w-2/3.w-full
       = link_to 'Show Category', admin_event_categories_path(@event), class: "ml-2 rounded-lg py-3 px-5 bg-blue-100 inline-block font-medium"
       br
       br
-      br
       div.relative.mx-auto
         .absolute.mx-auto
+          .h1.text-blue
+          |Overview : 
+        br
+        br
         == @event.event_overview
