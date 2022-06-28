@@ -1,13 +1,19 @@
-.mx-auto.md:w-2/3.w-full.flex
-  .mx-auto
+div.prose
+  br
+  h1 #{@collab.collab_name}
+  br
 
-    p style="color: green" = notice
+div
+  div
+    br
+    .grid.grid-cols-2
+      
+      div.flex.justify-start
+        =< link_to "Back to collabs", user_collabs_path, class:"btn btn-dark"
 
-    == render @collab
-
-    div
-      => link_to "Edit this collab", edit_user_collab_path(@collab)
-      '|
-      =< link_to "Back to collabs", user_collabs_path
-
-      = button_to "Destroy this collab", @collabs, method: :delete
+       div.flex.justify-end
+        = link_to "Donate", new_user_collab_donation_path(collab.id), class: "ml-2 rounded-lg py-3 px-5 bg-blue-100 inline-block font-medium"
+    br
+  div.flex.justify-center
+  
+    = image_tag @collab.collab_image, class: "object-none h-48 w-full"
