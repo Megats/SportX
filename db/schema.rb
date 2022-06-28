@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_28_062653) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_28_072054) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -128,6 +128,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_28_062653) do
     t.string "participant_phone"
     t.string "participant_status", default: "Registered"
     t.bigint "category_id", null: false
+    t.string "shirt_size"
     t.index ["category_id"], name: "index_participants_on_category_id"
     t.index ["event_id"], name: "index_participants_on_event_id"
     t.index ["user_id"], name: "index_participants_on_user_id"
