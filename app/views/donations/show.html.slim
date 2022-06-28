@@ -1,0 +1,10 @@
+p style="color: green" = notice
+
+== render @donation
+
+div
+  => link_to "Edit this donation", edit_user_collab_donation_path(@donation)
+  '|
+  =< link_to "Back to donations", user_collab_donations_path
+
+  = button_to "Destroy this donation", @donations, method: :delete

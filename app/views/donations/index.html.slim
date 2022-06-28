@@ -1,0 +1,11 @@
+p style="color: green" = notice
+
+h1 Donations
+
+#donations
+  - @donations.each do |donation|
+    == render donation
+    p
+      = link_to "Show this donation", donation
+
+= link_to "New donation", new_donation_path

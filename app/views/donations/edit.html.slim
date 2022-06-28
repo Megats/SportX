@@ -1,0 +1,10 @@
+h1 Editing donation
+
+== render "form", donation: @donation
+
+br
+
+div
+  => link_to "Show this donation", @donation
+  '|
+  =< link_to "Back to donations", donations_path

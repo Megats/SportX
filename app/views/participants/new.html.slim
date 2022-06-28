@@ -1,0 +1,11 @@
+.mx-auto.md:w-2/3.w-full
+  h1.font-bold.text-4xl Participant Registration
+  br
+  div.flex.justify-end
+    = link_to "Back to participants", user_event_participants_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer"
+
+  == render "form", participant: @participant
+
+  br
+
+ 

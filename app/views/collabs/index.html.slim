@@ -1,0 +1,17 @@
+p style="color: green" = notice
+
+
+div.prose.bg-content
+  br
+  h1 Collabs
+  br
+
+#collabs
+div.grid.grid-cols-4.gap-4
+
+  - @collabs.each do |collab|
+    button
+      = link_to user_collab_path(collab) do
+        = render collab
+
+br
