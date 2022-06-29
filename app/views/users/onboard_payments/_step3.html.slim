@@ -1,0 +1,15 @@
+.mt-9.px-80.gap-3.content-center
+  ul.min-width:9.steps.steps-vertical.lg:steps-horizontal
+    li.step.step-primary Register
+    li.step.step-primary Profile
+    li.step.step-primary Merchandise
+    li.step.step-primary Payment
+    li.step.step Finish
+
+br
+
+.pt-10
+  - if current_admin.has_role?(:artist)
+    = render 'admins/onboardings/artist_form'
+  - elsif current_admin.has_role?(:merchant)
+    = render 'admins/onboardings/merchant_form'

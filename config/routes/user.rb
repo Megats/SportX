@@ -18,12 +18,21 @@ namespace :users, as: :user do
   root :to => "dashboards#index"
   resources :dashboards
   resources :collabs do
-    resources :donations
+    resources :donations do
+      collection do
+        post :derma
+      end
+    end
   end
+  resource :onboarding
+  resource :onboarding_step
   resources :results
   resources :payments
   resources :users
   resources :events do
+    resources :onboard_payments do
+      get :register
+    end
     resources :participants
     resources :results
   end

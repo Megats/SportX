@@ -1,6 +1,7 @@
 class Users::DonationsController < ApplicationController
+  # skip_before_action :authenticate_user!, only: [:derma]
   before_action :set_donation, only: %i[ show edit update destroy ]
-  before_action :get_collab
+  before_action :get_collab, except: [:derma]
 
   # GET /donations or /donations.json
   def index
@@ -35,7 +36,7 @@ class Users::DonationsController < ApplicationController
         product_description: @donation.collab_id,
         transaction_amount: @donation.donation_amount,
         callback_url: "",
-        redirect_url: "",
+        redirect_url: "http://localhost:3000/users/collabs/#{@donation.collab_id}/donations/derma",
         token: "A64sFshdhzPmV5es_123",
         redirect_post: "true"
        }
@@ -76,6 +77,10 @@ class Users::DonationsController < ApplicationController
       format.html { redirect_to user_collab_donations_url, notice: "Donation was successfully destroyed." }
       format.json { head :no_content }
     end
+  end
+
+  def derma
+      Rails.logger.debug "MEGAT DERMA #{params}"
   end
 
   private

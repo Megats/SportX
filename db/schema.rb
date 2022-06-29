@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_28_072054) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_29_064651) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -120,7 +120,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_28_072054) do
     t.string "participant_email"
     t.string "participant_nationality"
     t.string "participant_COR"
-    t.string "paticipant_NRIC"
+    t.string "participant_NRIC"
     t.date "participants_dob"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -129,9 +129,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_28_072054) do
     t.string "participant_status", default: "Registered"
     t.bigint "category_id", null: false
     t.string "shirt_size"
+    t.integer "onboard", default: 0
+    t.string "participant_gender"
     t.index ["category_id"], name: "index_participants_on_category_id"
     t.index ["event_id"], name: "index_participants_on_event_id"
-    t.index ["user_id"], name: "index_participants_on_user_id"
   end
 
   create_table "results", force: :cascade do |t|

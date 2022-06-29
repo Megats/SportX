@@ -18,9 +18,9 @@ namespace :admins, as: :admin do
   resources :dashboards
   resources :collabs
   resources :results
-  resources :payments
   resources :users
   resources :events do
+    resources :onboard_payments
     resources :participants
     resources :categories
     resources :results

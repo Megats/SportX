@@ -3,6 +3,8 @@ class Participant < ApplicationRecord
   belongs_to :event
   belongs_to :category
 
+  enum onboard: [:step0, :step1, :step2, :step3, :finish]
+
   def generate_checksum
     data = "#{participant_email}|#{participant_name}|#{participant_phone}|#{""}|#{id}|#{event.event_name}|#{""}|#{category.category_fees}|#{"7638b54d-0adc-46b1-a1dc-7d469528a5a3"}"
     puts(data)
