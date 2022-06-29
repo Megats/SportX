@@ -6,7 +6,6 @@ Rails.application.routes.draw do
   end
   resources :results
   resources :payments
-  resources :users
   resources :events do
     resources :participants
     resources :results
