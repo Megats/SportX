@@ -3,8 +3,8 @@ p style="color: green" = notice
 == render @participant
 
 div
-  => link_to "Edit this participant", edit_user_event_participant_path(@participant)
+  => link_to "Edit this participant", edit_event_participant_path(@participant)
   '|
-  =< link_to "Back to participants", user_event_participants_path
+  =< link_to "Back to participants", event_participants_path
 
   /= button_to "Destroy this participant", @participant, method: :delete

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_29_012244) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_29_025825) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -88,7 +88,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_29_012244) do
   end
 
   create_table "donations", force: :cascade do |t|
-    t.bigint "user_id", null: false
+    t.bigint "user_id"
     t.bigint "collab_id", null: false
     t.string "donation_email"
     t.string "donation_nationality"
@@ -101,7 +101,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_29_012244) do
     t.string "donation_name"
     t.string "donation_number"
     t.index ["collab_id"], name: "index_donations_on_collab_id"
-    t.index ["user_id"], name: "index_donations_on_user_id"
   end
 
   create_table "events", force: :cascade do |t|
@@ -116,7 +115,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_29_012244) do
   end
 
   create_table "participants", force: :cascade do |t|
-    t.bigint "user_id", null: false
+    t.bigint "user_id"
     t.bigint "event_id", null: false
     t.string "participant_email"
     t.string "participant_nationality"
@@ -132,7 +131,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_29_012244) do
     t.string "shirt_size"
     t.index ["category_id"], name: "index_participants_on_category_id"
     t.index ["event_id"], name: "index_participants_on_event_id"
-    t.index ["user_id"], name: "index_participants_on_user_id"
   end
 
   create_table "results", force: :cascade do |t|

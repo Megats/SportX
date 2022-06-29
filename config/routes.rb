@@ -1,4 +1,17 @@
 Rails.application.routes.draw do
+  root :to => "dashboards#index"
+  resources :dashboards
+  resources :collabs do
+    resources :donations
+  end
+  resources :results
+  resources :payments
+  resources :users
+  resources :events do
+    resources :participants
+    resources :results
+  end
+
   draw :user
   draw :admin
 
