@@ -1,10 +1,14 @@
 class Admins::EventsController < ApplicationController
-  before_action :get_participant
+
   before_action :set_event, only: %i[ show edit update destroy ]
 
   # GET /events or /events.json
   def index
-    @events = Event.all
+    if current_admin.as_admin?
+      @events = Event.all
+    else
+      @events = current_admin.events
+    end
   end
 
   # GET /events/1 or /events/1.json
@@ -13,7 +17,7 @@ class Admins::EventsController < ApplicationController
 
   # GET /events/new
   def new
-    @event = Event.new
+    @event = current_admin.events.new
   end
 
   # GET /events/1/edit
@@ -22,7 +26,7 @@ class Admins::EventsController < ApplicationController
 
   # POST /events or /events.json
   def create
-    @event = Event.new(event_params)
+    @event = current_admin.events.new(event_params)
 
     respond_to do |format|
       if @event.save
@@ -60,12 +64,13 @@ class Admins::EventsController < ApplicationController
 
   private
 
-    def get_participant
-      @participant = Participant.find_by(params[:participant_id])
-    end
     # Use callbacks to share common setup or constraints between actions.
     def set_event
-      @event = Event.find(params[:id])
+      if current_admin.as_admin?
+        @event = Event.find(params[:id])
+      else
+        @event = current_admin.events.find(params[:id])
+      end
     end
 
     # Only allow a list of trusted parameters through.
