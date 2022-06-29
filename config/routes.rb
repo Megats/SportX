@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   get 'pages/homepage'
   get 'pages/about_us'
-  root :to => "dashboards#index"
+  root :to => "pages#homepage"
   resources :dashboards
   resources :collabs do
     resources :donations
