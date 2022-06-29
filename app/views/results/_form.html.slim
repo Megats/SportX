@@ -1,0 +1,14 @@
+= simple_form_for([:admin,@result]) do |f|
+  = f.error_notification
+  = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
+
+  .my-5
+    = f.select :event_id, @event.ids, prompt: "Select event"
+  .my-5
+    = f.label :result_description
+    = f.text_field :result_description, class: "block shadow rounded-md border border-gray-200 outline-none"
+  .my-5
+    = f.label :user_id
+    = f.text_field :user_id, class: "block shadow rounded-md border border-gray-200 outline-none"
+  .inline
+    = f.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer"

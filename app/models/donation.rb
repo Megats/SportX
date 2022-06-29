@@ -1,5 +1,4 @@
 class Donation < ApplicationRecord
-  belongs_to :user
   belongs_to :collab
 
   def generate_checksum

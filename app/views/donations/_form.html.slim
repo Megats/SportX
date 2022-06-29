@@ -1,0 +1,36 @@
+= simple_form_for [@collab, @donation], data:{turbo:false}  do |f|
+  = f.error_notification
+  = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
+
+  .my-5
+    = f.label :Collaborations_id
+    = f.association :collab, collection: Collab.ids, label:false ,  class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", input_html: {required: true }
+  .my-5
+    = f.label :Email
+    = f.text_field :donation_email,  class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", input_html: {required: true }
+  .my-5
+  = f.label :Full_Name
+  = f.text_field :donation_name,  class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", input_html: {required: true }
+  .my-5
+    = f.label :Phone_number
+    = f.text_field :donation_number, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", input_html: {required: true }
+  .my-5
+    = f.label :Nationality
+    = f.text_field :donation_nationality,  class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", input_html: {required: true }
+  .my-5
+    = f.label :Country_of_Residence
+    = f.text_field :donation_COR,  class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", input_html: {required: true }
+  .my-5
+    = f.label :NRIC
+    = f.text_field :donation_NRIC,  class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", input_html: {required: true }
+  .my-5
+    = f.label :Date_of_birth
+    = f.date_field :donation_dob,  class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", input_html: {required: true }
+  .my-5
+    = f.label :donation_amount
+    = f.text_field :donation_amount,  class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", input_html: {required: true }
+    
+    
+
+  .form-actions.flex.justify-end
+    = f.button :submit

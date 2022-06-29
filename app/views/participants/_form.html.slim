@@ -1,0 +1,44 @@
+= simple_form_for [@event, @participant], data:{turbo:false}  do |f|
+  - if @event.errors.any?
+    #error_explanation.bg-red-50.text-red-500.px-3.py-2.font-medium.rounded-lg.mt-3
+
+    h2
+      = pluralize(@event.errors.count, "error")
+      |  prohibited this event from being saved:
+    ul
+      - @event.errors.each do |error|
+        li
+          = error.full_message
+  .my-5
+    = f.label :Event
+    = f.association :event, collection: Event.ids, label:false , class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", input_html: {required: true }
+  .my-5
+    = f.label :participant_email
+    = f.text_field :participant_email, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", input_html: {required: true }
+  .my-5
+  = f.label :participant_name
+  = f.text_field :participant_name, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", input_html: {required: true }
+  .my-5
+    = f.label :participant_phone
+    = f.text_field :participant_phone, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", input_html: {required: true }
+  .my-5
+    = f.label :participant_nationality
+    = f.text_field :participant_nationality, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", input_html: {required: true }
+  .my-5
+    = f.label :participant_COR
+    = f.text_field :participant_COR, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", input_html: {required: true }
+  .my-5
+    = f.label :paticipant_NRIC
+    = f.text_field :paticipant_NRIC, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", input_html: {required: true }
+  .my-5
+    = f.label :participants_dob
+    = f.date_field :participants_dob, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", input_html: {required: true }
+  .my-5
+    = f.label :category_name
+    = f.association :category, collection: @event.categories.pluck(:category_name,:id), label:false,  input_html: {class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", required: true }
+  .my-5
+    = f.label :shirt_size
+    = f.select :shirt_size, options_for_select(['XS', 'M', 'L']), label: "Shirt size",  input_html: {class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", required: true }
+  .inline.flex.justify-end
+    = f.submit 'Proceed Checkout', class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer"
+

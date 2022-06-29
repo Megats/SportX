@@ -1,0 +1,16 @@
+div id="#{dom_id event}"
+  div.card.card-compact.w-50.bg-base-50.shadow-xl
+    figure.object-fill.rounded-md
+    - if event.eventpicture.attached?
+      = image_tag event.eventpicture,style:"height: 200px; width: 300px; display: block"
+    .card-body
+      h2.card-title
+        = event.event_name
+      p
+        = event.event_venue
+      p
+        = event.event_date
+      p
+        = event.event_time
+
+        .badge.badge-secondary #{event.event_status}

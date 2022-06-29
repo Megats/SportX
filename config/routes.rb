@@ -1,4 +1,18 @@
 Rails.application.routes.draw do
+  get 'pages/homepage'
+  get 'pages/about_us'
+  root :to => "pages#homepage"
+  resources :dashboards
+  resources :collabs do
+    resources :donations
+  end
+  resources :results
+  resources :payments
+  resources :events do
+    resources :participants
+    resources :results
+  end
+
   draw :user
   draw :admin
 

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="bg-hero bg-cover h-screen">
   <head>
     <title><%= system_title %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -19,7 +19,12 @@
     <%= render "layouts/adminnav"%>
     <% elsif user_signed_in? %>
     <%= render "layouts/usernav" %>
+    <% else %>
+    <% unless controller.controller_name == "pages" && controller.action_name == "homepage" %>
+    <%= render "layouts/publicnav" %>
+    <% end %>   
     <% end %>
+
     <div class="container mx-auto px-4">
     <%= yield %>
     </div>

@@ -60,6 +60,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_29_064651) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "roles", default: 0
     t.index ["email"], name: "index_admins_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
@@ -87,7 +88,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_29_064651) do
   end
 
   create_table "donations", force: :cascade do |t|
-    t.bigint "user_id", null: false
+    t.bigint "user_id"
     t.bigint "collab_id", null: false
     t.string "donation_email"
     t.string "donation_nationality"
@@ -100,7 +101,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_29_064651) do
     t.string "donation_name"
     t.string "donation_number"
     t.index ["collab_id"], name: "index_donations_on_collab_id"
-    t.index ["user_id"], name: "index_donations_on_user_id"
   end
 
   create_table "events", force: :cascade do |t|
@@ -112,10 +112,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_29_064651) do
     t.datetime "updated_at", null: false
     t.string "event_status"
     t.text "event_overview"
+    t.bigint "admin_id"
+    t.index ["admin_id"], name: "index_events_on_admin_id"
   end
 
   create_table "participants", force: :cascade do |t|
-    t.bigint "user_id", null: false
+    t.bigint "user_id"
     t.bigint "event_id", null: false
     t.string "participant_email"
     t.string "participant_nationality"
