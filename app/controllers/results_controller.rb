@@ -1,5 +1,4 @@
-class Users::ResultsController < ApplicationController
-  before_action :authenticate_user!
+class ResultsController < ApplicationController
   # before_action :get_event, except: %i[ index]
   before_action :set_result, only: %i[ show edit update destroy ]
 

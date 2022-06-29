@@ -1,5 +1,4 @@
-class Users::DashboardsController < ApplicationController
-  before_action :authenticate_user!
+class DashboardsController < ApplicationController
 
     def index
       @events = Event.all.count
@@ -7,4 +6,4 @@ class Users::DashboardsController < ApplicationController
       @collaborations = Collab.all.count
       @users = User.all.count
     end
-  end
+end

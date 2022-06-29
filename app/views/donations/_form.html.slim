@@ -1,10 +1,7 @@
-= simple_form_for [:user, @collab, @donation], data:{turbo:false}  do |f|
+= simple_form_for [@collab, @donation], data:{turbo:false}  do |f|
   = f.error_notification
   = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
 
-  .my-5
-    = f.label :user_id
-    = f.text_field :user_id,  class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", value:current_user.id, input_html: {required: true }
   .my-5
     = f.label :Collaborations_id
     = f.association :collab, collection: Collab.ids, label:false ,  class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", input_html: {required: true }

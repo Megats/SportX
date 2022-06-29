@@ -1,4 +1,4 @@
-class Users::CategoriesController < ApplicationController
+class CategoriesController < ApplicationController
   before_action :get_event
   before_action :set_category, only: %i[ show edit update destroy ]
 

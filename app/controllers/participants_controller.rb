@@ -1,5 +1,4 @@
-class Users::ParticipantsController < ApplicationController
-  before_action :authenticate_user!
+class ParticipantsController < ApplicationController
   before_action :get_event
   before_action :set_participant, only: %i[ show edit update destroy ]
 
@@ -84,6 +83,6 @@ class Users::ParticipantsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def participant_params
-      params.require(:participant).permit(:user_id, :participant_name, :participant_phone, :event_id, :participant_email, :participant_nationality, :participant_COR, :paticipant_NRIC, :participants_dob, :category_id, :shirt_size)
+      params.require(:participant).permit(:participant_name, :participant_phone, :event_id, :participant_email, :participant_nationality, :participant_COR, :paticipant_NRIC, :participants_dob, :category_id, :shirt_size)
     end
 end

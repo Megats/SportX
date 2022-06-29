@@ -1,4 +1,4 @@
-class Users::DonationsController < ApplicationController
+class DonationsController < ApplicationController
   before_action :set_donation, only: %i[ show edit update destroy ]
   before_action :get_collab
 
@@ -59,7 +59,7 @@ class Users::DonationsController < ApplicationController
   def update
     respond_to do |format|
       if @donation.update(donation_params)
-        format.html { redirect_to user_collab_donation_url(@donation), notice: "Donation was successfully updated." }
+        format.html { redirect_to collab_donation_url(@donation), notice: "Donation was successfully updated." }
         format.json { render :show, status: :ok, location: @donation }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -73,7 +73,7 @@ class Users::DonationsController < ApplicationController
     @donation.destroy
 
     respond_to do |format|
-      format.html { redirect_to user_collab_donations_url, notice: "Donation was successfully destroyed." }
+      format.html { redirect_to collab_donations_url, notice: "Donation was successfully destroyed." }
       format.json { head :no_content }
     end
   end
@@ -83,9 +83,6 @@ class Users::DonationsController < ApplicationController
       @collab = Collab.find(params[:collab_id])
     end
 
-    def get_user
-      @user = User.find(params[:user_id])
-    end
 
     # Use callbacks to share common setup or constraints between actions.
     def set_donation
@@ -94,6 +91,6 @@ class Users::DonationsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def donation_params
-      params.require(:donation).permit(:user_id, :donation_name, :collab_id, :donation_email, :donation_number, :donation_nationality, :donation_COR, :donation_NRIC, :donation_dob, :donation_amount)
+      params.require(:donation).permit(:donation_name, :collab_id, :donation_email, :donation_number, :donation_nationality, :donation_COR, :donation_NRIC, :donation_dob, :donation_amount)
     end
 end
