@@ -3,7 +3,6 @@ class OnboardsController < ApplicationController
     before_action :set_account, only: [:update]
       before_action :onboard_status?
       skip_before_action :check_onboading
-      layout 'devise'
 
       def show
         if current_admin.pending? || current_admin.finish?
