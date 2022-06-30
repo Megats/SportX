@@ -15,6 +15,7 @@
   </head>
 
   <body>
+    
     <% if admin_signed_in? %>
     <%= render "layouts/adminnav"%>
     <% elsif user_signed_in? %>
@@ -23,8 +24,9 @@
     <%= render "layouts/publicnav" %>  
     <% end %>
 
-    
+  
     <%= yield %>
-    
+  
+  
   </body>
 </html>
