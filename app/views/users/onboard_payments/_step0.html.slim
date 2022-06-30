@@ -1,7 +1,7 @@
 .w-full.max-w-3xl.mx-auto
   .bg-white.shadow-md.rounded.px-8.pt-6.pb-8.mb-4
     ul.content-center.min-width:9.steps.steps-vertical.lg:steps-horizontal.center
-      li.step.step-primary Register
+      li.step.step-error Register
       li.step.step Profile
       li.step.step Merchandise
       li.step.step Payment
@@ -42,10 +42,22 @@
 
       .text-3xl.text-red-600.pt-10 Category
       br
+      / - @categories.each do |category|
+      /   div style="margin-bottom:20px;"
+      /     .category_box.eligible
+      /       div
+      /         label.category_label for="id302" #{category.category_name} #{category.category_gender} (#{category.category_age})
+      /         = f.input :category_id, as: :radio_buttons, collection:[category.id]
+      /       div style=("float:right; margin-top:-1px; font-weight:bold;")
+      /         span style="font-size:80%;"  MYR
+      /         = category.category_fees
+      /       div style="font-size:80%; font-family: Arial), sans-serif;"  Fees Shown Is Subject To Admin Fee
+
       .grid.grid-cols-2.border
         = f.input :category_id, as: :radio_buttons, collection: @event.categories.map{|c| ["#{c.category_name} #{c.category_gender} (#{c.category_age})", c.id]}, label:false,  input_html: {required: true}
         .text-right.text-red-600 RM
         .text-xs.text-red-600 Fees Shown Is Subject To Admin Fee
 
+
       .inline.flex.justify-end
-        = f.submit 'Register', class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer"
+        = f.submit 'Continue', class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer"
