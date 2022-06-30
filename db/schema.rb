@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_30_050140) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_30_055007) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -136,6 +136,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_30_050140) do
     t.string "participant_postal"
     t.string "participant_city"
     t.string "participant_state"
+    t.string "shipping_attention"
+    t.string "shipping_address"
+    t.string "shipping_postal"
+    t.string "shipping_city"
+    t.string "shipping_state"
+    t.string "shipping_country"
     t.index ["category_id"], name: "index_participants_on_category_id"
     t.index ["event_id"], name: "index_participants_on_event_id"
   end

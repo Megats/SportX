@@ -42,7 +42,7 @@
 
       .text-3xl.text-red-600.pt-10 Category
       br
-        = @categories.each do |category|
+        - @categories.each do |category|
           .text-red-600 #{category.category_name}
           .grid.grid-cols-2.border
             = f.input :category_id, as: :radio_buttons, collection: [category.id], label:false,  input_html: {required: true}
