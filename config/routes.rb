@@ -3,12 +3,15 @@ Rails.application.routes.draw do
   get 'pages/about_us'
   root :to => "pages#homepage"
   resources :dashboards
-  resources :collabs do
-    resources :donations
-  end
+
+  resource :onboarding
+  resource :onboarding_step
   resources :results
   resources :payments
   resources :events do
+    resources :onboard_payments do
+      get :register
+    end
     resources :participants
     resources :results
   end
