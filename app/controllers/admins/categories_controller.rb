@@ -5,7 +5,7 @@ class Admins::CategoriesController < ApplicationController
   # GET /categories or /categories.json
   def index
     @events = Event.all
-    @categories = Category.where(event_id: params[:event_id])
+    @categories = Category.where(event_id: params[:event_id]).order(:category_name)
   end
 
   # GET /categories/1 or /categories/1.json

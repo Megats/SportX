@@ -9,6 +9,7 @@ h1 Listing Categories
         th Category Age
         th Category fees
         th EventID
+        th Show this category
     tbody
       - @categories.each do |category|
         tr
@@ -17,6 +18,7 @@ h1 Listing Categories
           td #{category.category_age}
           td RM#{category.category_fees}
           td #{category.event_id}
+          td #{link_to 'Show Category', admin_event_category_path(category.event_id,category.id)}
 
 - if @events.exists?
   = link_to 'Add Category', new_admin_event_category_path

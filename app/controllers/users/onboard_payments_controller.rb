@@ -1,40 +1,58 @@
 class Users::OnboardPaymentsController < ApplicationController
   before_action :set_onboard_payment, only: %i[ show edit update destroy ]
   before_action :get_event
+  before_action :set_participant, only: %i[index update]
 
   def index
-    @participant = @event.participants.new
-    @categories = Category.where(event_id: params[:event_id])
+    if @participant.step0?
+      @categories = Category.where(event_id: params[:event_id]).order(:category_name)
+    else
+      # redirect_to user_event_onboard_payments_path(@event)
+    end
   end
 
   def register
     @event = Event.find(params[:event_id])
-    @categories = Category.where(event_id: params[:event_id])
+    @categories = Category.where(event_id: params[:event_id]).order(:category_name)
   end
 
   def update
-    if current_user.step1?
+    if @participant.step0?
+      step0
+    elsif @participant.step1?
       step1
-    elsif current_user.step2?
+    elsif @participant.step2?
       step2
-    elsif current_user.step3?
+    elsif @participant.step3?
       step3
-    elsif current_user.step4?
+    elsif @participant.step4?
       step4
     end
 
-    if current_user.finish?
-      redirect_to authenticated_admin_root_path
+    if @participant.finish?
+      redirect_to authenticated_user_root_path
     else
-      Rails.logger.debug current_user.errors.inspect
-      redirect_to user_event_onboard_payments_path
+      Rails.logger.debug @participant.errors.inspect
+      redirect_to user_event_onboard_payments_path(@event)
     end
   end
 
+  def create
+    @participant = @event.participants.new(participant_params)
+
+    if @participant.save
+      @participant.update_columns(onboard: 1)
+    end
+    redirect_to user_event_onboard_payments_path(id: @participant,event_id: @event)
+    Rails.logger.debug "step0 #{@participant.errors.inspect}"
+    flash[:notice] = 'Update Personal Detail is Success'
+  end
+
+
   def step1
-    Rails.logger.debug "MERGEE #{params_account}"
+    Rails.logger.debug "MERGEE #{participant_params}"
     if @participant.create(participant_params)
-      current_admin.update_columns(onboard: 2)
+      @participant.update_columns(onboard: 2)
     end
     Rails.logger.debug "step1 #{@participant.errors.inspect}"
     flash[:notice] = 'Update Personal Detail is Success'
@@ -49,7 +67,7 @@ class Users::OnboardPaymentsController < ApplicationController
   # step3 update accounts
   def step3
     if current_user.update(step3_params)
-      current_admin.update(onboard: :finish, status: :pending, set_pin: false)
+      current_user.update(onboard: :finish, status: :pending, set_pin: false)
       Rails.logger.debug(current_admin.errors.inspect)
       flash[:notice] = 'Welcome aboard'
     end
@@ -61,14 +79,24 @@ class Users::OnboardPaymentsController < ApplicationController
     @event = Event.find(params[:event_id])
   end
 
+  def get_participant
+    @participant = Participant.find_by(params[:current_user])
+  end
+
+
   # Use callbacks to share common setup or constraints between actions.
   def set_participant
-    @participant = @event.participants.find(params[:id])
+    Rails.logger.debug "set_participant #{params}"
+    if params[:id].present?
+      @participant = @event.participants.find(params[:id])
+    else
+      @participant = @event.participants.new(user_id: current_user.id)
+    end
   end
 
   # Only allow a list of trusted parameters through.
   def participant_params
-    params.require(:participant).permit(:user_id, :participant_name, :participant_phone, :event_id, :participant_email, :participant_nationality, :participant_COR, :paticipant_NRIC, :participants_dob, :category_id, :shirt_size, :participant_gender)
+    params.require(:participant).permit(:user_id, :participant_name, :participant_phone, :event_id, :participant_email, :participant_nationality, :participant_COR, :participant_NRIC, :participants_dob, :category_id, :shirt_size, :participant_gender)
   end
 
   # Use callbacks to share common setup or constraints between actions.
@@ -80,5 +108,4 @@ class Users::OnboardPaymentsController < ApplicationController
   def onboard_payment_params
     params.require(:onboard_payment).permit(:onboard)
   end
-
 end
