@@ -6,7 +6,8 @@ class Users::OnboardPaymentsController < ApplicationController
   def index
     if @participant.step0?
       @categories = Category.where(event_id: params[:event_id]).order(:category_name)
-    else
+    elsif @participant.step1?
+      @participants = @event.participants.find(params[:id])
       # redirect_to user_event_onboard_payments_path(@event)
     end
   end

@@ -98,3 +98,4 @@ gem 'jquery-datatables-rails', github: 'rweng/jquery-datatables-rails'
 gem "repost", "~> 0.3.8"
 gem 'country_select', '~> 6.0'
 gem "cocoon"
+gem 'malaysia'

@@ -9,7 +9,6 @@
 
     .text-3xl.text-red-600.pt-10 Participant's Particulars
     = simple_form_for @participant, url: user_event_onboard_payments_path(@event), data:{turbo:false} , html: { method: :post } do |f|
-      = f.object.errors.inspect
       - if @participant.errors.any?
         #error_explanation.bg-red-50.text-red-500.px-3.py-2.font-medium.rounded-lg.mt-3
 
@@ -21,6 +20,7 @@
             li
               = error.full_message
       .my-5
+        = f.input :user_id, as: :hidden, input_html: {:value=> current_user.id }
         = f.association :event, as: :hidden, collection: Event.ids, label:false , input_html: {required: true }
       .my-5
         = f.label :participant_email
@@ -42,10 +42,12 @@
 
       .text-3xl.text-red-600.pt-10 Category
       br
-      .grid.grid-cols-2.border
-        = f.input :category_id, as: :radio_buttons, collection: @event.categories.map{|c| ["#{c.category_name} #{c.category_gender} (#{c.category_age})", c.id]}, label:false,  input_html: {required: true}
-        .text-right.text-red-600 RM
-        .text-xs.text-red-600 Fees Shown Is Subject To Admin Fee
+        = @categories.each do |category|
+          .text-red-600 #{category.category_name}
+          .grid.grid-cols-2.border
+            = f.input :category_id, as: :radio_buttons, collection: [category.id], label:false,  input_html: {required: true}
+            .text-right.text-red-600 RM#{category.category_fees}
+            .text-xs.text-red-600 Fees Shown Is Subject To Admin Fee
 
       .inline.flex.justify-end
         = f.submit 'Register', class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer"
