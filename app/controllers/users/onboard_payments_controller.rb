@@ -9,7 +9,7 @@ class Users::OnboardPaymentsController < ApplicationController
       @participants = @event.participants.find(params[:id])
       # redirect_to user_event_onboard_payments_path(@event)
     elsif @participant.step2?
-
+      @participants = @event.participants.find(params[:id])
     end
 
   end
@@ -62,9 +62,11 @@ class Users::OnboardPaymentsController < ApplicationController
   end
 
   def step2
-    Rails.logger.debug "masuk step2"
-    @participant.update_columns(onboard: 3)
-    flash[:notice] = "Successfully updated profile"
+    if @participant.update(participant_params)
+      @participant.update_columns(onboard: 3)
+    end
+    Rails.logger.debug "step1 #{@participant.errors.inspect}"
+    flash[:notice] = 'Update Personal Detail is Success'
   end
 
   # step3 update accounts
@@ -99,7 +101,7 @@ class Users::OnboardPaymentsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def participant_params
-    params.require(:participant).permit(:user_id, :participant_name, :participant_phone, :event_id, :participant_email, :participant_nationality, :participant_COR, :participant_NRIC, :participants_dob, :category_id, :shirt_size, :participant_gender, :participant_postal, :participant_city, :participant_state)
+    params.require(:participant).permit(:user_id, :participant_name, :participant_phone, :event_id, :participant_email, :participant_nationality, :participant_COR, :participant_NRIC, :participants_dob, :category_id, :shirt_size, :participant_gender, :participant_postal, :participant_city, :participant_state, :shipping_attention, :shipping_address, :shipping_postal, :shipping_city, :shipping_state, :shipping_country)
   end
 
   # Use callbacks to share common setup or constraints between actions.
