@@ -1,0 +1,46 @@
+form.shadow-md.rounded.px-8.pt-6.pb-8.mb-4.w-auto.mx-auto
+
+    .text-3xl.text-red-600 Event Info
+    br
+
+    .text-xs Name
+    = @event.event_name
+    br
+
+    .text-xs.pt-2 Venue
+    = @event.event_venue
+    br
+
+    .text-xs.pt-2 Date
+    = @event.event_date
+    br
+
+    .text-xs.pt-2 Status
+    - if @event.event_status == "OPEN"
+        .text-green-500 #{@event.event_status}
+
+    -   else
+        .text-red-600 #{@event.event_status}
+
+    br
+
+    .text-3xl.text-red-600.py-5 Registration Fee
+
+    .text-3xl.text-red-600.py-5 Individual
+
+    .grid.grid-col-span-full
+        table.table.w-full
+                /! head
+                thead
+                    tr
+                        th Event
+                        th Category
+                        th Tickets
+                tbody
+                    - @categories.each do |category|
+                        tr
+                            td #{category.category_name}
+                            td #{category.category_gender} #{category.category_age}
+                            td RM#{category.category_fees}
+
+    = link_to "Register", event_onboard_payments_path(@event), :class =>"btn btn-primary"
