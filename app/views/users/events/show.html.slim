@@ -8,7 +8,7 @@
     .inline-block.ml-2
     = link_to 'Back to events', user_events_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block mt-5"
     - if @event.event_status == 'OPEN'
-      = link_to 'Register', new_user_event_participant_path(@event, @user), class: "ml-2 rounded-lg py-3 px-5 bg-blue-100 inline-block font-medium"
+      = link_to 'Register', user_event_onboard_payment_register_path(@event.id, :event_id => @event.id), class: "ml-2 rounded-lg py-3 px-5 bg-blue-100 inline-block font-medium mt-5"
     br
     br
     div.relative.mx-auto.space-y-3

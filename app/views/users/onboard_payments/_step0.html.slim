@@ -9,7 +9,6 @@
 
     .text-3xl.text-red-600.pt-10 Participant's Particulars
     = simple_form_for @participant, url: user_event_onboard_payments_path(@event), data:{turbo:false} , html: { method: :post } do |f|
-      = f.object.errors.inspect
       - if @participant.errors.any?
         #error_explanation.bg-red-50.text-red-500.px-3.py-2.font-medium.rounded-lg.mt-3
 
@@ -23,10 +22,10 @@
       .my-5
         = f.association :event, as: :hidden, collection: Event.ids, label:false , input_html: {required: true }
       .my-5
-        = f.label :participant_email
+        = f.label :participant_email, "Email"
         = f.text_field :participant_email, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-1/2", input_html: {required: true }
       .my-5
-        = f.label :participant_nationality
+        = f.label :participant_nationality, "Nationality"
         br
         = f.country_select :participant_nationality, input_html: {required: true }
       .my-5
