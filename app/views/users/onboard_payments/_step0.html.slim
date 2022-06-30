@@ -42,12 +42,10 @@
 
       .text-3xl.text-red-600.pt-10 Category
       br
-        = @categories.each do |category|
-          .text-red-600 #{category.category_name}
-          .grid.grid-cols-2.border
-            = f.input :category_id, as: :radio_buttons, collection: [category.id], label:false,  input_html: {required: true}
-            .text-right.text-red-600 RM#{category.category_fees}
-            .text-xs.text-red-600 Fees Shown Is Subject To Admin Fee
+      .grid.grid-cols-2.border
+        = f.input :category_id, as: :radio_buttons, collection: @event.categories.map{|c| ["#{c.category_name} #{c.category_gender} (#{c.category_age})", c.id]}, label:false,  input_html: {required: true}
+        .text-right.text-red-600 RM
+        .text-xs.text-red-600 Fees Shown Is Subject To Admin Fee
 
       .inline.flex.justify-end
         = f.submit 'Register', class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer"

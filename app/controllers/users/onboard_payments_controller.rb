@@ -1,5 +1,4 @@
 class Users::OnboardPaymentsController < ApplicationController
-  before_action :set_onboard_payment, only: %i[ show edit update destroy ]
   before_action :get_event
   before_action :set_participant, only: %i[index update]
 
@@ -9,7 +8,10 @@ class Users::OnboardPaymentsController < ApplicationController
     elsif @participant.step1?
       @participants = @event.participants.find(params[:id])
       # redirect_to user_event_onboard_payments_path(@event)
+    elsif @participant.step2?
+
     end
+
   end
 
   def register
@@ -34,7 +36,7 @@ class Users::OnboardPaymentsController < ApplicationController
       redirect_to authenticated_user_root_path
     else
       Rails.logger.debug @participant.errors.inspect
-      redirect_to user_event_onboard_payments_path(@event)
+      redirect_to user_event_onboard_payments_path(id: @participant,event_id: @event)
     end
   end
 
@@ -51,8 +53,8 @@ class Users::OnboardPaymentsController < ApplicationController
 
 
   def step1
-    Rails.logger.debug "MERGEE #{participant_params}"
-    if @participant.create(participant_params)
+    Rails.logger.debug "step1 #{participant_params}"
+    if @participant.update(participant_params)
       @participant.update_columns(onboard: 2)
     end
     Rails.logger.debug "step1 #{@participant.errors.inspect}"
@@ -61,13 +63,13 @@ class Users::OnboardPaymentsController < ApplicationController
 
   def step2
     Rails.logger.debug "masuk step2"
-    current_user.update_columns(onboard: 3)
+    @participant.update_columns(onboard: 3)
     flash[:notice] = "Successfully updated profile"
   end
 
   # step3 update accounts
   def step3
-    if current_user.update(step3_params)
+    if @participant.update(step3_params)
       current_user.update(onboard: :finish, status: :pending, set_pin: false)
       Rails.logger.debug(current_admin.errors.inspect)
       flash[:notice] = 'Welcome aboard'
@@ -97,7 +99,7 @@ class Users::OnboardPaymentsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def participant_params
-    params.require(:participant).permit(:user_id, :participant_name, :participant_phone, :event_id, :participant_email, :participant_nationality, :participant_COR, :participant_NRIC, :participants_dob, :category_id, :shirt_size, :participant_gender)
+    params.require(:participant).permit(:user_id, :participant_name, :participant_phone, :event_id, :participant_email, :participant_nationality, :participant_COR, :participant_NRIC, :participants_dob, :category_id, :shirt_size, :participant_gender, :participant_postal, :participant_city, :participant_state)
   end
 
   # Use callbacks to share common setup or constraints between actions.
