@@ -1,9 +1,34 @@
-.mt-9.px-80.gap-3.content-center
-  ul.min-width:9.steps.steps-vertical.lg:steps-horizontal
-    li.step.step-primary Register
-    li.step.step-primary Profile
-    li.step.step-primary Merchandise
-    li.step.step-primary Payment
-    li.step.step Finish
+.w-full.max-w-3xl.mx-auto
+  .bg-white.shadow-md.rounded.px-8.pt-6.pb-8.mb-4
+    div.lg:flex.justify-center.sm:flex.justify-start
+      ul.min-width:9.steps.steps-vertical.lg:steps-horizontal
+        li.step.step-primary Register
+        li.step.step-primary Profile
+        li.step.step-primary Merchandise
+        li.step.step-primary Payment
+        li.step.step Finish
 
-br
+    .text-3xl.text-red-600.pt-10 Payment Checkout 
+
+    table.table.w-full
+      thead
+        tr
+          th Item
+          th Price
+          th Total
+      tbody
+        tr
+  
+          td #{@participants.category.category_name}
+          td RM#{@participants.category.category_fees}
+          td RM#{@participants.category.category_fees}
+        tr 
+          td colspan="2" Subtotal
+          td RM#{@participants.category.category_fees}
+
+    = simple_form_for @participant, url: user_event_onboard_payment_path(@event,@participant.id), data:{turbo:false} do |f|
+
+      .inline.flex.justify-end
+        = f.submit 'Checkout', class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer"
+
+

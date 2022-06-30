@@ -10,6 +10,8 @@ class Users::OnboardPaymentsController < ApplicationController
       # redirect_to user_event_onboard_payments_path(@event)
     elsif @participant.step2?
       @participants = @event.participants.find(params[:id])
+    elsif @participant.step3?
+      @participants = @event.participants.find(params[:id])
     end
 
   end
@@ -71,10 +73,25 @@ class Users::OnboardPaymentsController < ApplicationController
 
   # step3 update accounts
   def step3
-    if @participant.update(step3_params)
-      current_user.update(onboard: :finish, status: :pending, set_pin: false)
-      Rails.logger.debug(current_admin.errors.inspect)
-      flash[:notice] = 'Welcome aboard'
+    if @participant.update(participant_params)
+      params_api = {
+        uid: "7638b54d-0adc-46b1-a1dc-7d469528a5a3",
+        checksum: @participant.generate_checksum,
+        buyer_email: @participant.participant_email,
+        buyer_name: @participant.participant_name,
+        buyer_phone: @participant.participant_phone,
+        order_number: @participant.id,
+        product_description: @event.event_name,
+        transaction_amount: @participant.category.category_fees,
+        callback_url: "",
+        redirect_url: "",
+        token: "A64sFshdhzPmV5es_123",
+        redirect_post: "true"
+       }
+
+      redirect_post('https://sandbox.securepay.my/api/v1/payments',            # URL, looks understandable
+        params: params_api)
+    
     end
   end
 

@@ -1,11 +1,12 @@
 .w-full.max-w-3xl.mx-auto
   .bg-white.shadow-md.rounded.px-8.pt-6.pb-8.mb-4
-    ul.content-center.min-width:9.steps.steps-vertical.lg:steps-horizontal.center
-      li.step.step-error Register
-      li.step.step Profile
-      li.step.step Merchandise
-      li.step.step Payment
-      li.step.step Finish
+    div.lg:flex.justify-center.sm:flex.justify-start
+      ul.min-width:9.steps.steps-vertical.lg:steps-horizontal
+        li.step.step-error Register
+        li.step.step Profile
+        li.step.step Merchandise
+        li.step.step Payment
+        li.step.step Finish
 
     .text-3xl.text-red-600.pt-10 Participant's Particulars
     = simple_form_for @participant, url: user_event_onboard_payments_path(@event), data:{turbo:false} , html: { method: :post } do |f|
