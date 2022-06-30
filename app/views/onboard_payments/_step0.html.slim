@@ -1,0 +1,51 @@
+.w-full.max-w-3xl.mx-auto
+  .bg-white.shadow-md.rounded.px-8.pt-6.pb-8.mb-4
+    ul.content-center.min-width:9.steps.steps-vertical.lg:steps-horizontal.center
+      li.step.step-primary Register
+      li.step.step Profile
+      li.step.step Merchandise
+      li.step.step Payment
+      li.step.step Finish
+
+    .text-3xl.text-red-600.pt-10 Participant's Particulars
+    = simple_form_for @participant, url: event_onboard_payments_path(@event), data:{turbo:false} , html: { method: :post } do |f|
+      = f.object.errors.inspect
+      - if @participant.errors.any?
+        #error_explanation.bg-red-50.text-red-500.px-3.py-2.font-medium.rounded-lg.mt-3
+
+        h2
+          = pluralize(@participant.errors.count, "error")
+          |  prohibited this event from being saved:
+        ul
+          - @participant.errors.each do |error|
+            li
+              = error.full_message
+      .my-5
+        = f.association :event, as: :hidden, collection: Event.ids, label:false , input_html: {required: true }
+      .my-5
+        = f.label :participant_email
+        = f.text_field :participant_email, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-1/2", input_html: {required: true }
+      .my-5
+        = f.label :participant_nationality
+        br
+        = f.country_select :participant_nationality, input_html: {required: true }
+      .my-5
+        = f.label :participant_COR, "Country of Residence"
+        br
+        = f.country_select :participant_COR, input_html: {required: true }
+      .my-5
+        = f.label :participant_NRIC
+        = f.text_field :participant_NRIC, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-1/3", input_html: {required: true }
+      .my-5
+        = f.label :participants_dob
+        = f.date_field :participants_dob, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-1/3", input_html: {required: true }
+
+      .text-3xl.text-red-600.pt-10 Category
+      br
+      .grid.grid-cols-2.border
+        = f.input :category_id, as: :radio_buttons, collection: @event.categories.map{|c| ["#{c.category_name} #{c.category_gender} (#{c.category_age})", c.id]}, label:false,  input_html: {required: true}
+        .text-right.text-red-600 RM
+        .text-xs.text-red-600 Fees Shown Is Subject To Admin Fee
+
+      .inline.flex.justify-end
+        = f.submit 'Register', class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer"
