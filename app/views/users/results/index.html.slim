@@ -6,7 +6,7 @@ br
 .gap-24.py-3.grid.grid-cols-4
   - @events.each do |event|
     = link_to user_result_path(event, :event_id => event.id) do
-      .card.w-96.bg-base-100.shadow-xl
+      .card.w-96.bg-base-100.shadow-xl.hover:scale-110.transition.duration-170
         figure
           - if event.eventpicture.attached?
             = image_tag event.eventpicture,style:"height: 200px; width: 300px; display: block"

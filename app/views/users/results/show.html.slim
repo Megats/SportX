@@ -1,7 +1,7 @@
 p style="color: green" = notice
 br
 
-.card.w-96.bg-base-100.shadow-xl.mx-auto
+.card.w-96.bg-base-100.shadow-xl.mx-auto.hover:scale-110.transition.duration-170
   figure
     - if @event.eventpicture.attached?
       = image_tag @event.eventpicture,style:"height: 200px; width: 300px; display: block"
