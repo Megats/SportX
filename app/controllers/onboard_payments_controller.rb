@@ -1,4 +1,4 @@
-class Users::OnboardPaymentsController < ApplicationController
+class OnboardPaymentsController < ApplicationController
   before_action :set_onboard_payment, only: %i[ show edit update destroy ]
   before_action :get_event
   before_action :set_participant, only: %i[index update]
@@ -6,8 +6,7 @@ class Users::OnboardPaymentsController < ApplicationController
   def index
     if @participant.step0?
       @categories = Category.where(event_id: params[:event_id]).order(:category_name)
-    elsif @participant.step1?
-      @participants = @event.participants.find(params[:id])
+    else
       # redirect_to user_event_onboard_payments_path(@event)
     end
   end
@@ -31,10 +30,10 @@ class Users::OnboardPaymentsController < ApplicationController
     end
 
     if @participant.finish?
-      redirect_to authenticated_user_root_path
+      redirect_to root_path
     else
       Rails.logger.debug @participant.errors.inspect
-      redirect_to user_event_onboard_payments_path(@event)
+      redirect_to event_onboard_payments_path(@event)
     end
   end
 
@@ -44,7 +43,7 @@ class Users::OnboardPaymentsController < ApplicationController
     if @participant.save
       @participant.update_columns(onboard: 1)
     end
-    redirect_to user_event_onboard_payments_path(id: @participant,event_id: @event)
+    redirect_to event_onboard_payments_path(id: @participant,event_id: @event)
     Rails.logger.debug "step0 #{@participant.errors.inspect}"
     flash[:notice] = 'Update Personal Detail is Success'
   end
@@ -81,7 +80,7 @@ class Users::OnboardPaymentsController < ApplicationController
   end
 
   def get_participant
-    @participant = Participant.find_by(params[:current_user])
+    @participant = Participant.find_by(params[:id])
   end
 
 
@@ -91,13 +90,13 @@ class Users::OnboardPaymentsController < ApplicationController
     if params[:id].present?
       @participant = @event.participants.find(params[:id])
     else
-      @participant = @event.participants.new(user_id: current_user.id)
+      @participant = @event.participants.new
     end
   end
 
   # Only allow a list of trusted parameters through.
   def participant_params
-    params.require(:participant).permit(:user_id, :participant_name, :participant_phone, :event_id, :participant_email, :participant_nationality, :participant_COR, :participant_NRIC, :participants_dob, :category_id, :shirt_size, :participant_gender)
+    params.require(:participant).permit(:participant_name, :participant_phone, :event_id, :participant_email, :participant_nationality, :participant_COR, :participant_NRIC, :participants_dob, :category_id, :shirt_size, :participant_gender)
   end
 
   # Use callbacks to share common setup or constraints between actions.
