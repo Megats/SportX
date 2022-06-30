@@ -7,9 +7,3 @@
     li.step.step Finish
 
 br
-
-.pt-10
-  - if current_admin.has_role?(:artist)
-    = render 'admins/onboardings/artist_form'
-  - elsif current_admin.has_role?(:merchant)
-    = render 'admins/onboardings/merchant_form'
