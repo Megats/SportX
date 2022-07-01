@@ -1,11 +1,12 @@
 .w-full.max-w-3xl.mx-auto
   .bg-white.shadow-md.rounded.px-8.pt-6.pb-8.mb-4
-    ul.min-width:9.steps.steps-vertical.lg:steps-horizontal
-      li.step.step-primary Register
-      li.step.step-primary Profile
-      li.step.step-primary Merchandise
-      li.step.step Payment
-      li.step.step Finish
+    div.lg:flex.justify-center.sm:flex.justify-start
+      ul.min-width:9.steps.steps-vertical.lg:steps-horizontal
+        li.step.step-error Register
+        li.step.step-error Profile
+        li.step.step-error Merchandise
+        li.step.step Payment
+        li.step.step Finish
 
     .text-3xl.text-red-600.pt-10 Participant's Particulars
     = simple_form_for @participant, url: event_onboard_payment_path(@event,@participant), data:{turbo:false} do |f|
@@ -29,7 +30,7 @@
           = f.association :event, as: :hidden, collection: Event.ids, label:false , input_html: {required: true }
           = f.label :participant_nationality, "Nationality"
           br
-          = f.input_field :participant_nationality, disabled: true, class: "block shadow rounded-md border border-gray-200 outline-none", required: true 
+          = f.input_field :participant_nationality, disabled: true, class: "block shadow rounded-md border border-gray-200 outline-none", required: true
           = f.label :participant_NRIC, "NRIC/Passport no"
           = f.text_field :participant_NRIC, disabled: true, class: "block shadow rounded-md border border-gray-200 outline-none", input_html: {required: true }
         div.my-8
@@ -37,17 +38,17 @@
           = f.text_field :participant_email, disabled: true, class: "block shadow rounded-md border border-gray-200 outline-none", input_html: {required: true }
           = f.label :participant_COR, "Country of Residence"
           br
-          = f.text_field :participant_COR, disabled: true, class: "block shadow rounded-md border border-gray-200 outline-none", required: true 
+          = f.text_field :participant_COR, disabled: true, class: "block shadow rounded-md border border-gray-200 outline-none", required: true
           = f.label :participants_dob, "Date of Birth"
           = f.date_field :participants_dob, disabled: true, class: "block shadow rounded-md border border-gray-200 outline-none", input_html: {required: true }
 
       .text-3xl.text-red-600.pt-10 Merchandise
       br
 
-      div  
+      div
         i.fa.fa-chevron-circle-right.icon style=("margin:1% 0; font-size:130%; font-weight:bold;") Shipment Info
-         
-        .my-8 
+
+        .my-8
           = f.label :shipping_attention, "Attention(Name of Receiver)"
           br
           = f.input_field :shipping_attention, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-1/2"
@@ -57,7 +58,7 @@
             div
               = f.label :shipping_postal, "Postal Code"
               = f.input_field :shipping_postal, class: "block shadow rounded-md border border-gray-200 outline-none"
-            div 
+            div
               = f.label :shipping_city, "City"
               = f.input_field :shipping_city, class: "block shadow rounded-md border border-gray-200 outline-none"
             br
@@ -65,12 +66,12 @@
             div
               = f.label :shipping_state, "State"
               = f.input_field :shipping_state, class: "block shadow rounded-md border border-gray-200 outline-none"
-            div 
+            div
               = f.label :shipping_country, "Country"
               = f.input_field :shipping_country, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-1/2"
             br
-            
-    
+
+
       .inline.flex.justify-end
         = f.submit 'Continue', class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer"
 

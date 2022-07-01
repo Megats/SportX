@@ -10,6 +10,8 @@ class OnboardPaymentsController < ApplicationController
       # redirect_to user_event_onboard_payments_path(@event)
     elsif @participant.step2?
       @participants = @event.participants.find(params[:id])
+    elsif @participant.step3?
+      @participants = @event.participants.find(params[:id])
     end
 
   end
@@ -34,7 +36,24 @@ class OnboardPaymentsController < ApplicationController
 
     if @participant.finish?
       redirect_to root_path
-    else
+    elsif @participant.step3?
+      params_api = {
+        uid: "7638b54d-0adc-46b1-a1dc-7d469528a5a3",
+        checksum: @participant.generate_checksum,
+        buyer_email: @participant.participant_email,
+        buyer_name: @participant.participant_name,
+        buyer_phone: @participant.participant_phone,
+        order_number: @participant.id,
+        product_description: @event.event_name,
+        transaction_amount: @participant.category.category_fees,
+        callback_url: "",
+        redirect_url: "http://localhost:3000/users/events/#{@event.id}/onboard_payments",
+        token: "A64sFshdhzPmV5es_123",
+        redirect_post: "true"
+       }
+      redirect_post('https://sandbox.securepay.my/api/v1/payments',            # URL, looks understandable
+      params: params_api)
+    else      
       Rails.logger.debug @participant.errors.inspect
       redirect_to event_onboard_payments_path(id: @participant,event_id: @event)
     end
@@ -42,7 +61,7 @@ class OnboardPaymentsController < ApplicationController
 
   def create
     @participant = @event.participants.new(participant_params)
-
+     
     if @participant.save
       @participant.update_columns(onboard: 1)
     end

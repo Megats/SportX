@@ -2,6 +2,8 @@ class Participant < ApplicationRecord
   belongs_to :event
   belongs_to :category
 
+  validates :participant_email, :participant_phone, presence: true
+
   enum onboard: [:step0, :step1, :step2, :step3, :finish]
 
   def generate_checksum
