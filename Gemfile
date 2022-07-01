@@ -99,3 +99,4 @@ gem "repost", "~> 0.3.8"
 gem 'country_select', '~> 6.0'
 gem "cocoon"
 gem 'malaysia'
+gem "mail_form", "~> 1.9"
