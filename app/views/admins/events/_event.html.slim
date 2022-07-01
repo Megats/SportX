@@ -1,8 +1,8 @@
 div id="#{dom_id event}"
     div.card.card-compact.w-50.bg-base-50.shadow-xl.hover:scale-110.transition.duration-170
-      figure.object-fill.rounded-md
-      - if event.eventpicture.attached?
-        = image_tag event.eventpicture,style:"height: 200px; width: 300px; display: block"
+      figure.object-fill.rounded
+        - if event.eventpicture.attached?
+          = image_tag event.eventpicture,style:"height: 200px; width: 300px; display: block"
       .card-body
         h2.card-title
           = event.event_name

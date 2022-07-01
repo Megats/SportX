@@ -4,10 +4,10 @@
 
   .my-5
     = f.label :user_id
-    = f.text_field :user_id,  class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", value:current_user.id, input_html: {required: true }
+    = f.text_field :user_id,  class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", value:current_user.id, :required => true
   .my-5
     = f.label :Collaborations_id
-    = f.association :collab, collection: Collab.ids, label:false ,  class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", input_html: {required: true }
+    = f.association :collab, collection: Collab.ids, label:false ,  class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", :required => true
   .my-5
     = f.label :Email
     = f.text_field :donation_email,  class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", input_html: {required: true }
@@ -24,11 +24,16 @@
     = f.label :Country_of_Residence
     = f.text_field :donation_COR,  class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", input_html: {required: true }
   .my-5
-    = f.label :NRIC
-    = f.text_field :donation_NRIC,  class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", input_html: {required: true }
-  .my-5
-    = f.label :Date_of_birth
-    = f.date_field :donation_dob,  class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", input_html: {required: true }
+    = f.label :NRIC, " NRIC / Passport ID "
+    = f.text_field :donation_NRIC, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", input_html: {required: true }
+  .my-5  
+    = f.label :Date_of_Birth
+    div[class="row"]
+      div[class="large-12 columns select-date-wrapper"]
+        = f.date_select(:donation_dob,
+            options = { start_year: DateTime.now.year - 18, end_year: DateTime.now.year - 75, order: [:month, :day, :year], required: true},
+            html_options = { class: 'select-date shadow rounded border-gray-200 '})
+  
   .my-5
     = f.label :donation_amount
     = f.text_field :donation_amount,  class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", input_html: {required: true }
