@@ -12,6 +12,8 @@ class Users::OnboardPaymentsController < ApplicationController
       @participants = @event.participants.find(params[:id])
     elsif @participant.step3?
       @participants = @event.participants.find(params[:id])
+    elsif @participant.finish?
+      @receipt = params[:receipt_url]
     end
 
   end
@@ -47,13 +49,14 @@ class Users::OnboardPaymentsController < ApplicationController
         product_description: @event.event_name,
         transaction_amount: @participant.category.category_fees,
         callback_url: "",
-        redirect_url: "http://localhost:3000/users/events/#{@event.id}/onboard_payments",
+        redirect_url: "http://localhost:3000/payments/payredirect",
         token: "A64sFshdhzPmV5es_123",
         redirect_post: "true"
        }
       redirect_post('https://sandbox.securepay.my/api/v1/payments',            # URL, looks understandable
       params: params_api)
     else
+      @receipt = params[:receipt_url]
       Rails.logger.debug @participant.errors.inspect
       redirect_to user_event_onboard_payments_path(id: @participant,event_id: @event)
     end
@@ -89,10 +92,6 @@ class Users::OnboardPaymentsController < ApplicationController
     end
     Rails.logger.debug "step1 #{@participant.errors.inspect}"
     flash[:notice] = 'Update Personal Detail is Success'
-  end
-
-  # step3 update accounts
-  def step3
   end
 
   private

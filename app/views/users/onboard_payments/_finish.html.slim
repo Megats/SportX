@@ -1,0 +1,23 @@
+.w-full.max-w-3xl.mx-auto
+  .bg-white.shadow-md.rounded.px-8.pt-6.pb-8.mb-4
+    div.lg:flex.justify-center.sm:flex.justify-start
+      ul.min-width:9.steps.steps-vertical.lg:steps-horizontal
+        li.step.step-primary Register
+        li.step.step-primary Profile
+        li.step.step-primary Merchandise
+        li.step.step-primary Payment
+        li.step.step-primary Finish
+
+  .overflow-x-auto
+    table.table.w-full
+      thead
+        tr
+          th Event
+          th Participant Name
+          th Receipt
+      tbody
+        tr
+          tr
+            td #{@participant.event.event_name}
+            td #{@participant.participant_name}
+            td = link_to "test", @receipt
