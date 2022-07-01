@@ -80,7 +80,6 @@ class Users::DonationsController < ApplicationController
   end
 
   def derma
-      Rails.logger.debug "MEGAT DERMA #{params}"
   end
 
   private

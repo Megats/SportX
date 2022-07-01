@@ -8,7 +8,11 @@ Rails.application.routes.draw do
   resource :onboarding
   resource :onboarding_step
   resources :results
-  resources :payments
+  resources :payments do
+    collection do
+      post :payredirect
+    end
+  end
   resources :events do
     resources :onboard_payments do
       get :register
@@ -21,11 +25,7 @@ Rails.application.routes.draw do
   draw :admin
 
   resources :collabs do
-    resources :donations do
-      collection do
-        post :derma
-      end
-    end
+    resources :donations
   end
 
   resources :events do
