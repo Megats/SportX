@@ -25,21 +25,22 @@
         = f.association :event, as: :hidden, collection: Event.ids, label:false , input_html: {required: true }
       .my-5
         = f.label :participant_email, "Email"
-        = f.text_field :participant_email, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-1/2", input_html: {required: true }
+        = f.text_field :participant_email, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-1/2", required: true
+
       .my-5
         = f.label :participant_nationality, "Nationality"
         br
-        = f.country_select :participant_nationality, input_html: {required: true }
+        = f.country_select :participant_nationality
       .my-5
         = f.label :participant_COR, "Country of Residence"
         br
         = f.country_select :participant_COR, input_html: {required: true }
       .my-5
         = f.label :participant_NRIC
-        = f.text_field :participant_NRIC, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-1/3", input_html: {required: true }
+        = f.text_field :participant_NRIC,required: true, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-1/3"
       .my-5
         = f.label :participants_dob
-        = f.date_field :participants_dob, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-1/3", input_html: {required: true }
+        = f.date_field :participants_dob,required: true, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-1/3"
         / = f.input :category_id, as: :radio_buttons, collection: @event.categories.map{|c| ["#{c.category_name} #{c.category_gender} (#{c.category_age})", c.id]}, label:false,  input_html: {required: true}
 
 
@@ -49,7 +50,7 @@
         div style="margin-bottom:20px;"
           .category_box.eligible
             div
-              = f.radio_button :category_id, category.id, input_html: {required: true}
+              = f.radio_button :category_id, category.id, required: true
               label.category_label #{category.category_name} #{category.category_gender} (#{category.category_age})
               div style=("float:right; margin-top:-1px; font-weight:bold;")
                 span style="font-size:80%;"  MYR

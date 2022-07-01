@@ -25,12 +25,12 @@
             li
               = error.full_message
       .my-5
-        = f.input :user_id, as: :hidden, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-1/2", input_html: { :value => current_user.id, required: true }
+        = f.input :user_id, as: :hidden, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-1/2", input_html: { :value => current_user.id}
       .my-5
         = f.association :event, as: :hidden, collection: Event.ids, label:false , input_html: {required: true }
       .my-5
         = f.label :participant_name, "Fullname (as per nric)"
-        = f.text_field :participant_name, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-1/2", input_html: {required: true }
+        = f.text_field :participant_name, required: true, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-1/2"
         = f.label :participant_NRIC
         = f.text_field :participant_NRIC, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-1/2", disabled: true, :wrapper_html => { :style => 'display: inline' }
         = f.label :participant_nationality, "Nationality"
@@ -44,16 +44,16 @@
 
       .my-5
         = f.label :participant_phone
-        = f.text_field :participant_phone, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-1/2", input_html: {required: true }
+        = f.text_field :participant_phone, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-1/2", required: true
       .my-5
         = f.label :participant_postal
-        = f.text_field :participant_postal, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-1/2", input_html: {required: true }
+        = f.text_field :participant_postal, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-1/2", required: true
       .my-5
         = f.label :participant_city
-        = f.text_field :participant_city, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-1/2", input_html: {required: true }
+        = f.text_field :participant_city, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-1/2", required: true
       .my-5
         = f.label :participant_state
-        = f.input_field :participant_state, collection: Malaysia.states,label: false, prompt: "Select State", class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-1/2", input_html: {required: true }
+        = f.input_field :participant_state, collection: Malaysia.states,label: false, prompt: "Select State", class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-1/2", required: true
       .inline.flex.justify-end
         = f.submit 'Continue', class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer"
 

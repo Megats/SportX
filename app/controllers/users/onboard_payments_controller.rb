@@ -62,12 +62,15 @@ class Users::OnboardPaymentsController < ApplicationController
   def create
     @participant = @event.participants.new(participant_params)
 
-    if @participant.save
-      @participant.update_columns(onboard: 1)
+    respond_to do |format|
+      if @participant.save
+        @participant.update_columns(onboard: 1)
+        format.html { redirect_to user_event_onboard_payments_path(id: @participant,event_id: @event), notice: "Create user Success" }
+      else
+        Rails.logger.debug @participant.errors.inspect
+        format.html { redirect_to user_event_onboard_payments_path(event_id: @event), notice: "Failed to save"}
+      end
     end
-    redirect_to user_event_onboard_payments_path(id: @participant,event_id: @event)
-    Rails.logger.debug "step0 #{@participant.errors.inspect}"
-    flash[:notice] = 'Update Personal Detail is Success'
   end
 
 

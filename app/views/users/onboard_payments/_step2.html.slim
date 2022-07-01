@@ -51,24 +51,24 @@
         .my-8
           = f.label :shipping_attention, "Attention(Name of Receiver)"
           br
-          = f.input_field :shipping_attention, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-1/2"
+          = f.input_field :shipping_attention, required: true, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-1/2"
           = f.label :shipping_address, "Address"
-          = f.input_field :shipping_address, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-1/2"
+          = f.input_field :shipping_address, required: true, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-1/2"
           .grid.grid-cols-2
             div
               = f.label :shipping_postal, "Postal Code"
-              = f.input_field :shipping_postal, class: "block shadow rounded-md border border-gray-200 outline-none"
+              = f.input_field :shipping_postal, required: true, class: "block shadow rounded-md border border-gray-200 outline-none"
             div
               = f.label :shipping_city, "City"
-              = f.input_field :shipping_city, class: "block shadow rounded-md border border-gray-200 outline-none"
+              = f.input_field :shipping_city, required: true, class: "block shadow rounded-md border border-gray-200 outline-none"
             br
           .grid.grid-cols-2
             div
               = f.label :shipping_state, "State"
-              = f.input_field :shipping_state, class: "block shadow rounded-md border border-gray-200 outline-none"
+              = f.input_field :shipping_state, required: true, class: "block shadow rounded-md border border-gray-200 outline-none"
             div
               = f.label :shipping_country, "Country"
-              = f.input_field :shipping_country, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-1/2"
+              = f.input_field :shipping_country, required: true, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-1/2"
             br
 
 
