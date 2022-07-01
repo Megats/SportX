@@ -1,11 +1,12 @@
 .w-full.max-w-3xl.mx-auto
   .bg-white.shadow-md.rounded.px-8.pt-6.pb-8.mb-4
-    ul.content-center.min-width:9.steps.steps-vertical.lg:steps-horizontal.center
-      li.step.step-primary Register
-      li.step.step-primary Profile
-      li.step.step Merchandise
-      li.step.step Payment
-      li.step.step Finish
+    div.lg:flex.justify-center.sm:flex.justify-start
+      ul.content-center.min-width:9.steps.steps-vertical.lg:steps-horizontal.center
+        li.step.step-error Register
+        li.step.step-error Profile
+        li.step.step Merchandise
+        li.step.step Payment
+        li.step.step Finish
 
     .text-3xl.text-red-600.pt-10 #{@participants.category.category_name}
     .text-xs.text-red-600.pt-1 * Denotes required field.
@@ -23,6 +24,7 @@
           - @event.errors.each do |error|
             li
               = error.full_message
+
       .my-5
         = f.association :event, as: :hidden, collection: Event.ids, label:false , input_html: {required: true }
       .my-5

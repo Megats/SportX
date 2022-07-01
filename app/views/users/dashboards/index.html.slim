@@ -1,11 +1,11 @@
-.mx-16.my-6  
+.mx-16.my-6
   h1 Welcome #{current_user.email}
   .mt-6.px-4.gap-3.grid.grid-cols-1.sm:grid-cols-2.lg:grid-cols-4
 
     <div class="stats shadow group hover:bg-blue-400">
         <div class="stat">
-          <div class="stat-title group-hover:text-white">Total user</div>
-          <div class="stat-value group-hover:text-white">#{@users}</div>
+          <div class="stat-title group-hover:text-white">Total Event Registered</div>
+          <div class="stat-value group-hover:text-white">#{@numberparticipant}</div>
           <div class="stat-desc group-hover:text-white">21% more than last month</div>
         </div>
     </div>
@@ -13,23 +13,36 @@
     <div class="stats shadow group hover:bg-blue-400">
         <div class="stat">
           <div class="stat-title group-hover:text-white">Total Ongoing Event</div>
-          <div class="stat-value group-hover:text-white">#{@events}</div>
-          <div class="stat-desc group-hover:text-white">21% more than last month</div>
+          <div class="stat-value group-hover:text-white">#{@event}</div>
+          <div class="stat-desc group-hover:text-white">From total of #{@events}</div>
         </div>
     </div>
 
     <div class="stats shadow group hover:bg-blue-400">
       <div class="stat">
-        <div class="stat-title group-hover:text-white">Total Participants</div>
-        <div class="stat-value group-hover:text-white">#{@participants}</div>
-        <div class="stat-desc group-hover:text-white">21% more than last month</div>
-      </div>
-    </div>
-
-    <div class="stats shadow group hover:bg-blue-400">
-      <div class="stat">
-        <div class="stat-title group-hover:text-white">Total collaboration</div>
+        <div class="stat-title group-hover:text-white">Number of collaboration</div>
         <div class="stat-value group-hover:text-white">#{@collaborations}</div>
         <div class="stat-desc group-hover:text-white">21% more than last month</div>
       </div>
     </div>
+
+.shadow-md.rounded.px-8.pt-6.pb-8.mb-4.w-auto.mx-auto
+  .text-3xl.text-red-600 Registered Event
+
+  .overflow-x-auto
+    table.table.w-full
+      thead
+        tr
+          th Event
+          th Participant Name
+          th Event Detail
+      tbody
+        tr
+        - @participants.each do |participant|
+          tr
+            td #{participant.event.event_name}
+            td #{participant.participant_name}
+            td #{link_to "View Event", user_event_participant_path(participant.event_id,participant.id)}
+
+
+
