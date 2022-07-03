@@ -13,7 +13,7 @@ class Users::OnboardPaymentsController < ApplicationController
     elsif @participant.step3?
       @participants = @event.participants.find(params[:id])
     elsif @participant.finish?
-      @receipt = params[:receipt_url]
+      @receipt = params[:receipt]
     end
 
   end
@@ -56,7 +56,6 @@ class Users::OnboardPaymentsController < ApplicationController
       redirect_post('https://sandbox.securepay.my/api/v1/payments',            # URL, looks understandable
       params: params_api)
     else
-      @receipt = params[:receipt_url]
       Rails.logger.debug @participant.errors.inspect
       redirect_to user_event_onboard_payments_path(id: @participant,event_id: @event)
     end

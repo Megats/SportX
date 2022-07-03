@@ -8,15 +8,24 @@ class PaymentsController < ApplicationController
         # @participant.CheckSum_generate(token = "no_token", **data)
         # payment = params{json.parse}
         participant_status = params[:payment_status]
-        @receipt = params[:receipt_url]
+        @receipt = params[:status_url]
         @participant = Participant.find_by(participant_email: params[:buyer_email], participant_name: params[:buyer_name])
         Rails.logger.debug "status #{params[:payment_status]}"
         Rails.logger.debug @participant.inspect
         if participant_status == "true"
+            @participant.update_columns(participant_status: "paid")
             Rails.logger.debug "Receipt url #{@receipt}"
             Rails.logger.debug "status is #{participant_status}"
+            @participant.update_columns(data: @receipt)
             @participant.update_columns(onboard: 4)
-            redirect_to user_event_onboard_payments_path(id: @participant.id,event_id: @participant.event_id)
+            if !@participant.user_id.nil?
+                Rails.logger.debug("user id is #{@participant.user_id}")
+                Rails.logger.debug("this is user signed in")
+                redirect_to user_event_onboard_payments_path(id: @participant.id,event_id: @participant.event_id,:receipt => @receipt)
+            else
+                Rails.logger.debug("this is public")
+                redirect_to event_onboard_payments_path(id: @participant.id,event_id: @participant.event_id,:receipt => @receipt)
+            end
         else
             Rails.logger.debug "status failed #{participant_status}"
             redirect_to user_event_onboard_payments_path(event_id: @participant.event_id)

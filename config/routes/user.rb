@@ -25,7 +25,6 @@ namespace :users, as: :user do
     end
   end
   resource :onboarding
-  resource :onboarding_step
   resources :results
   resources :payments
   resources :users

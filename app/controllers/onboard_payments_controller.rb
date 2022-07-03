@@ -12,6 +12,8 @@ class OnboardPaymentsController < ApplicationController
       @participants = @event.participants.find(params[:id])
     elsif @participant.step3?
       @participants = @event.participants.find(params[:id])
+    elsif @participant.finish?
+      @receipt = params[:receipt]
     end
 
   end
@@ -47,13 +49,13 @@ class OnboardPaymentsController < ApplicationController
         product_description: @event.event_name,
         transaction_amount: @participant.category.category_fees,
         callback_url: "",
-        redirect_url: "http://localhost:3000/users/events/#{@event.id}/onboard_payments",
+        redirect_url: "http://localhost:3000/payments/payredirect",
         token: "A64sFshdhzPmV5es_123",
         redirect_post: "true"
        }
       redirect_post('https://sandbox.securepay.my/api/v1/payments',            # URL, looks understandable
       params: params_api)
-    else      
+    else
       Rails.logger.debug @participant.errors.inspect
       redirect_to event_onboard_payments_path(id: @participant,event_id: @event)
     end
@@ -61,13 +63,16 @@ class OnboardPaymentsController < ApplicationController
 
   def create
     @participant = @event.participants.new(participant_params)
-     
-    if @participant.save
-      @participant.update_columns(onboard: 1)
+
+    respond_to do |format|
+      if @participant.save
+        @participant.update_columns(onboard: 1)
+        format.html { redirect_to event_onboard_payments_path(id: @participant,event_id: @event), notice: "Create user Success" }
+      else
+        Rails.logger.debug @participant.errors.inspect
+        format.html { redirect_to event_onboard_payments_path(event_id: @event), notice: "Failed to save"}
+      end
     end
-    redirect_to event_onboard_payments_path(id: @participant,event_id: @event)
-    Rails.logger.debug "step0 #{@participant.errors.inspect}"
-    flash[:notice] = 'Update Personal Detail is Success'
   end
 
 
@@ -88,19 +93,11 @@ class OnboardPaymentsController < ApplicationController
     flash[:notice] = 'Update Personal Detail is Success'
   end
 
-  # step3 update accounts
-  def step3
-    
-  end
-
   private
 
   def get_event
     @event = Event.find(params[:event_id])
   end
-
-
-
 
   # Use callbacks to share common setup or constraints between actions.
   def set_participant
@@ -114,7 +111,7 @@ class OnboardPaymentsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def participant_params
-    params.require(:participant).permit(:participant_name, :participant_phone, :event_id, :participant_email, :participant_nationality, :participant_COR, :participant_NRIC, :participants_dob, :category_id, :shirt_size, :participant_gender, :participant_postal, :participant_city, :participant_state, :shipping_attention, :shipping_address, :shipping_postal, :shipping_city, :shipping_state, :shipping_country)
+    params.require(:participant).permit(:user_id, :participant_name, :participant_phone, :event_id, :participant_email, :participant_nationality, :participant_COR, :participant_NRIC, :participants_dob, :category_id, :shirt_size, :participant_gender, :participant_postal, :participant_city, :participant_state, :shipping_attention, :shipping_address, :shipping_postal, :shipping_city, :shipping_state, :shipping_country)
   end
 
   # Use callbacks to share common setup or constraints between actions.
