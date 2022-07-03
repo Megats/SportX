@@ -100,3 +100,4 @@ gem 'country_select', '~> 6.0'
 gem "cocoon"
 gem 'malaysia'
 gem "jsonb_accessor"
+gem "mail_form", "~> 1.9"

@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get 'pages/about_us'
   root :to => "pages#homepage"
   resources :dashboards
+  resources :contacts, only: [:new, :create]
 
   resource :onboarding
   resources :results
