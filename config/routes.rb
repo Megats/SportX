@@ -5,7 +5,6 @@ Rails.application.routes.draw do
   resources :dashboards
 
   resource :onboarding
-  resource :onboarding_step
   resources :results
   resources :payments do
     collection do
