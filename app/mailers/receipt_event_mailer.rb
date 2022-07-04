@@ -7,6 +7,8 @@ class ReceiptEventMailer < ApplicationMailer
   #
   def post_created
     @participant = params[:participant]
+    @event = params[:event]
+    @category = params[:category]
     @greeting = "Hi"
 
     mail(
