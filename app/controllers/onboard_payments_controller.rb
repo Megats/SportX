@@ -37,6 +37,7 @@ class OnboardPaymentsController < ApplicationController
     end
 
     if @participant.finish?
+      ReceiptEventMailer.with(participant: @participant).post_created.deliver_now
       redirect_to root_path
     elsif @participant.step3?
       params_api = {
@@ -68,6 +69,7 @@ class OnboardPaymentsController < ApplicationController
       if @participant.save
         @participant.update_columns(onboard: 1)
         format.html { redirect_to event_onboard_payments_path(id: @participant,event_id: @event), notice: "Create user Success" }
+        
       else
         Rails.logger.debug @participant.errors.inspect
         format.html { redirect_to event_onboard_payments_path(event_id: @event), notice: "Failed to save"}
