@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   get 'pages/homepage'
   get 'pages/about_us'
+  get 'contacts/success_sent'
   root :to => "pages#homepage"
   resources :dashboards
   resources :contacts, only: [:new, :create]
