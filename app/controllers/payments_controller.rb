@@ -24,6 +24,7 @@ class PaymentsController < ApplicationController
                 redirect_to user_event_onboard_payments_path(id: @participant.id,event_id: @participant.event_id)
             else
                 Rails.logger.debug("this is public")
+                ReceiptEventMailer.with(participant: @participant).post_created.deliver_now
                 redirect_to event_onboard_payments_path(id: @participant.id,event_id: @participant.event_id)
             end
         else
