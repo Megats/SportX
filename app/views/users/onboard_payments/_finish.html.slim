@@ -20,4 +20,4 @@
           tr
             td #{@participant.event.event_name}
             td #{@participant.participant_name}
-            td #{link_to "View Receipt", @receipt, target: '_blank', download: @receipt}
+            td #{link_to "View Receipt", @participant.data, target: '_blank'}

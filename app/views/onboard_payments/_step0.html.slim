@@ -36,9 +36,11 @@
         = f.label :participant_NRIC
         = f.text_field :participant_NRIC, required: true, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-1/3", input_html: {required: true }
       .my-5
+        = f.label :participant_gender
+        = f.select :participant_gender, options_for_select(['Male', 'Female']), { include_blank: true }, required: true, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-1/3"
+      .my-5
         = f.label :participants_dob
         = f.date_field :participants_dob, required: true, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-1/3", input_html: {required: true }
-        / = f.input :category_id, as: :radio_buttons, collection: @event.categories.map{|c| ["#{c.category_name} #{c.category_gender} (#{c.category_age})", c.id]}, label:false,  input_html: {required: true}
 
 
       .text-3xl.text-red-600.pt-10 Category
@@ -54,11 +56,32 @@
                 = category.category_fees
               div style="font-size:80%; font-family: Arial), sans-serif;"  Fees Shown Is Subject To Admin Fee
 
-      / .grid.grid-cols-2.border
-      /   = f.input :category_id, as: :radio_buttons, collection: @event.categories.map{|c| ["#{c.category_name} #{c.category_gender} (#{c.category_age})", c.id]}, label:false,  input_html: {required: true}
-      /   .text-right.text-red-600 RM
-      /   .text-xs.text-red-600 Fees Shown Is Subject To Admin Fee
-
 
       .inline.flex.justify-end
         = f.submit 'Continue', class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer"
+
+javascript:
+  var ic = '820210 - 12 - 6101' //dummy NRIC
+  ic.match(/^(\d{2})(\d{2})(\d{2}) - ?(\d{2}) - ?(\d{3})(\d)$/);
+  var year = RegExp.$1;
+  var month = RegExp.$2;
+  var day = RegExp.$3;
+  var gender = RegExp.$6;
+
+  //GET BIRTHDATE
+  var now = new Date().getFullYear().toString();
+  var decade = now.substr(0, 2);
+  if (now.substr(2,2) > year) {
+    year = parseInt(decade.concat(year.toString()), 10);
+  }
+
+  var birthdate = new Date(year, (month - 1), day, 0, 0, 0, 0);
+  console.log(birthdate); //Wed Feb 10 1982 00:00:00 GMT+0800 (Malaysia Time)
+
+  //GET GENDER
+  var g = ( gender & 1 ) ? "Male" : "Female";
+  console.log(g); //Male
+
+  //GET AGE
+  var age = new Date().getFullYear() - birthdate.getFullYear(); //birthdate refer to line 15
+  console.log(age); //36

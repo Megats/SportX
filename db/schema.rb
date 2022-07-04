@@ -130,7 +130,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_04_023024) do
     t.datetime "updated_at", null: false
     t.string "participant_name"
     t.string "participant_phone"
-    t.string "participant_status", default: "Registered"
+    t.string "participant_status", default: "pending"
     t.bigint "category_id", null: false
     t.string "shirt_size"
     t.string "participant_gender"
