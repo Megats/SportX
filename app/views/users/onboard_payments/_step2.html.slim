@@ -45,6 +45,13 @@
       .text-3xl.text-red-600.pt-10 Merchandise
       br
 
+       div
+        i.fa.fa-chevron-circle-right.icon style=("margin:1% 0; font-size:130%; font-weight:bold;") Shirt size
+
+        .my-8
+          = image_tag src="http://uniqlo.scene7.com/is/image/UNIQLO/us2_graph_bodysize_uq_m"
+          = f.label :shirt_size, "Shirt Size"
+          = f.input_field :shirt_size, collection: ['S', 'M', 'L'], label: false, class: "label", prompt: "Select your size", selected: 'S', input_html: {class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full"}
       div
         i.fa.fa-chevron-circle-right.icon style=("margin:1% 0; font-size:130%; font-weight:bold;") Shipment Info
 

@@ -1,8 +1,8 @@
 div id="#{dom_id collab}"
-  div.card.card-compact.w-50.bg-base-50.shadow-xl.bg-primary.hover:scale-110.transition.duration-170     
+  div.card.card-compact.w-50.bg-base-50.shadow-xl.hover:scale-110.transition.duration-170     
     figure.carousel.rounded-box
       = image_tag collab.collab_image, style:"height: 200px; width: 300px; display: block"
-    container.card-body.bg-gradient-to-r.from-indigo-500.via-purple-500.to-pink-500
+    container.card-body
       h2.card-title
         =< collab.collab_name
       p

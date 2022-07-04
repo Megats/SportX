@@ -21,7 +21,7 @@ class PaymentsController < ApplicationController
             if !@participant.user_id.nil?
                 Rails.logger.debug("user id is #{@participant.user_id}")
                 Rails.logger.debug("this is user signed in")
-                redirect_to user_event_onboard_payments_path(id: @participant.id,event_id: @participant.event_id)
+                redirect_to user_event_onboard_payments_path(id: @participant.id,event_id: @participant.event_id), notice: "Payment Success!"
             else
                 Rails.logger.debug("this is public")
                 ReceiptEventMailer.with(participant: @participant).post_created.deliver_now
@@ -29,7 +29,8 @@ class PaymentsController < ApplicationController
             end
         else
             Rails.logger.debug "status failed #{participant_status}"
-            redirect_to user_event_onboard_payments_path(event_id: @participant.event_id)
+            redirect_to event_onboard_payment_register_path(@participant.event_id, :event_id => @participant.event_id)
+            flash[:notice] = 'Payment Failed!'
         end
 
         # MEGAT DERMA {
