@@ -25,6 +25,7 @@ class Admins::CategoriesController < ApplicationController
   # POST /categories or /categories.json
   def create
     @category = Category.new(category_params)
+    Rails.logger.debug "#{category_params.inspect}"
 
     respond_to do |format|
       if @category.save
@@ -73,6 +74,6 @@ class Admins::CategoriesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def category_params
-      params.require(:category).permit(:category_name, :category_gender, :category_age, :category_fees, :event_id)
+      params.require(:category).permit(:category_id,:category_name, :category_gender, :category_age, :category_fees, :event_id)
     end
 end
