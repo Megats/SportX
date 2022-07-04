@@ -9,7 +9,7 @@ class ReceiptEventMailer < ApplicationMailer
     @participant = params[:participant]
     @event = params[:event]
     @category = params[:category]
-    @greeting = "Hi"
+
 
     mail(
        from: "xbot5757@gmail.com",
