@@ -17,15 +17,16 @@
       br
     div.flex.justify-center
     
-      = image_tag @collab.collab_image, class: "object-none h-48 w-full"
+      = image_tag @collab.collab_image, class: "object-none h-[32rem] w-full"
     br
     br
     div.relative.mx-auto
       .absolute.mx-auto
         p 
-          strong Overview : 
+          strong.text-4xl.font-semibold Overview : 
         
       br
       br
-      == @collab.Overview
+      .mt-4
+        == @collab.Overview
       br
