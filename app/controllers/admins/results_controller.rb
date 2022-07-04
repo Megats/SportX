@@ -5,7 +5,12 @@ class Admins::ResultsController < ApplicationController
 
   # GET /results or /results.json
   def index
-    @events = Event.where(event_status: "CLOSE")
+    if current_admin.as_admin?
+      @events = Event.where(event_status: "CLOSE")
+    else
+      @events = current_admin.events.where(event_status: "CLOSE")
+    end
+    
   end
 
   # GET /results/1 or /results/1.json
@@ -76,7 +81,11 @@ class Admins::ResultsController < ApplicationController
     end
     # Use callbacks to share common setup or constraints between actions.
     def set_result
-      @event = Event.find(params[:event_id])
+      if current_admin.as_admin?
+        @event = Event.find(params[:id])
+      else
+        @event = current_admin.events.find(params[:id])
+      end
     end
 
     # Only allow a list of trusted parameters through.
