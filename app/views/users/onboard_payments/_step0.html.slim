@@ -30,11 +30,11 @@
       .my-5
         = f.label :participant_nationality, "Nationality"
         br
-        = f.country_select :participant_nationality
+        = f.country_select :participant_nationality,["Malaysia"]
       .my-5
         = f.label :participant_COR, "Country of Residence"
         br
-        = f.country_select :participant_COR, input_html: {required: true }
+        = f.country_select :participant_COR,["Malaysia"], input_html: {required: true }
       .my-5
         = f.label :participant_NRIC
         = f.text_field :participant_NRIC,required: true, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-1/3"

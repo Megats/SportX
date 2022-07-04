@@ -41,6 +41,6 @@ form.shadow-md.rounded.px-8.pt-6.pb-8.mb-4.w-auto.mx-auto
                         tr
                             td #{category.category_name}
                             td #{category.category_gender} #{category.category_age}
-                            td RM#{category.category_fees}
+                            td RM#{'%.2f' % category.category_fees}
 
     = link_to "Register", event_onboard_payments_path(@event), :class =>"btn btn-primary"
