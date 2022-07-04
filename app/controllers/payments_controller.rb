@@ -13,7 +13,7 @@ class PaymentsController < ApplicationController
         Rails.logger.debug "status #{params[:payment_status]}"
         Rails.logger.debug @participant.inspect
         if participant_status == "true"
-            @participant.update_columns(participant_status: "paid")
+            @participant.update_columns(participant_status: "registered")
             Rails.logger.debug "Receipt url #{@receipt}"
             Rails.logger.debug "status is #{participant_status}"
             @participant.update_columns(data: @receipt)
@@ -21,10 +21,10 @@ class PaymentsController < ApplicationController
             if !@participant.user_id.nil?
                 Rails.logger.debug("user id is #{@participant.user_id}")
                 Rails.logger.debug("this is user signed in")
-                redirect_to user_event_onboard_payments_path(id: @participant.id,event_id: @participant.event_id,:receipt => @receipt)
+                redirect_to user_event_onboard_payments_path(id: @participant.id,event_id: @participant.event_id)
             else
                 Rails.logger.debug("this is public")
-                redirect_to event_onboard_payments_path(id: @participant.id,event_id: @participant.event_id,:receipt => @receipt)
+                redirect_to event_onboard_payments_path(id: @participant.id,event_id: @participant.event_id)
             end
         else
             Rails.logger.debug "status failed #{participant_status}"
