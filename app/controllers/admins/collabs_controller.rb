@@ -3,7 +3,11 @@ class Admins::CollabsController < ApplicationController
 
   # GET /collabs or /collabs.json
   def index
-    @collabs = Collab.all
+    if current_admin.as_admin?
+      @collabs = Collab.all
+    else
+      @collabs = current_admin.collabs
+    end
   end
 
   # GET /collabs/1 or /collabs/1.json
@@ -60,7 +64,12 @@ class Admins::CollabsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_collab
-      @collab = Collab.find(params[:id])
+      if current_admin.as_admin?
+        @collab = Collab.find(params[:id])
+      else
+        @collab = current_admin.collabs.find(params[:id])
+      end
+     
     end
 
     # Only allow a list of trusted parameters through.
