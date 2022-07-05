@@ -1,11 +1,11 @@
 class Users::DonationsController < ApplicationController
-  # skip_before_action :authenticate_user!, only: [:derma]
+  skip_before_action :verify_authenticity_token, :only=>[:donationredirect]
   before_action :set_donation, only: %i[ show edit update destroy ]
-  before_action :get_collab, except: [:derma]
+  before_action :get_collab
 
   # GET /donations or /donations.json
   def index
-    @donations = @collab.donations.all
+    @donations = @collab.donations
   end
 
   # GET /donations/1 or /donations/1.json
@@ -23,7 +23,7 @@ class Users::DonationsController < ApplicationController
 
   # POST /donations or /donations.json
   def create
-    @donation = Donation.new(donation_params)
+    @donation = @collab.donations.new(donation_params)
 
     if @donation.save
       params_api = {
@@ -33,10 +33,10 @@ class Users::DonationsController < ApplicationController
         buyer_name: @donation.donation_name,
         buyer_phone: @donation.donation_number,
         order_number: @donation.donation_NRIC,
-        product_description: @donation.collab_id,
+        product_description: @collab.collab_name,
         transaction_amount: @donation.donation_amount,
         callback_url: "",
-        redirect_url: "http://localhost:3000/users/collabs/#{@donation.collab_id}/donations/derma",
+        redirect_url: "http://localhost:3000/donationpayments/donationredirect",
         token: "A64sFshdhzPmV5es_123",
         redirect_post: "true"
        }
@@ -79,21 +79,15 @@ class Users::DonationsController < ApplicationController
     end
   end
 
-  def derma
-  end
 
   private
     def get_collab
       @collab = Collab.find(params[:collab_id])
     end
 
-    def get_user
-      @user = User.find(params[:user_id])
-    end
-
     # Use callbacks to share common setup or constraints between actions.
     def set_donation
-      @donation = Donation.find(params[:id])
+      @donation = @collab.donations.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.

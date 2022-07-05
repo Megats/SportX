@@ -10,7 +10,7 @@
         li
           = error.full_message
   .my-5
-    = f.input :user_id, as: :hidden, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", input_html: { :value => current_user.id, required: true }
+    / = f.input :user_id, as: :hidden, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", input_html: { :value => current_user.id, required: true }
   .my-5
     = f.label :Event
     = f.association :event, collection: Event.ids, label:false , class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", input_html: {required: true }

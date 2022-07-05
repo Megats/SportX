@@ -13,6 +13,11 @@ Rails.application.routes.draw do
       post :payredirect
     end
   end
+  resources :donationpayments do
+    collection do
+      post :donationredirect
+    end
+  end
   resources :events do
     resources :onboard_payments do
       get :register
@@ -25,7 +30,10 @@ Rails.application.routes.draw do
   draw :admin
 
   resources :collabs do
-    resources :donations
+    resources :donations do
+      get :successful
+      get :unsuccessful  
+    end
   end
 
   resources :events do
