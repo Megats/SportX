@@ -4,11 +4,13 @@ section.h-screen
 
     .grow-0.shrink-1.md:shrink-0.basis-auto.xl:w-6/12.lg:w-6/12.md:w-9/12.mb-12.md:mb-0
       img.w-full[src="/assets/sport_X_logo.png" alt="Sample image"]
-    .flex.flex-row.items-center.justify-center.lg:justify-start
-      p.text-lg.mb-0.mr-4
-        | Register
-    = simple_form_for(resource, as: resource_name, url: user_registration_path(resource_name)) do |f|
+
+    = simple_form_for(resource, as: resource_name, url: user_registration_path) do |f|
       = f.error_notification
+
+      .flex.flex-row.items-center.justify-center.lg:justify-start
+        p.text-2xl.mb-0.mr-4.font-extrabold
+          | Register      
       .mb-6
         = f.input :email, required: true, autofocus: true, input_html: {class: "form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none", autocomplete: "email"}
       .mb-12
