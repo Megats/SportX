@@ -13,7 +13,8 @@
           =< link_to "Back to events", user_events_path, class:"btn btn-dark"
 
         div.flex.justify-end
-          = link_to "Register", user_event_onboard_payment_register_path(@event.id, :event_id => @event.id), class: "ml-2 rounded-lg py-3 px-5 bg-blue-100 inline-block font-medium"
+          - if @event.event_status == 'OPEN'
+            = link_to "Register", user_event_onboard_payment_register_path(@event.id, :event_id => @event.id), class: "ml-2 rounded-lg py-3 px-5 bg-blue-100 inline-block font-medium"
       br
     div.flex.justify-center
     
