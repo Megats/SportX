@@ -10,21 +10,23 @@
       .grid.grid-cols-2
         
         div.flex.justify-start
-          =< link_to "Back to collabs", user_collabs_path, class:"btn btn-dark"
+          =< link_to "Back to collabs", collabs_path, class:"btn btn-dark"
 
         div.flex.justify-end
           = link_to "Donate", new_user_collab_donation_path(@collab.id), class: "ml-2 rounded-lg py-3 px-5 bg-blue-100 inline-block font-medium"
       br
     div.flex.justify-center
     
-      = image_tag @collab.collab_image, class: "object-none h-48 w-full"
+      = image_tag @collab.collab_image, class: "object-none h-[32rem] w-full"
     br
     br
     div.relative.mx-auto
       .absolute.mx-auto
         p 
-          strong Overview : 
+          strong.text-4xl.font-semibold Overview : 
         
       br
       br
-      == @collab.Overview
+      .mt-4
+        == @collab.Overview
+      br

@@ -6,11 +6,11 @@
     h1.font-bold.text-4xl Collabs
 
   #collabs
-  div.grid.grid-cols-4.gap-4
+  .mt-6.px-4.gap-3.grid.grid-cols-1.sm:grid-cols-2.lg:grid-cols-4
 
     - @collabs.each do |collab|
       button
-        = link_to collab_path(collab) do
+        = link_to user_collab_path(collab) do
           = render collab
 
   br
