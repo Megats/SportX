@@ -1,44 +1,43 @@
-= simple_form_for [:user, @collab, @donation], data:{turbo:false}  do |f|
-  = f.error_notification
-  = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
+.w-full.max-w-3xl.mx-auto
+  .bg-white.shadow-md.rounded.px-8.pt-6.pb-8.mb-4
+    div.lg:flex.justify-center.sm:flex.justify-start
 
-  .my-5
-    = f.label :user_id
-    = f.text_field :user_id,  class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", value:current_user.id, :required => true
-  .my-5
-    = f.label :Collaborations_id
-    = f.association :collab, collection: Collab.ids, label:false ,  class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", :required => true
-  .my-5
-    = f.label :Email
-    = f.text_field :donation_email,  class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", input_html: {required: true }
-  .my-5
-  = f.label :Full_Name
-  = f.text_field :donation_name,  class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", input_html: {required: true }
-  .my-5
-    = f.label :Phone_number
-    = f.text_field :donation_number, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", input_html: {required: true }
-  .my-5
-    = f.label :Nationality
-    = f.text_field :donation_nationality,  class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", input_html: {required: true }
-  .my-5
-    = f.label :Country_of_Residence
-    = f.text_field :donation_COR,  class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", input_html: {required: true }
-  .my-5
-    = f.label :NRIC, " NRIC / Passport ID "
-    = f.text_field :donation_NRIC, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", input_html: {required: true }
-  .my-5  
-    = f.label :Date_of_Birth
-    div[class="row"]
-      div[class="large-12 columns select-date-wrapper"]
-        = f.date_select(:donation_dob,
-            options = { start_year: DateTime.now.year - 18, end_year: DateTime.now.year - 75, order: [:month, :day, :year], required: true},
-            html_options = { class: 'select-date shadow rounded border-gray-200 '})
-  
-  .my-5
-    = f.label :donation_amount
-    = f.text_field :donation_amount,  class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", input_html: {required: true }
-    
-    
+    .text-3xl.text-blue-600.pt-10 Donor's Particulars
+    = simple_form_for [@collab, @donation], data:{turbo:false}  do |f|
+      = f.error_notification
+      = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
 
-  .form-actions.flex.justify-end
-    = f.button :submit
+      .my-5.font-semibold.text-2xl
+        = @donation.collab.collab_name
+      .my-5 style="display: none;"
+        = f.label :Collaborations_id
+        = f.association :collab, collection: Collab.ids, label:false ,  class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", input_html: {required: true }        
+      .my-5
+        = f.label :Email
+        = f.text_field :donation_email,  class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", input_html: {required: true }
+      .my-5
+      = f.label :Full_Name
+      = f.text_field :donation_name,  class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", input_html: {required: true }
+      .my-5
+        = f.label :Phone_number
+        = f.text_field :donation_number, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", input_html: {required: true }
+      .my-5
+        = f.label :Nationality
+        = f.text_field :donation_nationality,  class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", input_html: {required: true }
+      .my-5
+        = f.label :Country_of_Residence
+        = f.text_field :donation_COR,  class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", input_html: {required: true }
+      .my-5
+        = f.label :NRIC
+        = f.text_field :donation_NRIC,  class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", input_html: {required: true }
+      .my-5
+        = f.label :Date_of_birth
+        = f.date_field :donation_dob,  class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", input_html: {required: true }
+      .my-5
+        = f.label :donation_amount
+        = f.text_field :donation_amount,  class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", input_html: {required: true }
+        
+        
+
+      .form-actions.flex.justify-end
+        = f.button :submit
