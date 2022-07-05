@@ -11,6 +11,6 @@ div id="#{dom_id event}"
       p
         = event.event_date
       p
-        = event.event_time
+        = event.event_time.strftime("%I:%M %p")
 
         .badge.badge-secondary #{event.event_status}

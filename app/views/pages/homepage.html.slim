@@ -38,9 +38,19 @@ section.bg-bookmark-white.py-20
         | Events
       p.text-bookmark-grey.my-4.text-center.lg:text-left.sm:w-3/4.lg:w-full
         |  Select your favourite sports however you like. Our simple choose specific events interface whatever you like to join event for the future. 
-      a[href="/events"]
-        button.btn.btn-purple.hover:bg-bookmark-white.hover:text-black[type="button"]
-          | Go to Events
+
+      - if admin_signed_in?  
+        a[href="/admins/events"]
+          button.btn.btn-purple.hover:bg-bookmark-white.hover:text-black[type="button"]
+            | Go to Events
+      - elsif user_signed_in?  
+        a[href="/users/events"]
+          button.btn.btn-purple.hover:bg-bookmark-white.hover:text-black[type="button"]
+            | Go to Events
+      - else  
+        a[href="/events"]
+          button.btn.btn-purple.hover:bg-bookmark-white.hover:text-black[type="button"]
+            | Go to Events                        
             
 .relative.mb-24.flex.justify-center.items-center
 
@@ -54,9 +64,19 @@ section.bg-bookmark-white.py-20
         | Collaboration
       p.text-bookmark-grey.my-4.text-center.lg:text-left.sm:w-3/4.lg:w-full
         |  Support collaboration to archive goals for donations 
-      a[href="/collabs"]
-        button.btn.btn-purple.hover:bg-bookmark-white.hover:text-black[type="button"]
-          | Go to collaboration
+
+      - if admin_signed_in?
+        a[href="/admins/collabs"]
+          button.btn.btn-purple.hover:bg-bookmark-white.hover:text-black[type="button"]
+            | Go to collaboration
+      - elsif user_signed_in?
+        a[href="/users/collabs"]
+          button.btn.btn-purple.hover:bg-bookmark-white.hover:text-black[type="button"]
+            | Go to collaboration
+      - else
+        a[href="/collabs"]
+          button.btn.btn-purple.hover:bg-bookmark-white.hover:text-black[type="button"]
+            | Go to collaboration                        
 
 .relative.mb-24.flex.justify-center.items-center
 
@@ -70,9 +90,19 @@ section.bg-bookmark-white.py-20
         | Results
       p.text-bookmark-grey.my-4.text-center.lg:text-left.sm:w-3/4.lg:w-full
         |  To showing result for finished events 
-      a[href="/results"]
-        button.btn.btn-purple.hover:bg-bookmark-white.hover:text-black[type="button"]
-          | Go to results
+
+      - if admin_signed_in?
+        a[href="/admins/results"]
+          button.btn.btn-purple.hover:bg-bookmark-white.hover:text-black[type="button"]
+            | Go to results
+      - elsif user_signed_in?
+        a[href="/users/results"]
+          button.btn.btn-purple.hover:bg-bookmark-white.hover:text-black[type="button"]
+            | Go to results
+      - else
+        a[href="/results"]
+          button.btn.btn-purple.hover:bg-bookmark-white.hover:text-black[type="button"]
+            | Go to results                        
 br
 br          
 

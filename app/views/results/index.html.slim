@@ -16,4 +16,4 @@
           .card-body
             h2.card-title #{event.event_name}
             .badge.badge-secondary #{event.event_date}
-            p #{event.event_time}
+            p #{event.event_time.strftime("%I:%M %p")}
