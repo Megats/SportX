@@ -22,6 +22,9 @@
   color: #da4b40
 }
 
+.control-label{
+  color: transparent; // some color
+}
 /**
   Default Markup
 **/
