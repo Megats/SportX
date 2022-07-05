@@ -1,16 +1,16 @@
-.mx-16.my-6
-  - if notice.present?
-    p#notice.py-2.px-3.bg-green-50.mb-5.text-green-500.font-medium.rounded-lg.inline-block
-      = notice
-  .flex.justify-between.items-center.p-5
-    h1.font-bold.text-4xl Collabs
+.mx-16
+  p style="color: green" = notice
+
+
+  div.prose.bg-content
+    h1 Collabs
 
   #collabs
-  .mt-6.px-4.gap-3.grid.grid-cols-1.sm:grid-cols-2.lg:grid-cols-4
+  div.grid.grid-cols-4.gap-4
 
     - @collabs.each do |collab|
       button
-        = link_to user_collab_path(collab) do
+        = link_to collab_path(collab) do
           = render collab
 
   br

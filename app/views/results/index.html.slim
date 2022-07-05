@@ -4,10 +4,10 @@
   h5.text-3xl.m-6.text-center
     | View all past events result
   br
-  .gap-20.py-3.grid.grid-cols-4
+  .gap-24.py-3.grid.grid-cols-4
     - @events.each do |event|
       = link_to result_path(event, :event_id => event.id) do
-        .card.card-compact.w-80.bg-base-100.shadow-xl.hover:scale-110.transition.duration-170
+        .card.w-96.bg-base-100.shadow-xl.hover:scale-110.transition.duration-170
           figure
             - if event.eventpicture.attached?
               = image_tag event.eventpicture,style:"height: 200px; width: 300px; display: block"
