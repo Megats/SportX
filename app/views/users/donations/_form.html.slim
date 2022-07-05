@@ -4,7 +4,7 @@
 
   .my-5
     = f.label :user_id
-    = f.text_field :user_id,  class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", value:current_user.id, :required => true
+    = f.text_field :user_id,   class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", value:current_user.id, :required => true
   .my-5
     = f.label :Collaborations_id
     = f.association :collab, collection: Collab.ids, label:false ,  class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", :required => true

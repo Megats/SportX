@@ -23,7 +23,7 @@ class DonationsController < ApplicationController
 
   # POST /donations or /donations.json
   def create
-    @donation = Donation.new(donation_params)
+    @donation = @collab.donations.new(donation_params)
 
     if @donation.save
       params_api = {
@@ -33,21 +33,16 @@ class DonationsController < ApplicationController
         buyer_name: @donation.donation_name,
         buyer_phone: @donation.donation_number,
         order_number: @donation.donation_NRIC,
-        product_description: @donation.collab_id,
+        product_description: @collab.collab_name,
         transaction_amount: @donation.donation_amount,
         callback_url: "",
-        redirect_url: "http://localhost:3000/users/collabs/#{@donation.collab_id}/donations/derma",
+        redirect_url: "http://localhost:3000/donationpayments/donationredirect",
         token: "A64sFshdhzPmV5es_123",
         redirect_post: "true"
-      }
+       }
 
-    
       redirect_post('https://sandbox.securepay.my/api/v1/payments',            # URL, looks understandable
-      params: params_api)
-      format.json { render :show, status: :created, location: @donation }
-    else
-      format.html { render :new, status: :unprocessable_entity }
-      format.json { render json: @donation.errors, status: :unprocessable_entity }
+        params: params_api)
     end
   end
 
@@ -94,6 +89,6 @@ class DonationsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def donation_params
-      params.require(:donation).permit(:user_id, :donation_name, :collab_id, :donation_email, :donation_number, :donation_nationality, :donation_COR, :donation_NRIC, :donation_dob, :donation_amount)
+      params.require(:donation).permit(:donation_name, :collab_id, :donation_email, :donation_number, :donation_nationality, :donation_COR, :donation_NRIC, :donation_dob, :donation_amount)
     end
 end

@@ -19,13 +19,13 @@ namespace :users, as: :user do
   resources :dashboards
   resources :collabs do
     resources :donations do
-      collection do
-        post :derma
-      end
+      get :successful
+      get :unsuccessful
     end
   end
   resource :onboarding
   resources :results
+  resources :donationpayments
   resources :payments
   resources :users
   resources :events do
