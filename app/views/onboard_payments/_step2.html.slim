@@ -2,85 +2,39 @@
   .bg-white.shadow-md.rounded.px-8.pt-6.pb-8.mb-4
     div.lg:flex.justify-center.sm:flex.justify-start
       ul.min-width:9.steps.steps-vertical.lg:steps-horizontal
-        li.step.step-error Register
-        li.step.step-error Profile
-        li.step.step-error Merchandise
-        li.step.step Payment
+        li.step.step-primary Register
+        li.step.step-primary Shipping Info
+        li.step.step-primary Payment
         li.step.step Finish
 
-    .text-3xl.text-red-600.pt-10 Participant's Particulars
-    = simple_form_for @participant, url: event_onboard_payment_path(@event,@participant), data:{turbo:false} do |f|
-      - if @participant.errors.any?
-        #error_explanation.bg-red-50.text-red-500.px-3.py-2.font-medium.rounded-lg.mt-3
+    = simple_form_for @participant, url: event_onboard_payment_path(@event,@participant.id), data:{turbo:false} do |f|
+      .text-3xl.text-red-600.pt-10 Payment Checkout
 
-        h2
-          = pluralize(@participant.errors.count, "error")
-          |  prohibited this event from being saved:
-        ul
-          - @participant.errors.each do |error|
-            li
-              = error.full_message
-      .grid.grid-cols-2.gap-4
-        div.my-8
-          = f.label :category_id, "Category"
-          br
-          = f.input_field :category_id, collection: [@participants.category.category_name], selected:true, disabled: true, class: "block shadow rounded-md border border-gray-200 outline-none"
-          = f.label :participant_name, "Participant Name"
-          = f.input_field :participant_name, disabled: true, class: "block shadow rounded-md border border-gray-200 outline-none"
-          = f.association :event, as: :hidden, collection: Event.ids, label:false , input_html: {required: true }
-          = f.label :participant_nationality, "Nationality"
-          br
-          = f.input_field :participant_nationality, disabled: true, class: "block shadow rounded-md border border-gray-200 outline-none", required: true
-          = f.label :participant_NRIC, "NRIC/Passport no"
-          = f.text_field :participant_NRIC, disabled: true, class: "block shadow rounded-md border border-gray-200 outline-none", input_html: {required: true }
-        div.my-8
-          = f.label :participant_email, "Email"
-          = f.text_field :participant_email, disabled: true, class: "block shadow rounded-md border border-gray-200 outline-none", input_html: {required: true }
-          = f.label :participant_COR, "Country of Residence"
-          br
-          = f.text_field :participant_COR, disabled: true, class: "block shadow rounded-md border border-gray-200 outline-none", required: true
-          = f.label :participants_dob, "Date of Birth"
-          = f.date_field :participants_dob, disabled: true, class: "block shadow rounded-md border border-gray-200 outline-none", input_html: {required: true }
-
-      .text-3xl.text-red-600.pt-10 Merchandise
-      br
-
-      div
-        i.fa.fa-chevron-circle-right.icon style=("margin:1% 0; font-size:130%; font-weight:bold;") Shirt size 
-
-        .my-8
-          = image_tag src="http://uniqlo.scene7.com/is/image/UNIQLO/us2_graph_bodysize_uq_m"
-          = f.label :shirt_size, "Shirt Size"
-          = f.input_field :shirt_size, collection: ['S', 'M', 'L'], label: false, class: "label", prompt: "Select your size", selected: 'S', input_html: {class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full"}
-      div
-
-      div
-        i.fa.fa-chevron-circle-right.icon style=("margin:1% 0; font-size:130%; font-weight:bold;") Shipment Info
-
-        .my-8
-          = f.label :shipping_attention, "Attention(Name of Receiver)"
-          br
-          = f.input_field :shipping_attention, required: true, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-1/2"
-          = f.label :shipping_address, "Address"
-          = f.input_field :shipping_address, required: true, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-1/2"
-          .grid.grid-cols-2
-            div
-              = f.label :shipping_postal, "Postal Code"
-              = f.input_field :shipping_postal, required: true, class: "block shadow rounded-md border border-gray-200 outline-none"
-            div
-              = f.label :shipping_city, "City"
-              = f.input_field :shipping_city, required: true, class: "block shadow rounded-md border border-gray-200 outline-none"
-            br
-          .grid.grid-cols-2
-            div
-              = f.label :shipping_state, "State"
-              = f.input_field :shipping_state, required: true, class: "block shadow rounded-md border border-gray-200 outline-none"
-            div
-              = f.label :shipping_country, "Country"
-              = f.input_field :shipping_country, required: true, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-1/2"
-            br
+      table.table.w-full
+        thead
+          tr
+            th Item
+            th Price
+            th Total
+        tbody
+          tr
+            td #{@participant.category.category_name}
+            td RM#{'%.2f' % @participant.category.category_fees}
+            td RM#{'%.2f' % @participant.category.category_fees}
+          tr
+          - sum = 0
+          - if !@participants.nil?
+            - @participants.each do |participant|
+              - sum = sum + participant.category.category_fees
+              td #{participant.category.category_name}
+              td RM#{'%.2f' % participant.category.category_fees}
+              td RM#{'%.2f' % participant.category.category_fees}
+              tr
+            - sum = sum + @participant.category.category_fees
+            td colspan="2" Subtotal
+            td RM#{'%.2f' % sum}
+            = f.input_field :participant_fees, as: :hidden, value: sum, required: true, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-1/2"
 
 
       .inline.flex.justify-end
-        = f.submit 'Continue', class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer"
-
+        = f.submit 'Checkout', class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer"

@@ -1,0 +1,21 @@
+turbo-frame#participant
+    .overflow-x-auto
+    table.table.w-full
+        thead
+        tr
+            th Participant Name
+            th Participant Gender
+            th Participant Category
+            th Action
+        tbody
+        tr
+            td #{@participant.participant_name}
+            td #{@participant.participant_gender}
+            td #{@participant.category.category_name} #{@participant.category.category_gender} (#{@participant.category.category_age})
+        tr
+            - @participants.each do |participant|
+                td #{participant.participant_name}
+                td #{participant.participant_gender}
+                td #{participant.category.category_name} #{participant.category.category_gender} (#{participant.category.category_age})
+                td #{button_to 'Remove', event_onboard_payment_path(id: participant,event_id: participant.event_id), method: :delete, class: "btn btn-error",  data:{turbo:false}}
+                tr

@@ -1,0 +1,58 @@
+.w-full.max-w-3xl.mx-auto
+  .bg-white.shadow-md.rounded.px-8.pt-6.pb-8.mb-4
+    div.lg:flex.justify-center.sm:flex.justify-start
+      ul.content-center.min-width:9.steps.steps-vertical.lg:steps-horizontal.center
+        li.step.step-error Register
+        li.step.step-error Profile
+        li.step.step Merchandise
+        li.step.step Payment
+        li.step.step Finish
+
+    .text-3xl.text-red-600.pt-10 #{@participants.category.category_name}
+    .text-xs.text-red-600.pt-1 * Denotes required field.
+
+    .text-3xl.text-red-600.pt-5 Participant's Particulars
+
+    = simple_form_for @participant, url: event_onboard_payment_path(@event,@participant.id), data:{turbo:false} do |f|
+      - if @event.errors.any?
+        #error_explanation.bg-red-50.text-red-500.px-3.py-2.font-medium.rounded-lg.mt-3
+
+        h2
+          = pluralize(@event.errors.count, "error")
+          |  prohibited this event from being saved:
+        ul
+          - @event.errors.each do |error|
+            li
+              = error.full_message
+
+      .my-5
+        = f.association :event, as: :hidden, collection: Event.ids, label:false , input_html: {required: true }
+      .my-5
+        = f.label :participant_name, "Fullname (as per nric)"
+        = f.text_field :participant_name, required: true, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-1/2"
+        = f.label :participant_NRIC
+        = f.text_field :participant_NRIC, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-1/2", disabled: true, :wrapper_html => { :style => 'display: inline' }
+        = f.label :participant_nationality, "Nationality"
+        = f.text_field :participant_nationality, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-1/2", disabled: true
+        = f.label :participant_COR, "Country of Residence"
+        = f.text_field :participant_COR, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-1/2", disabled: true
+        = f.label :participants_dob, "Date of Birth"
+        = f.date_field :participants_dob, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-1/2", disabled: true
+
+      .text-3xl.text-red-600.pt-5 Contact info
+
+      .my-5
+        = f.label :participant_phone
+        = f.text_field :participant_phone, required: true, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-1/2"
+      .my-5
+        = f.label :participant_postal
+        = f.text_field :participant_postal, required: true, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-1/2"
+      .my-5
+        = f.label :participant_city
+        = f.text_field :participant_city, required: true, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-1/2"
+      .my-5
+        = f.label :participant_state
+        = f.input_field :participant_state, required: true, collection: Malaysia.states,label: false, prompt: "Select State", class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-1/2"
+      .inline.flex.justify-end
+        = f.submit 'Continue', class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer"
+
