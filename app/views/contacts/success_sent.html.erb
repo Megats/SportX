@@ -1,5 +1,12 @@
+<% flash.each do |type, msg| %>
+  <div data-controller="flash" class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 <%= type %> rounded relative font-bold">
+    <%= msg %>
+  </div>
+<% end %>
+
 <div class="relative container mx-auto">
   <h1 class="text-center text-4xl font-extrabold my-4">Contact Us</h1>
+
 
     <div class="mx-auto my-2 text-center">
        <h1 class="italic text-2xl">Thank you contacting us for support </h1><br>

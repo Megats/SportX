@@ -13,11 +13,12 @@
         = f.label :Collaborations_id
         = f.association :collab, collection: Collab.ids, label:false ,  class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", input_html: {required: true }        
       .my-5
-        = f.label :Email
-        = f.text_field :donation_email,  class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", input_html: {required: true }
+        /= f.label :Email
+        = f.input :donation_email, label: 'Your Email', input_html: {required: true, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" } , error: 'Username is mandatory, please specify one' 
+        / = f.text_field :donation_email,  class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", input_html: {required: true }
       .my-5
-      = f.label :Full_Name
-      = f.text_field :donation_name,  class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", input_html: {required: true }
+        = f.label :Full_Name
+        = f.text_field :donation_name,  class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", input_html: {required: true }
       .my-5
         = f.label :Phone_number
         = f.text_field :donation_number, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", input_html: {required: true }

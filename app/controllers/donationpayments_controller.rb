@@ -5,6 +5,8 @@ class DonationpaymentsController < ApplicationController
         # Rails.logger.debug "mencuba"
         # @participant.CheckSum_generate(token = "no_token", **data)
         # payment = params{json.parse}
+        user = User.find_by(email: params[:buyer_email])
+        sign_in(user) if user.present?
         donation_status = params[:payment_status]
         @donation = Donation.find_by(donation_email: params[:buyer_email], donation_name: params[:buyer_name])
         if donation_status == "true"

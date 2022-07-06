@@ -1,63 +1,24 @@
-<section class="h-full gradient-form bg-gray-200 md:h-screen">
-  <div class="container py-12 px-6 h-full">
-    <div class="flex justify-center items-center flex-wrap h-full g-6 text-gray-800">
-      <div class="xl:w-10/12">
-        <div class="block bg-white shadow-lg rounded-lg">
-          <div class="lg:flex lg:flex-wrap g-0">
-            <div class="lg:w-6/12 px-4 md:px-0">
-              <div class="md:p-12 md:mx-6">
-                <div class="text-center">
-                  <img
-                    class="mx-auto w-48"
-                    src="/assets/sport_X_logo.png"
-                    alt="logo"
-                  />
-                  <h4 class="text-xl font-semibold mt-1 mb-12 pb-1">Sport X is never stops</h4>
-                </div>
-                <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-                  <p class="mb-4">Please login to your account</p>
-                  <div class="mb-6">
-                  <%= f.input :email, required: false, autofocus: true, input_html: {class: "form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none", autocomplete: "email", id:"exampleFormControlInput1"} %>
-                  </div>
-                  <div class="mb-6">
-                  <%= f.input :password, required: false, autofocus: true, input_html: {class: "form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none", autocomplete: "password", id:"exampleFormControlInput1"} %>
-                  </div>
-                  <div class="text-center pt-1 mb-12 pb-1">
-                  <%= f.button :submit, "Log in" %>
-                  <br><br>
-
-                    <%= render "users/shared/links" %>
-                    <% if !admin_signed_in? && !user_signed_in? %>
-                        <%= link_to "Sign in as admin", new_admin_session_path, class:"nav-link" %>
-                      <br>
-                        <%= link_to "Sign in as user", new_user_session_path, class:"nav-link" %>
-                    <% end %>
-                    </div>
-                  <div class="flex items-center justify-between pb-6">
-                    <% end %>
-
-                  </div>
-              </div>
-            </div>
-            <div
-              class="lg:w-6/12 flex items-center lg:rounded-r-lg rounded-b-lg lg:rounded-bl-none"
-              style="
-                background: linear-gradient(135deg, rgba(255,255,255,1) 0%, rgba(237,55,24,1) 66%, rgba(245,67,22,0.6643032212885154) 100%);
-              "
-            >
-              <div class="text-white px-4 py-6 md:p-12 md:mx-6">
-                <h4 class="text-xl font-semibold mb-6">We are more than just a company</h4>
-                <p class="text-sm">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                  consequat.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
+<div class="flex items-center justify-center h-screen bg-gray-100">
+  <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <div class="bg-white w-96 p-6 rounded shadow-sm">
+      <div class="flex items-center justify-center mb-4">
+        <img src="/assets/sport_X_logo.png">
       </div>
+
+          <div class="mb-6">
+          <%= f.input :email, required: true, autofocus: true, input_html: {class: "form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none", autocomplete: "email", id:"exampleFormControlInput1"} %>
+          </div>
+          <div class="mb-6">
+          <%= f.input :password, required: true, autofocus: true, input_html: {class: "form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none", autocomplete: "password", id:"exampleFormControlInput1"} %>
+          </div>
+          <div class="text-center pt-1 mb-12 pb-1">
+          <%= f.button :submit, "Log in" %>
+       <br><br>
+       <%= render "users/shared/links" %>
+        <% if !admin_signed_in? && !user_signed_in? %>
+         <%= link_to "Sign in as admin", new_admin_session_path, class:"nav-link" %>
+           <br>
+         <%= link_to "Sign in as user", new_user_session_path, class:"nav-link" %>
+        <% end %>
     </div>
-  </div>
-</section>
+   <% end %>
