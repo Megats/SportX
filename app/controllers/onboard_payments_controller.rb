@@ -12,7 +12,8 @@ class OnboardPaymentsController < ApplicationController
         @participants = Participant.where(parent_id: params[:parent_id])
         @participant = Participant.find(params[:id])
       end
-      @categories = Category.where(event_id: params[:event_id]).order(:category_name)
+      @categories = Category.where(event_id: params[:event_id], category_gender: "Male").order(:category_name)
+      @categoriess = Category.where(event_id: params[:event_id], category_gender: "Female").order(:category_name)
 
     elsif @participant.step1?
       @participants = @event.participants.find(params[:id])
@@ -74,8 +75,13 @@ class OnboardPaymentsController < ApplicationController
   end
 
   def new
+    @categories = Category.where(event_id: params[:event_id], category_gender: "Male").order(:category_name)
+    @categoriess = Category.where(event_id: params[:event_id], category_gender: "Female").order(:category_name)
+
+
     if params[:parent_id].present?
-      @categories = Category.where(event_id: params[:event_id]).order(:category_name)
+      @categories = Category.where(event_id: params[:event_id], category_gender: "Male").order(:category_name)
+      @categoriess = Category.where(event_id: params[:event_id], category_gender: "Female").order(:category_name)
       @participant = Participant.find(params[:parent_id])
       @participants = Participant.where(parent_id: params[:parent_id])
 

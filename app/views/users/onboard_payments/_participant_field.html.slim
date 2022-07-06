@@ -30,7 +30,8 @@
     = f.text_field :participant_NRIC, required: true, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-1/3", input_html: {required: true }
     .my-5
     = f.label :participant_gender
-    = f.input_field :participant_gender, :collection => %w[Male Female] , required: true, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-1/3"
+    = f.input_field :participant_gender,id:"gender", :collection => %w[Male Female] , required: true, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-1/3"
+
     .my-5
     = f.label :participants_dob
     = f.date_field :participants_dob, required: true, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-1/3", input_html: {required: true }
@@ -58,21 +59,50 @@
     = f.label :shirt_size, "Shirt Size"
     = f.input_field :shirt_size, collection: ['S', 'M', 'L'], label: false, class: "label", prompt: "Select your size", selected: 'S', input_html: {class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full"}
 
-    .text-3xl.text-red-600.pt-10 Category
-    br
-    - @categories.each do |category|
-        div style="margin-bottom:20px;"
-            .category_box.eligible
-                div
-                    = f.radio_button :category_id, category.id, input_html: {required: true}, class: "xyz", id:"gender"
-                    label.category_label #{category.category_name} #{category.category_gender} (#{category.category_age})
-                    div style=("float:right; margin-top:-1px; font-weight:bold;")
-                        span style="font-size:80%;"  MYR
-                        = '%.2f' % category.category_fees
-                    div style="font-size:80%; font-family: Arial), sans-serif;"  Fees Shown Is Subject To Admin Fee
+
+    div id="male"
+        .text-3xl.text-red-600.pt-10 Category
+        - @categories.each do |category|
+            div style="margin-bottom:20px;"
+                .category_box.eligible
+                    div
+                        = f.radio_button :category_id, category.id, input_html: {required: true}, class: "xyz"
+                        label.category_label #{category.category_name} #{category.category_gender} (#{category.category_age})
+                        div style=("float:right; margin-top:-1px; font-weight:bold;")
+                            span style="font-size:80%;"  MYR
+                            = '%.2f' % category.category_fees
+                        div style="font-size:80%; font-family: Arial), sans-serif;"  Fees Shown Is Subject To Admin Fee
+
+    div id="female"
+        .text-3xl.text-red-600.pt-10 Category
+        - @categoriess.each do |category|
+            div style="margin-bottom:20px;"
+                .category_box.eligible
+                    div
+                        = f.radio_button :category_id, category.id, input_html: {required: true}, class: "xyz"
+                        label.category_label #{category.category_name} #{category.category_gender} (#{category.category_age})
+                        div style=("float:right; margin-top:-1px; font-weight:bold;")
+                            span style="font-size:80%;"  MYR
+                            = '%.2f' % category.category_fees
+                        div style="font-size:80%; font-family: Arial), sans-serif;"  Fees Shown Is Subject To Admin Fee
+
+
 
     .inline.flex.justify-end
     - if params[:id].present?
         = f.submit 'Save',name: 'save', class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer"
     - else
         = f.submit 'Continue',name: 'continue', class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer"
+
+javascript:
+    $(document).ready(function() {
+    $('#gender').on('change.states', function() {
+        $("#male").toggle($(this).val() == 'Male');
+    }).trigger('change.states');
+    });
+
+    $(document).ready(function() {
+    $('#gender').on('change.states', function() {
+        $("#female").toggle($(this).val() == 'Female');
+    }).trigger('change.states');
+    });
