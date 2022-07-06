@@ -12,6 +12,7 @@ turbo-frame#participant
             td #{@participant.participant_name}
             td #{@participant.participant_gender}
             td #{@participant.category.category_name} #{@participant.category.category_gender} (#{@participant.category.category_age})
+            td
         tr
             - @participants.each do |participant|
                 td #{participant.participant_name}
