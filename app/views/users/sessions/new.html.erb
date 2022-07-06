@@ -2,7 +2,7 @@
   <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
     <div class="bg-white w-96 p-6 py-1 rounded shadow-sm">
       <div class="flex items-center justify-center mb-4">
-        <img src="/assets/sport_X_logo.png">
+        <%= image_tag("sport_X_logo.png", size: "200x100") %>
       </div>
 
 <% if alert %>

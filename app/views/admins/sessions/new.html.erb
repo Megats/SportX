@@ -7,11 +7,9 @@
             <div class="lg:w-6/12 px-4 md:px-0">
               <div class="md:p-12 md:mx-6">
                 <div class="text-center">
-                  <img
-                    class="mx-auto w-48"
-                    src="/assets/sport_X_logo.png"
-                    alt="logo"
-                  />
+                  <div class="mx-auto w-48 flex justify-center">
+                    <%= image_tag("sport_X_logo.png", size: "200x100") %>
+                  </div>
                   <h4 class="text-xl font-semibold mt-1 mb-12 pb-1">Sport X is never stops (Admin account)</h4>
                 </div>
                 <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
