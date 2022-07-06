@@ -3,8 +3,7 @@
     div.lg:flex.justify-center.sm:flex.justify-start
       ul.min-width:9.steps.steps-vertical.lg:steps-horizontal
         li.step.step-primary Register
-        li.step.step-primary Profile
-        li.step.step-primary Merchandise
+        li.step.step-primary Shipping info
         li.step.step-primary Payment
         li.step.step-primary Finish
 
@@ -21,3 +20,10 @@
             td #{@participant.event.event_name}
             td #{@participant.participant_name}
             td #{link_to "View Receipt", @participant.data, target: '_blank'}
+          tr
+          - if !@participants.nil?
+            - @participants.each do |participant|
+              td #{participant.event.event_name}
+              td #{participant.participant_name}
+              td
+              tr

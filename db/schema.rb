@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_04_024054) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_05_112611) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -133,8 +133,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_04_024054) do
     t.string "participant_status", default: "pending"
     t.bigint "category_id", null: false
     t.string "shirt_size"
-    t.string "participant_gender"
     t.integer "onboard", default: 0
+    t.string "participant_gender"
     t.string "participant_postal"
     t.string "participant_city"
     t.string "participant_state"
@@ -145,6 +145,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_04_024054) do
     t.string "shipping_state"
     t.string "shipping_country"
     t.jsonb "data"
+    t.bigint "parent_id"
+    t.decimal "participant_fees"
     t.index ["category_id"], name: "index_participants_on_category_id"
     t.index ["event_id"], name: "index_participants_on_event_id"
   end

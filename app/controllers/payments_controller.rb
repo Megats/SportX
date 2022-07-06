@@ -4,24 +4,19 @@ class PaymentsController < ApplicationController
 
     def payredirect
         Rails.logger.debug "MEGAT DERMA #{params}"
-        # Rails.logger.debug "mencuba"
-        # @participant.CheckSum_generate(token = "no_token", **data)
-        # payment = params{json.parse}
+        user = User.find_by(email: params[:buyer_email])
+        Rails.logger.debug(user)
+        sign_in(user) if user.present?
         participant_status = params[:payment_status]
         @receipt = params[:status_url]
         @participant = Participant.find_by(participant_email: params[:buyer_email], participant_name: params[:buyer_name])
-        Rails.logger.debug "status #{params[:payment_status]}"
-        Rails.logger.debug @participant.inspect
         if participant_status == "true"
             @participant.update_columns(participant_status: "registered")
-            Rails.logger.debug "Receipt url #{@receipt}"
-            Rails.logger.debug "status is #{participant_status}"
             @participant.update_columns(data: @receipt)
             @participant.update_columns(onboard: 4)
             if !@participant.user_id.nil?
                 Rails.logger.debug("user id is #{@participant.user_id}")
-                Rails.logger.debug("this is user signed in")
-                redirect_to user_event_onboard_payments_path(id: @participant.id,event_id: @participant.event_id), notice: "Payment Success!"
+                redirect_to user_event_onboard_payments_path(id: @participant.id,event_id: @participant.event_id,parent_id: @participant.id), notice: "Payment Success!"
             else
                 Rails.logger.debug("this is public")
                 ReceiptEventMailer.with(participant: @participant).post_created.deliver_now
@@ -29,7 +24,7 @@ class PaymentsController < ApplicationController
             end
         else
             Rails.logger.debug "status failed #{participant_status}"
-            redirect_to event_onboard_payment_register_path(@participant.event_id, :event_id => @participant.event_id)
+            redirect_to event_onboard_payment_register_path(@participant.event_id, :event_id => @participant.event_id), notice: "Payment Unsuccessful!"
             flash[:notice] = 'Payment Failed!'
         end
 
