@@ -1,14 +1,35 @@
-h2 Search your application
+.mx-8
+    .flex.justify-between.items-center.p-5
+        h1.font-bold.text-4xl Find Registeration Details
 
-= simple_form_for "search", url: search_index_path, method: "GET" do |f|
-  = f.input :participant_email
-  = f.submit "Search", class: "btn btn-primary"
+    = simple_form_for "search", url: search_index_path, method: "GET" do |f|
+        table 
+            td
+                = f.input :participant_email, label: " Find by your Email : ", input_html: {class: "shadow rounded-md border border-gray-200 outline-none"}
+            td
+                = f.submit "Search", class: "rounded-lg py-3 px-5 bg-blue-600 text-white font-medium cursor-pointer"
 
-br
-h1
-  | Participants
-- @participants.each do |p|
-  h3
-    = p.participant_name
-  p
-    = p.participant_email
+        br
+        table.table.w-full
+            thead
+                tr
+                    th Participant Email
+                    th Email
+                    th Participant Category
+                    th NRIC
+            tbody
+                
+                tr
+                    - @participants.each do |p|
+                        td
+                            = p.participant_email 
+                        td
+                            = p.participant_name
+                        td
+                            = p.category.category_name
+                        td 
+                            = p.participant_NRIC
+
+                        tr
+                
+                                
