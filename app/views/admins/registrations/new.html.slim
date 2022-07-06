@@ -1,39 +1,25 @@
-.min-h-full.flex.flex-col.justify-center.py-12.sm:px-6.lg:px-8
-  .mt-8.sm:mx-auto.sm:w-full.sm:max-w-md
-    .bg-base-300.py-8.px-4.shadow.sm:rounded-lg.sm:px-10
-      h2.mt-6.text-3xl.font-extrabold.text-base-content.mb-4.text-center  Sign Up
-      = simple_form_for(resource,
-        as: resource_name,
-        url: registration_path(resource_name),
-        data: { turbo_frame: '_top', controller: 'display' }) do |f|
-        = f.error_notification
+section.h-screen
 
-        .form-grid
-          = f.input :fullname,
-                    required: true,
-                    autofocus: true,
-                    input_html: { autocomplete: "fullname" }
-        .form-grid
-          = f.input :email,
-                    required: true,
-                    input_html: { autocomplete: "email" }
+  .flex.xl:justify-center.lg:justify-between.justify-center.items-center.flex-wrap.h-full.g-6
 
-        .form-grid
-          = f.input :eth_address,
-                    required: true,
-                    input_html: { autocomplete: "eth_address" }
+    .grow-0.shrink-1.md:shrink-0.basis-auto.xl:w-6/12.lg:w-6/12.md:w-9/12.mb-12.md:mb-0
+      img.w-full[src="/assets/sport_X_logo.png" alt="Sample image"]
 
-        .form-grid
-          = f.input :password,
-                    required: true,
-                    hint: (t('password_hint', scope: 'simple_form.hints.user', length: @minimum_password_length) if @minimum_password_length),
-                    input_html: { autocomplete: "new-password" }
+    = simple_form_for(resource, as: resource_name, url: admin_registration_path) do |f|
+      = f.error_notification
 
-          = f.input :password_confirmation,
-                    required: true,
-                    input_html: { autocomplete: "new-password" }
-
-        .form-actions data-display-target='disable'
-          = f.button :submit, 'Register', class: 'btn-block'
-
-      = render "devise/shared/links"
+      .flex.flex-row.items-center.justify-center.lg:justify-start
+        p.text-2xl.mb-0.mr-4.font-extrabold
+          | Register (Admin Account)      
+      .mb-6
+        = f.input :email, required: true, autofocus: true, input_html: {class: "form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none", autocomplete: "email"}
+      .mb-12
+        = f.input :password, required: true, autofocus: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length), input_html: {class: "form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none", autocomplete: "new-password", id:"exampleFormControlInput1"}
+      .mb-6
+        = f.input :password_confirmation, required: true, autofocus: true, input_html: {class: "form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none", autocomplete: "new-password", id:"exampleFormControlInput1"}
+      .text-center.lg:text-left.mt-4
+        = f.button :submit, "Sign up", input_html: {class: "inline-block px-7 py-3 bg-blue-600 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"}
+        p.text-sm.font-semibold.mt-2.pt-1.mb-0
+          |  Already have an account? 
+          a.text-red-600.hover:text-red-700.focus:text-red-700.transition.duration-200.ease-in-out[href="#!"]
+            | Login here

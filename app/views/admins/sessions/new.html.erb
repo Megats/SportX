@@ -1,5 +1,5 @@
 <section class="h-full gradient-form bg-gray-200 md:h-screen">
-  <div class="container py-12 px-6 h-full">
+  <div class="container py-12 pb-12 px-2 h-full">
     <div class="flex justify-center items-center flex-wrap h-full g-6 text-gray-800">
       <div class="xl:w-10/12">
         <div class="block bg-white shadow-lg rounded-lg">
@@ -15,6 +15,9 @@
                   <h4 class="text-xl font-semibold mt-1 mb-12 pb-1">Sport X is never stops (Admin account)</h4>
                 </div>
                 <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <% if alert %>
+      <p class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative"><%= alert %></p>
+      <% end %>          
                   <p class="mb-4">Please login to your account as Admin</p>
                   <div class="mb-6">
                   <%= f.input :email, required: false, autofocus: true, input_html: {class: "form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none", autocomplete: "email", id:"exampleFormControlInput1"} %>
