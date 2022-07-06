@@ -1,10 +1,13 @@
-<div class="flex items-center justify-center h-screen bg-gray-100">
+<div class="flex items-center justify-center h-screen bg-blue-100">
   <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-    <div class="bg-white w-96 p-6 rounded shadow-sm">
+    <div class="bg-white w-96 p-6 py-1 rounded shadow-sm">
       <div class="flex items-center justify-center mb-4">
         <img src="/assets/sport_X_logo.png">
       </div>
 
+<% if alert %>
+  <p class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative"><%= alert %></p>
+<% end %>
           <div class="mb-6">
           <%= f.input :email, required: true, autofocus: true, input_html: {class: "form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none", autocomplete: "email", id:"exampleFormControlInput1"} %>
           </div>
