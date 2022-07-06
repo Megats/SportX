@@ -3,7 +3,7 @@ section.h-screen
   .flex.xl:justify-center.lg:justify-between.justify-center.items-center.flex-wrap.h-full.g-6
 
     .grow-0.shrink-1.md:shrink-0.basis-auto.xl:w-6/12.lg:w-6/12.md:w-9/12.mb-12.md:mb-0
-      img.w-full[src="/assets/sport_X_logo.png" alt="Sample image"]
+      = image_tag("sport_X_logo.png")
 
     = simple_form_for(resource, as: resource_name, url: admin_registration_path) do |f|
       = f.error_notification
@@ -14,12 +14,12 @@ section.h-screen
       .mb-6
         = f.input :email, required: true, autofocus: true, input_html: {class: "form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none", autocomplete: "email"}
       .mb-12
-        = f.input :password, required: true, autofocus: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length), input_html: {class: "form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none", autocomplete: "new-password", id:"exampleFormControlInput1"}
+        = f.input :password, required: true, autofocus: true, hint: ("#{@minimum_password_length} characters minimum " if @minimum_password_length), input_html: {class: "form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none", autocomplete: "new-password", id:"exampleFormControlInput1"}
       .mb-6
         = f.input :password_confirmation, required: true, autofocus: true, input_html: {class: "form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none", autocomplete: "new-password", id:"exampleFormControlInput1"}
       .text-center.lg:text-left.mt-4
         = f.button :submit, "Sign up", input_html: {class: "inline-block px-7 py-3 bg-blue-600 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"}
         p.text-sm.font-semibold.mt-2.pt-1.mb-0
           |  Already have an account? 
-          a.text-red-600.hover:text-red-700.focus:text-red-700.transition.duration-200.ease-in-out[href="#!"]
-            | Login here
+          a
+            == link_to "Login here", new_admin_session_path, class:"text-red-700 focus:text-red-700 transition duration-200 ease-in-out"
