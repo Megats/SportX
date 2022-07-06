@@ -5,12 +5,14 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%= stylesheet_link_tag "tailwind", "inter-font", media: "all", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag 'tailwind', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_importmap_tags %>
+    <%= stylesheet_link_tag "https://cdn.jsdelivr.net/npm/daisyui@2.14.1/dist/full.css" %>
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.12.1/datatables.min.css"/>
     <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.12.1/datatables.min.js"></script>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
 
   </head>
 
