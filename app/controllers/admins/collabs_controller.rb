@@ -16,7 +16,7 @@ class Admins::CollabsController < ApplicationController
 
   # GET /collabs/new
   def new
-    @collab = Collab.new
+    @collab = current_admin.collabs.new
   end
 
   # GET /collabs/1/edit
@@ -25,7 +25,7 @@ class Admins::CollabsController < ApplicationController
 
   # POST /collabs or /collabs.json
   def create
-    @collab = Collab.new(collab_params)
+    @collab = current_admin.collabs.new(collab_params)
 
     respond_to do |format|
       if @collab.save
