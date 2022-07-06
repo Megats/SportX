@@ -20,12 +20,12 @@ class PaymentsController < ApplicationController
             else
                 Rails.logger.debug("this is public")
                 ReceiptEventMailer.with(participant: @participant).post_created.deliver_now
-                redirect_to event_onboard_payments_path(id: @participant.id,event_id: @participant.event_id)
+                redirect_to event_onboard_payments_path(id: @participant.id,event_id: @participant.event_id), notice: "Payment Success!"
             end
         else
             Rails.logger.debug "status failed #{participant_status}"
-            redirect_to event_onboard_payment_register_path(@participant.event_id, :event_id => @participant.event_id), notice: "Payment Unsuccessful!"
-            flash[:notice] = 'Payment Failed!'
+            redirect_to event_onboard_payment_register_path(@participant.event_id, :event_id => @participant.event_id), alert: "Payment Unsuccessful!"
+            flash[:alert] = 'Payment Failed!'
         end
 
         # MEGAT DERMA {
