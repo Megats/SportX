@@ -69,12 +69,12 @@ class ParticipantsController < ApplicationController
   end
 
   private
-    
+
     def get_event
       @event = Event.find(params[:event_id])
     end
 
-  
+
 
     # Use callbacks to share common setup or constraints between actions.
     def set_participant

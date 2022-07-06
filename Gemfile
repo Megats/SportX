@@ -104,3 +104,4 @@ gem "mail_form", "~> 1.9"
 gem "letter_opener", group: :development
 gem 'letter_opener_web'
 gem 'cssbundling-rails'
+gem 'ransack'

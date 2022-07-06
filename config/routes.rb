@@ -6,6 +6,9 @@ Rails.application.routes.draw do
   resources :dashboards
   resources :contacts, only: [:new, :create]
 
+  resources :participants
+  resources :search
+
   resource :onboarding
   resources :results
   resources :payments do
@@ -32,7 +35,7 @@ Rails.application.routes.draw do
   resources :collabs do
     resources :donations do
       get :successful
-      get :unsuccessful  
+      get :unsuccessful
     end
   end
 
