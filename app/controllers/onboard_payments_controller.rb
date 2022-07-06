@@ -61,7 +61,7 @@ class OnboardPaymentsController < ApplicationController
         product_description: @event.event_name,
         transaction_amount: @participant.participant_fees,
         callback_url: "",
-        redirect_url: "http://localhost:3000/payments/payredirect",
+        redirect_url: "http://#{ENV["domain"]}/payments/payredirect",
         token: "A64sFshdhzPmV5es_123",
         redirect_post: "true"
        }

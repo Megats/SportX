@@ -36,7 +36,7 @@ class DonationsController < ApplicationController
         product_description: @collab.collab_name,
         transaction_amount: @donation.donation_amount,
         callback_url: "",
-        redirect_url: "http://localhost:3000/donationpayments/donationredirect",
+        redirect_url: "http://#{ENV["domain"]}/donationpayments/donationredirect",
         token: "A64sFshdhzPmV5es_123",
         redirect_post: "true"
        }
