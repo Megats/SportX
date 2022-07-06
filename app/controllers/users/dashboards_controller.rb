@@ -6,7 +6,7 @@ class Users::DashboardsController < ApplicationController
       @events = Event.all.count
       @collaborations = Collab.all.count
       @users = User.all.count
-      @numberparticipant = Participant.where(user_id: current_user.id).count
-      @participants = Participant.where(user_id: current_user.id)
+      @numberparticipant = Participant.where(participant_email: current_user.email).count
+      @participants = Participant.where(participant_email: current_user.email)
     end
   end
