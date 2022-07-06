@@ -5,15 +5,15 @@
     <%= form_for @contact do |f| %>
       <div class="block mb-6">
         <%= f.label :Name, class: "font-semibold text-lg text-black" %><br>
-        <%= f.text_field  :name_contact, required: true, class: "block w-full mt-1 border-gray-600 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:rinf-opacity-50 bg-transparent placeholder-gray-600 text-gray-300", placeholder: "Full Name" %><br>
+        <%= f.text_field  :name_contact, required: true, class: "block w-full mt-1 border-gray-600 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:rinf-opacity-50 bg-transparent placeholder-gray-600 text-black-500", placeholder: "Full Name" %><br>
       </div>  
       <div class="block mb-6">
         <%= f.label :Email, class: "font-semibold text-lg text-black" %><br>
-        <%= f.text_field :email_contact, required: true, class: "block w-full mt-1 border-gray-600 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:rinf-opacity-50 bg-transparent placeholder-gray-600 text-gray-300", placeholder: "Email" %><br>
+        <%= f.text_field :email_contact, required: true, class: "block w-full mt-1 border-gray-600 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:rinf-opacity-50 bg-transparent placeholder-gray-600 text-black-500", placeholder: "Email" %><br>
       </div>  
       <div class="block mb-6">
         <%= f.label :Message_form, class: "font-semibold text-lg text-black" %><br>
-        <%= f.text_area :message_contact, rows: 8, cols: 40, required: true, class: "block w-full mt-1 border-gray-600 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:rinf-opacity-50 bg-transparent placeholder-gray-600 text-gray-300", 
+        <%= f.text_area :message_contact, rows: 8, cols: 40, required: true, class: "block w-full mt-1 border-gray-600 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:rinf-opacity-50 bg-transparent placeholder-gray-600 text-black-500", 
               placeholder: "Send me a message"%><br>
       </div>
         <div class= "d-none" style="display: none;">
