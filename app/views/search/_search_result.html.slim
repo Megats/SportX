@@ -1,0 +1,15 @@
+turbo-frame#search
+    .overflow-x-auto
+        table.table.w-full
+            thead
+            tr
+                th Participant Email
+                th Participant Category
+                th View Participants
+            tbody
+            tr
+                - @participant.each do |participant|
+                    td #{participant.participant_email}
+                    td #{participant.participant_gender}
+                    td #{participant.category.category_name} #{participant.category.category_gender} (#{participant.category.category_age})
+                    tr

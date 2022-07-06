@@ -133,8 +133,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_05_112611) do
     t.string "participant_status", default: "pending"
     t.bigint "category_id", null: false
     t.string "shirt_size"
-    t.integer "onboard", default: 0
     t.string "participant_gender"
+    t.integer "onboard", default: 0
     t.string "participant_postal"
     t.string "participant_city"
     t.string "participant_state"

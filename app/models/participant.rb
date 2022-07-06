@@ -11,4 +11,17 @@ class Participant < ApplicationRecord
     OpenSSL::HMAC.hexdigest(OpenSSL::Digest.new('sha256'), checksum_token, data)
   end
 
+  def self_search
+    if search
+      participant = Participant.find_by(participant_email: params[:search])
+      if participant_name
+        self.where(participant_name: params[:search])
+      else
+        Participant.all
+      end
+    else
+      Participant.all
+    end
+  end
+
 end
