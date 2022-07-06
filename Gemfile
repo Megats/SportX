@@ -58,7 +58,7 @@ gem "bootsnap", require: false
 
 # Use Sass to process CSS
 # gem 'sass-rails'
-gem 'sassc-rails'
+#gem 'sassc-rails'
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
   gem "image_processing", "~> 1.2"
@@ -86,7 +86,7 @@ group :test do
   gem "webdrivers"
 end
 
-gem "tailwindcss-rails", "~> 2.0"
+# gem "tailwindcss-rails", "~> 2.0"
 
 gem "html2slim", "~> 0.2.0"
 
@@ -103,3 +103,4 @@ gem "jsonb_accessor"
 gem "mail_form", "~> 1.9"
 gem "letter_opener", group: :development
 gem 'letter_opener_web'
+gem 'cssbundling-rails'
