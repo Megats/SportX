@@ -1,7 +1,9 @@
 .bg-fixed style="background-image: url(https://c.tenor.com/860VK3sQ4-EAAAAd/torch-olympic-fire.gif); "
   section.relative
     .items-center
-
+    - if notice.present?
+      p#notice.py-2.px-3.bg-green-50.mb-5.text-green-500.font-medium.rounded-lg.inline-block
+        = notice
     .items-center.lg:items-start
       h2.text-white.text-3xl.md:text-4.lg:text-5xl.text-center
         |  Welcome to 

@@ -1,19 +1,14 @@
 h2 Search your application
 
-= render 'search_form'
+= simple_form_for "search", url: search_index_path, method: "GET" do |f|
+  = f.input :participant_email
+  = f.submit "Search", class: "btn btn-primary"
 
 br
-.overflow-x-auto
-    table.table.w-full
-        thead
-        tr
-            th Participant Email
-            th Participant Category
-            th View Participants
-        tbody
-        tr
-            - @participants.each do |participant|
-                td #{participant.participant_email}
-                td #{participant.participant_gender}
-                td #{participant.category.category_name} #{participant.category.category_gender} (#{participant.category.category_age})
-                tr
+h1
+  | Participants
+- @participants.each do |p|
+  h3
+    = p.participant_name
+  p
+    = p.participant_email
