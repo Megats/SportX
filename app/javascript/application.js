@@ -11,4 +11,5 @@ $("#participantsTable").DataTable()
 //= require dataTables/jquery.dataTables
 //= require cocoon
 //= require dataTables/jquery.dataTablesimport "trix"
+//= require trix
 

@@ -17,19 +17,19 @@
         = f.input :donation_email, label: 'Your Email', input_html: {required: true, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" } , error: 'Username is mandatory, please specify one' 
         / = f.text_field :donation_email,  class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", input_html: {required: true }
       .my-5
-        = f.label :Full_Name
+        = f.label :Full_Name, "Full Name"
         = f.text_field :donation_name,  class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", input_html: {required: true }
       .my-5
-        = f.label :Phone_number
+        = f.label :Phone_number, "Contact Number"
         = f.text_field :donation_number, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", input_html: {required: true }
       .my-5
         = f.label :Nationality
-        = f.text_field :donation_nationality,  class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", input_html: {required: true }
+        = f.input :donation_nationality, label: false, as: :country,  priority: ["MY", "ID", "SG", "BN"], input_html: {class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", required: true }
       .my-5
-        = f.label :Country_of_Residence
-        = f.text_field :donation_COR,  class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", input_html: {required: true }
+        = f.label :Country_of_Residence, "Country of Residence"
+        = f.input :donation_COR, label: false, as: :country, priority: ["MY", "ID", "SG", "BN"], input_html: {class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", required: true }
       .my-5
-        = f.label :NRIC
+        = f.label :NRIC, "NRIC"
         = f.text_field :donation_NRIC,  class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", input_html: {required: true }
       .my-5
         = f.label :Date_of_birth
