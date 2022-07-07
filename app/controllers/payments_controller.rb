@@ -6,7 +6,6 @@ class PaymentsController < ApplicationController
         Rails.logger.debug "MEGAT DERMA #{params}"
         user = User.find_by(email: params[:buyer_email])
         Rails.logger.debug(user)
-        sign_in(user) if user.present?
         participant_status = params[:payment_status]
         @receipt = params[:status_url]
         @participant = Participant.find_by(participant_email: params[:buyer_email], participant_name: params[:buyer_name])
@@ -15,6 +14,7 @@ class PaymentsController < ApplicationController
             @participant.update_columns(data: @receipt)
             @participant.update_columns(onboard: 4)
             if !@participant.user_id.nil?
+                sign_in(user) if user.present?
                 Rails.logger.debug("user id is #{@participant.user_id}")
                 redirect_to user_event_onboard_payments_path(id: @participant.id,event_id: @participant.event_id,parent_id: @participant.id), notice: "Payment Success!"
             else
