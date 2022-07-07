@@ -14,15 +14,19 @@ class DonationpaymentsController < ApplicationController
             if !@donation.user_id.nil?
             #     Rails.logger.debug("user id is #{@donation.user_id}")
             #     Rails.logger.debug("this is user signed in")
-                redirect_to user_collab_donation_successful_path(collab_id: @donation.collab_id, donation_id: @donation.id), notice: "Payment Success!"
+                user_collab_donation_successful_path(collab_id: @donation.collab_id, donation_id: @donation.id), notice: "Payment Success!"
             else
             #     Rails.logger.debug("this is public")
                 redirect_to collab_donation_successful_path(collab_id: @donation.collab_id, donation_id: @donation.id), notice: "Payment Success!"
             end
         else
-        #     Rails.logger.debug "status failed #{participant_status}"
-            redirect_to user_collab_donation_unsuccessful_path(donation_id: @donation.id ,collab_id: @donation.collab_id), notice: "Payment Unsuccessful!"
-        #     flash[:notice] = 'Payment Failed!'
+            if !@donation.user_id.nil?
+                redirect_to user_collab_donation_unsuccessful_path(donation_id: @donation.id ,collab_id: @donation.collab_id), notice: "Payment Unsuccessful!"
+            else
+                redirect_to collab_donation_unsuccessful_path(donation_id: @donation.id ,collab_id: @donation.collab_id), notice: "Payment Unsuccessful!"
+        
+           
+    
         end
     end
 end
