@@ -3,20 +3,43 @@
       thead
         tr
           th Event
-          th Email
-          th Nationality
-          th Country of Residence
+          th Name
+          th Gender
           th NRIC
           th Category
       tbody
         tr
           tr
             td #{participant.event.event_name}
-            td #{participant.participant_email}
-            td #{participant.participant_nationality}
-            td #{participant.participant_COR}
+            td #{participant.participant_name}
+            td #{participant.participant_gender}
             td #{participant.participant_NRIC}
             td #{participant.category.category_name} #{participant.category.category_gender} (#{participant.category.category_age})
+        - if !@participants.nil?
+          - @participants.each do |participant|
+            tr
+              td
+              td #{participant.participant_name}
+              td #{participant.participant_gender}
+              td #{participant.participant_NRIC}
+              td #{participant.category.category_name} #{participant.category.category_gender} (#{participant.category.category_age})
 
 
+/ br
+/ - if !@participants.nil?
+/   .overflow-x-auto
+/       table.table.w-full
+/         thead
+/           tr
+/             th Name
+/             th Gender
+/             th Nric
+/             th Category
+/         tbody
+/           - @participants.each do |participant|
+/             tr
+/               td #{participant.participant_name}
+/               td #{participant.participant_gender}
+/               td #{participant.participant_NRIC}
+/               td #{participant.category.category_name} #{participant.category.category_gender} (#{participant.category.category_age})
 
