@@ -1,5 +1,10 @@
 .mx-auto.md:w-2/3.w-full
-  h1.font-bold.text-4xl
-    | New event
-  = render "form", event: @event
-  = link_to 'Back to events', admin_events_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium"
+  h1.font-bold.text-4xl Create new Event
+
+  div.flex.justify-end
+    br
+    = link_to "Back to events", admin_events_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium"
+
+  == render "form", event: @event
+
+  br
