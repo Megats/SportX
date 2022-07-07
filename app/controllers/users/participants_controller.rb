@@ -19,6 +19,10 @@ class Users::ParticipantsController < ApplicationController
   def edit
   end
 
+  def show
+    @participants = Participant.where(parent_id: @participant.id)
+  end
+
   # POST /participants or /participants.json
   def create
     @participant = @event.participants.new(participant_params)
