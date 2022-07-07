@@ -105,3 +105,4 @@ gem "letter_opener", group: :development
 gem 'letter_opener_web'
 gem 'cssbundling-rails'
 gem "figaro"
+gem 'trix-rails'
