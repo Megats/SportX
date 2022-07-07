@@ -4,7 +4,7 @@ class DonationpaymentsController < ApplicationController
         
        
         @donation = Donation.find_by(donation_email: params[:buyer_email], donation_name: params[:buyer_name])
-        if params[:payment_status] "true"
+        if params[:payment_status] = "true"
             if !@donation.user_id.nil?
                 user = User.find_by(email: params[:buyer_email])
                 sign_in(user) if user.present?
